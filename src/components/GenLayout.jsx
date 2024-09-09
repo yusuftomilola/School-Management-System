@@ -40,42 +40,42 @@ const navigation = [
   },
   {
     name: "Schools",
-    href: "#",
+    href: "/schools",
     src: schoolsIcon,
   },
   {
     name: "Teachers",
-    href: "#",
+    href: "/teachers",
     src: teachersIcon,
   },
   {
     name: "Classrooms",
-    href: "#",
+    href: "/classrooms",
     src: classroomsIcon,
   },
   {
     name: "Students",
-    href: "#",
+    href: "/students",
     src: studentsIcon,
   },
   {
     name: "Subjects",
-    href: "#",
+    href: "/subjects",
     src: subjectsIcon,
   },
   {
     name: "Scoresheet",
-    href: "#",
+    href: "/scoresheet",
     src: scoresheetIcon,
   },
   {
     name: "School Calender",
-    href: "#",
+    href: "/school-calender",
     src: schoolCalenderIcon,
   },
   {
     name: "Users",
-    href: "#",
+    href: "/userss",
     src: usersIcon,
   },
 ];
@@ -139,7 +139,7 @@ export default function HomeLayout() {
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
                     <li>
-                      <ul role="list" className="-mx-2">
+                      <ul role="list" className="-mx-2 space-y-[5px]">
                         {navigation.map((item) => (
                           <li key={item.name}>
                             <Link
@@ -194,7 +194,7 @@ export default function HomeLayout() {
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
-                  <ul role="list" className="-mx-2">
+                  <ul role="list" className="-mx-2 space-y-[5px]">
                     {navigation.map((item) => (
                       <li key={item.name}>
                         <Link
@@ -251,9 +251,9 @@ export default function HomeLayout() {
 
             <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between items-center">
               <div className="flex items-center gap-2">
-                <img src={smsIcon} alt="sms icon" className="hidden sm:block" />
+                <img src={smsIcon} alt="sms icon" className="hidden lg:block" />
                 <h1 className="hidden sm:block text-[14px] font-semibold">
-                  School management system
+                  School Management System
                 </h1>
               </div>
 
