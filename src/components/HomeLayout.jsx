@@ -18,7 +18,7 @@ import {
 // Import your SVG icons
 import dashboardIcon from "../assets/icons/dashboardIcon.svg";
 import usersIcon from "../assets/icons/usersIcon.svg";
-import JohnPetersonIcon from "../assets/icons/JohnPetersonIcon.svg";
+import JohnPetersonIcon from "../assets/icons/johnPetersonIcon.svg";
 import ShortDownArrowIcon from "../assets/icons/shortDownArrowIcon.svg";
 import bellNotificationsIcon from "../assets/icons/bellNoticationsIcon.svg";
 import smsIcon from "../assets/icons/smsIcon.svg";

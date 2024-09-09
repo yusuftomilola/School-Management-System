@@ -11,7 +11,6 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Import your SVG icons
-
 import dashboardIcon from "../assets/icons/dashboardIcon.svg";
 import usersIcon from "../assets/icons/usersIcon.svg";
 import JohnPetersonIcon from "../assets/icons/johnPetersonIcon.svg";
