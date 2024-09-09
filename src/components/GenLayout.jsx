@@ -8,18 +8,13 @@ import {
   MenuButton,
   TransitionChild,
 } from "@headlessui/react";
-import {
-  Bars3Icon,
-  HomeIcon,
-  UsersIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // Import your SVG icons
 
 import dashboardIcon from "../assets/icons/dashboardIcon.svg";
 import usersIcon from "../assets/icons/usersIcon.svg";
-import JohnPetersonIcon from "../assets/icons/JohnPetersonIcon.svg";
+import JohnPetersonIcon from "../assets/icons/johnPetersonIcon.svg";
 import ShortDownArrowIcon from "../assets/icons/shortDownArrowIcon.svg";
 import ShortDownArrowIcon2 from "../assets/icons/shortDownArrowIcon2.svg";
 import bellNotificationsIcon from "../assets/icons/bellNoticationsIcon.svg";
