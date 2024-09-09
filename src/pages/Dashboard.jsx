@@ -6,6 +6,7 @@ import {
   ClassroomsIcon,
   SubjectsIcon,
 } from "../assets/icons/dashboard";
+import EarningsChartContainer from "../components/dashboard/EarningsChartContainer";
 
 const Dashboard = () => {
   return (
@@ -21,6 +22,16 @@ const Dashboard = () => {
           title={"Total Number Subjects"}
           url={SubjectsIcon}
         />
+      </div>
+
+      <div>
+        <h2 className="text-[20px] font-semibold">Earnings</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <EarningsChartContainer />
+
+          <div></div>
+        </div>
       </div>
     </div>
   );
