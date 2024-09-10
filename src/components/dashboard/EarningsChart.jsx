@@ -30,6 +30,7 @@ const EarningsChart = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // This ensures the chart doesn't maintain the default aspect ratio
     plugins: {
       legend: {
         display: false,
@@ -50,7 +51,7 @@ const EarningsChart = () => {
     },
   };
 
-  return <Line data={data} options={options} />;
+  return <Line data={data} options={options} height={120} />;
 };
 
 export default EarningsChart;

@@ -25,7 +25,7 @@ const Dashboard = () => {
       </div>
 
       <div>
-        <h2 className="text-[20px] font-semibold">Earnings</h2>
+        <h2 className="mt-6 mb-2 text-[20px] font-semibold">Earnings</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <EarningsChartContainer />
