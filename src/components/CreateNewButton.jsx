@@ -1,9 +1,9 @@
 import React from 'react'
 
-function CreateNewButton() {
+function CreateNewButton({children, backgroundColor}) {
   return (
     <div>
-      <button className="px-[6px] py-3 text-[#403294] bg-[#EAE6FF] rounded">Create New School</button>
+    <button className={`px-[6px] py-3 text-[#403294] bg-[${backgroundColor}] rounded`}>{children}</button>
     </div>
   );
 }

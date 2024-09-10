@@ -5,8 +5,6 @@ import CreateSchool from "./pages/CreateSchool";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import UserCard from "./components/UserCard"
-import SearchFilterButton from "./components/SearchFilterButton";
 
 import {
   BrowserRouter as Router,
@@ -25,9 +23,8 @@ import Scoresheet from "./pages/Scoresheet";
 import Schools from "./pages/Schools";
 import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
-
 import Forms from "./components/forms/Forms";
-import CreateNewButton from "./components/CreateNewButton";
+import ComponentsTesting from "./components/ComponentsTesting";
 
 function App() {
   return (
@@ -58,18 +55,17 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
-              {/* <h1 className="bg-red-500">Register/SignIn Page</h1> */}
-              <UserCard />
-              <CreateNewButton />
-              <SearchFilterButton />
-            </div>
+            <>
+              <h1>heading</h1>
+            </>
           }
-          
         />
 
         {/* Create School Page */}
         <Route path="/create-school" element={<CreateSchool />} />
+
+        {/* hajia route */}
+        <Route path="/components-testing" element={<ComponentsTesting />} />
 
         {/* NOT FOUND ROUTE */}
         <Route path="/*" element={<NotFound />} />

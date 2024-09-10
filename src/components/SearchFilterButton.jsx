@@ -20,9 +20,11 @@ function SearchFilterButton() {
           id=""
           className="bg-[#DFE1E6] rounded px-2 py-3 text-[#42526e] text-[14px] font-medium"
         >
-          <option value="Filter">Filter</option>
-          <option value="Filter">Filter</option>
-          <option value="Filter">Filter</option>
+          <option value="">Filter</option>
+          <option value="vfrfr">A-Z</option>
+          <option value="rfre">Date Created</option>
+          <option value="refr">Filter 1</option>
+          <option value="refer">Filter 2</option>
         </select>
       </div>
     </div>
