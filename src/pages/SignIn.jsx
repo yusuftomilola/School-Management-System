@@ -19,7 +19,7 @@ const SignIn = () => {
           <div className="mx-auto w-full max-w-sm lg:w-96">
 
               <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Create Account
+                Sign in
               </h2>
 
             <div className="mt-8">
@@ -78,7 +78,7 @@ const SignIn = () => {
                      Cancel
                     </button>
                     
-                    <Link to={'/'} className="btn bg-[#5243AA] p-2 px-5 rounded text-white font-semibold"> Login </Link>
+                    <Link to={'/home'} className="btn bg-[#5243AA] p-2 px-5 rounded text-white font-semibold"> Login </Link>
                   </div>
 
                 </form>
@@ -86,7 +86,7 @@ const SignIn = () => {
 
               <div className="mt- flex gap-1 absolute bottom-3 ml-10" >
                 <p>Already have an account?</p>
-                <Link to={''} className="text-[#5243AA]">Register here</Link>
+                <Link to={'/'} className="text-[#5243AA]">Register here</Link>
               </div>
 
 

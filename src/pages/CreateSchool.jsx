@@ -123,7 +123,7 @@ function CreateAccount() {
                       </button>
                     </Link>
                     
-                    <Link to={'/'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"> Create School </Link>
+                    <Link to={'/dashboard'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"> Create School </Link>
                   </div>
                 </form>
               </div>

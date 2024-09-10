@@ -52,7 +52,7 @@ function App() {
 
         {/* ROUTES/PAGES WITHOUT LAYOUT */}
         {/* Register/signIn Page */}
-        <Route path="/register" element={ <CreateAccount/>} />
+        <Route path="/" element={ <CreateAccount/>} />
         <Route path="/sign-in" element = {<SignIn /> } > </Route>
 
         {/* Create School Page */}

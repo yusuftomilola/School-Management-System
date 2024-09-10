@@ -93,14 +93,14 @@ function CreateAccount() {
                      Cancel
                     </button>
                     
-                    <Link to={'/'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"> Register </Link>
+                    <Link to={'/home'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"> Register </Link>
                   </div>
                 </form>
               </div>
 
               <div className="mt- flex gap-1 absolute bottom-3">
                 <p>Already have an account?</p>
-                <Link to={''} className="text-blue-300">Login here</Link>
+                <Link to={'/sign-in'} className="text-blue-300">Login here</Link>
               </div>
 
 
