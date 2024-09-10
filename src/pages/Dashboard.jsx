@@ -7,6 +7,8 @@ import {
   SubjectsIcon,
 } from "../assets/icons/dashboard";
 import EarningsChartContainer from "../components/dashboard/EarningsChartContainer";
+import ProgressBar from "../components/ProgressBar";
+import checkIcon from "../assets/icons/purpleCheckIcon.svg";
 
 const Dashboard = () => {
   return (
@@ -25,12 +27,41 @@ const Dashboard = () => {
       </div>
 
       <div>
-        <h2 className="mt-6 mb-2 text-[20px] font-semibold">Earnings</h2>
+        <h2 className="mt-6 mb-3 text-[20px] font-bold">Earnings</h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <EarningsChartContainer />
 
-          <div></div>
+          <div>
+            <div className="flex gap-4">
+              <ProgressBar
+                title={"School Fees"}
+                amount={"1,200"}
+                mainColor={`#00875A`}
+                secondaryColor={"#E3FCEF"}
+              />
+
+              <ProgressBar
+                title={"Lesson Fees"}
+                amount={"1,200"}
+                mainColor={`#0052CC`}
+                secondaryColor={"#DEEBFF"}
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <img src={checkIcon} alt="checkbox" />
+
+            <div>
+              <h4 className="text-[14px]">New Activity</h4>
+              <p className="text-[12px]">
+                Title and actions are optional. Toggle their visibility as
+                needed
+              </p>
+              <p className="text-[12px]">Add new action</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
