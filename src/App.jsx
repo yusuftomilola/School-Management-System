@@ -5,6 +5,9 @@ import CreateSchool from "./pages/CreateSchool";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import UserCard from "./components/UserCard"
+import SearchFilterButton from "./components/SearchFilterButton";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,6 +27,7 @@ import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
 
 import Forms from "./components/forms/Forms";
+import CreateNewButton from "./components/CreateNewButton";
 
 function App() {
   return (
@@ -55,9 +59,13 @@ function App() {
           path="/"
           element={
             <div>
-              <h1 className="bg-red-500">Register/SignIn Page</h1>
+              {/* <h1 className="bg-red-500">Register/SignIn Page</h1> */}
+              <UserCard />
+              <CreateNewButton />
+              <SearchFilterButton />
             </div>
           }
+          
         />
 
         {/* Create School Page */}
