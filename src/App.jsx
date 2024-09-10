@@ -22,8 +22,9 @@ import Scoresheet from "./pages/Scoresheet";
 import Schools from "./pages/Schools";
 import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
-
 import Forms from "./components/forms/Forms";
+import CreateAccount from "./pages/CreateAccount";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -51,14 +52,8 @@ function App() {
 
         {/* ROUTES/PAGES WITHOUT LAYOUT */}
         {/* Register/signIn Page */}
-        <Route
-          path="/"
-          element={
-            <div>
-              <h1 className="bg-red-500">Register/SignIn Page</h1>
-            </div>
-          }
-        />
+        <Route path="/" element={ <CreateAccount/>} />
+        <Route path="/sign-in" element = {<SignIn /> } > </Route>
 
         {/* Create School Page */}
         <Route path="/create-school" element={<CreateSchool />} />
