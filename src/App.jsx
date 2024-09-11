@@ -24,7 +24,8 @@ import Schools from "./pages/Schools";
 import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
 import Forms from "./components/forms/Forms";
-import ComponentsTesting from "./components/ComponentsTesting";
+import CreateAccount from "./pages/CreateAccount";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
@@ -52,14 +53,8 @@ function App() {
 
         {/* ROUTES/PAGES WITHOUT LAYOUT */}
         {/* Register/signIn Page */}
-        <Route
-          path="/"
-          element={
-            <>
-              <h1>heading</h1>
-            </>
-          }
-        />
+        <Route path="/" element={ <CreateAccount/>} />
+        <Route path="/sign-in" element = {<SignIn /> } > </Route>
 
         {/* Create School Page */}
         <Route path="/create-school" element={<CreateSchool />} />
