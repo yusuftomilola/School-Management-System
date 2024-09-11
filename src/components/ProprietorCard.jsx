@@ -1,6 +1,6 @@
 function UserCard({ name, qualification, rank, imageUser }) {
   return (
-    <div className="flex flex-col w-full rounded-md shadow-sm bg-white p-5 mb-5">
+    <div className="flex flex-col w-full rounded-md shadow-sm bg-white p-6 mb-5">
       <div className="flex">
         <div>
           <img src={imageUser} alt="user" />
