@@ -1,13 +1,24 @@
+import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import "../styles.css";
 
 const ProgressBar = ({ title, amount, mainColor, secondaryColor }) => {
-  const percentage = 36;
-  // const value = 1200;
+  // Initial percentage starts from 0 for animation
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    // Animate the progress to 36% over 1 second
+    const timer = setTimeout(() => {
+      setPercentage(36); // Target percentage
+    }, 500); // Delay to smooth the start of the animation
+
+    // Cleanup the timeout on component unmount
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="flex rounded-md py-3 px-4 w-full h-[100px] items-center bg-white justify-between">
+    <div className="flex rounded-md py-3 px-4 w-full h-[90px] items-center bg-white justify-between">
       <div style={{ width: 60, height: 60 }}>
         <CircularProgressbar
           value={percentage}
@@ -16,23 +27,24 @@ const ProgressBar = ({ title, amount, mainColor, secondaryColor }) => {
             // Rotation of path and trail, in number of turns (0-1)
             rotation: 0,
 
-            // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+            // Whether to use rounded or flat corners on the ends
             strokeLinecap: "butt",
 
             // Text size
             textSize: "16px",
 
-            // How long animation takes to go from one percentage to another, in seconds
-            pathTransitionDuration: 0.5,
-
-            // Can specify path transition in more detail, or remove it entirely
-            // pathTransition: 'none',
+            // Animation duration for path transition
+            pathTransitionDuration: 1, // 1 second for animation
 
             // Colors
             pathColor: mainColor,
             textColor: "#f88",
             trailColor: secondaryColor,
             backgroundColor: "#3e98c7",
+            // Ensure smooth stroke-dashoffset transition
+            transition: "stroke-dashoffset 1s ease 0s",
+            transform: "rotate(0.25turn)",
+            transformOrigin: "center center",
           })}
         />
       </div>

@@ -29,11 +29,11 @@ const Dashboard = () => {
       <div>
         <h2 className="mt-6 mb-3 text-[20px] font-bold">Earnings</h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <EarningsChartContainer />
 
-          <div>
-            <div className="flex gap-4">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <ProgressBar
                 title={"School Fees"}
                 amount={"1,200"}
@@ -48,18 +48,22 @@ const Dashboard = () => {
                 secondaryColor={"#DEEBFF"}
               />
             </div>
-          </div>
 
-          <div className="flex gap-4">
-            <img src={checkIcon} alt="checkbox" />
+            <div className="flex gap-4 bg-[#EAE6FF] h-[103px] rounded-md px-4 pt-3 items-start">
+              <img src={checkIcon} alt="checkbox" />
 
-            <div>
-              <h4 className="text-[14px]">New Activity</h4>
-              <p className="text-[12px]">
-                Title and actions are optional. Toggle their visibility as
-                needed
-              </p>
-              <p className="text-[12px]">Add new action</p>
+              <div className="flex flex-col gap-[2px]">
+                <h4 className="text-[15px] font-semibold text-[#172B4D]">
+                  New Activity
+                </h4>
+                <p className="text-[12px] text-[]">
+                  Title and actions are optional. Toggle their visibility as
+                  needed
+                </p>
+                <p className="text-[12px] text-[#0052CC] font-semibold">
+                  Add new action
+                </p>
+              </div>
             </div>
           </div>
         </div>
