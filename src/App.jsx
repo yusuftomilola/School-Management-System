@@ -5,6 +5,7 @@ import CreateSchool from "./pages/CreateSchool";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -61,6 +62,9 @@ function App() {
 
           {/* Create School Page */}
           <Route path="/create-school" element={<CreateSchool />} />
+
+          {/* hajia route */}
+          <Route path="/components-testing" element={<ComponentsTesting />} />
 
           {/* NOT FOUND ROUTE */}
           <Route path="/*" element={<NotFound />} />
