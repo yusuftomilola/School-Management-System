@@ -3,10 +3,8 @@ import { lgaList } from "./lgaList";
 import { Upload } from "antd";
 import StudentForm from "./StudentForm";
 import SchoolCalender from "./SchoolCalender";
-import TeacherAccountDetail from "./TeacherAccountDetail";
-import Button from "./Button";
 import CancelBtn from "./CancelBtn";
-import StudentClass from "./StudentClass";
+import Button from "./Button";
 
 const religions = ["Christian", "Muslim"];
 const states = [
@@ -49,7 +47,7 @@ const states = [
   "FCT",
 ];
 
-function Forms() {
+function TeacherAccountDetail() {
   // State management for file upload
   const [file, setFile] = useState(null);
 
@@ -92,9 +90,12 @@ function Forms() {
       <form className="w-full max-w-[600px] p-[10px] max-h-[100vh] md:h-[100%] overflow-y-auto bg-white">
         {/* <!-- Top div section (title) --> */}
         <div className="flex flex-col mb-3 gap-4   max-[900px]:flex-col min-[900px]:flex-row">
-          <h1 className="text-[16px] font-bold text-[#3A3B3F]">Create Staff</h1>
+          <h1 className="text-[16px] font-bold text-[#3A3B3F]">
+            Account Detail
+          </h1>
           <p className="text-[#66788A] text-[14px] font-light">
-            The information can be edited from the profile page
+            The information can be edited, click edit to update the sfatt
+            profile
           </p>
         </div>
         <hr />
@@ -128,24 +129,6 @@ function Forms() {
                 placeholder="example@gmail.com"
               />
             </div>
-          </div>
-
-          <Upload
-            onChange={handleFileChange}
-            className="w-fit flex-1 flex items-center object-contain"
-          >
-            <img
-              src="./Assets/upload.svg"
-              alt="upload"
-              className="h-[120px] w-fit object-contain"
-              style={{ padding: "0px" }}
-            />
-          </Upload>
-        </div>
-
-        {/* <!-- Last div --> */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6 ">
-          <div className="flex flex-col gap-4 flex-1">
             <div className="flex flex-col gap-1 mt-3 sm:mt-0">
               <label
                 htmlFor="PhoneNumber"
@@ -159,6 +142,30 @@ function Forms() {
                 placeholder="+234"
               />
             </div>
+          </div>
+
+          <Upload
+            onChange={handleFileChange}
+            className="w-full flex-1 h-fit flex items-center justify-center object-contain border border-solid border-[#dfe1e6] "
+          >
+            <div>
+              <img
+                src="./Assets/teacherimg.svg"
+                alt="upload"
+                className="h-fit w-full object-contain mt-6 px-5"
+              />
+            </div>
+            <div>
+              <p className="text-center text-[#1665d8] font-medium text-[12px] mt-[25PX] pb-[15px]">
+                UPLOAD PICTURE
+              </p>
+            </div>
+          </Upload>
+        </div>
+
+        {/* <!-- Last div --> */}
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-4 mb-6 ">
+          <div className="flex flex-col gap-4 flex-1">
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="Religion"
@@ -201,6 +208,19 @@ function Forms() {
                 type="text"
                 className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
                 placeholder="B.Sc Mathematics"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor="level"
+                className="text-[12px] font-semibold text-[#333333]"
+              >
+                Level
+              </label>
+              <input
+                type="text"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                placeholder="Head Teacher"
               />
             </div>
           </div>
@@ -258,13 +278,16 @@ function Forms() {
                 <option value="Nigeria">Nigeria</option>
               </select>
             </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="fileUpload"
-                className="cursor-pointer text-[12px] font-bold text-[#333333]"
-              >
-                Upload CV
-              </label>
+            <div className="flex gap-1">
+              <div>
+                <label
+                  htmlFor="fileUpload"
+                  className="cursor-pointer text-[12px] font-bold text-[#333333]"
+                >
+                  Class
+                </label>
+                <input className="text-[#656565] text-[14px] p-[6px] outline-none border border-solid border-[#dfe1e6] w-[100px]" />
+              </div>
               <input
                 type="file"
                 id="fileUpload"
@@ -279,14 +302,10 @@ function Forms() {
 
         {/* <!-- Buttons --> */}
         <div className="flex mt-5 justify-end gap-3">
-          <CancelBtn>Cancel</CancelBtn>
-          <Button className="text-white">Add New Staff</Button>
+          <CancelBtn>Delete</CancelBtn>
+          <Button className="text-white">Edit Profile</Button>
         </div>
       </form>
-      <StudentForm />
-      <SchoolCalender />
-      <TeacherAccountDetail />
-      <StudentClass />
     </div>
   );
 }
@@ -294,4 +313,4 @@ function Forms() {
 // first form
 // className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] bg-[transparent] overflow-y-auto px-3 "
 
-export default Forms;
+export default TeacherAccountDetail;

@@ -1,12 +1,5 @@
 import React, { useState } from "react";
 import { lgaList } from "./lgaList";
-import { Upload } from "antd";
-import StudentForm from "./StudentForm";
-import SchoolCalender from "./SchoolCalender";
-import TeacherAccountDetail from "./TeacherAccountDetail";
-import Button from "./Button";
-import CancelBtn from "./CancelBtn";
-import StudentClass from "./StudentClass";
 
 const religions = ["Christian", "Muslim"];
 const states = [
@@ -49,7 +42,7 @@ const states = [
   "FCT",
 ];
 
-function Forms() {
+function StudentForm() {
   // State management for file upload
   const [file, setFile] = useState(null);
 
@@ -91,7 +84,7 @@ function Forms() {
     <div>
       <form className="w-full max-w-[600px] p-[10px] max-h-[100vh] md:h-[100%] overflow-y-auto bg-white">
         {/* <!-- Top div section (title) --> */}
-        <div className="flex flex-col mb-3 gap-4   max-[900px]:flex-col min-[900px]:flex-row">
+        <div className="flex flex-col mb-3 gap-2 md:flex-row md:items-center">
           <h1 className="text-[16px] font-bold text-[#3A3B3F]">Create Staff</h1>
           <p className="text-[#66788A] text-[14px] font-light">
             The information can be edited from the profile page
@@ -120,38 +113,33 @@ function Forms() {
                 htmlFor="Email"
                 className="text-[12px] font-semibold text-[#333333]"
               >
-                Email
+                Religion
               </label>
               <input
                 type="text"
                 className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="example@gmail.com"
+                placeholder="e.g Muslim"
               />
             </div>
           </div>
-
-          <Upload
-            onChange={handleFileChange}
-            className="w-fit flex-1 flex items-center object-contain"
-          >
+          <div className="flex-1 flex justify-center items-center">
             <img
               src="./Assets/upload.svg"
               alt="upload"
-              className="h-[120px] w-fit object-contain"
-              style={{ padding: "0px" }}
+              className="h-[150px] max-w-full object-contain"
             />
-          </Upload>
+          </div>
         </div>
 
         {/* <!-- Last div --> */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6 ">
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6">
           <div className="flex flex-col gap-4 flex-1">
             <div className="flex flex-col gap-1 mt-3 sm:mt-0">
               <label
-                htmlFor="PhoneNumber"
+                htmlFor="Address"
                 className="text-[12px] font-semibold text-[#333333]"
               >
-                Phone Number
+                Address
               </label>
               <input
                 type="text"
@@ -161,46 +149,41 @@ function Forms() {
             </div>
             <div className="flex flex-col gap-1">
               <label
-                htmlFor="Religion"
+                htmlFor="Date of Birth"
                 className="text-[12px] font-semibold text-[#333333]"
               >
-                Religion
-              </label>
-              <select
-                onChange={handleChange}
-                className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-              >
-                {religions.map((religion) => (
-                  <option key={religion} value={religion}>
-                    {religion}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Address"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Address
+                Date of Birth
               </label>
               <input
                 type="text"
                 className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="My house address example"
+                placeholder="e.g Date of Birth"
               />
             </div>
             <div className="flex flex-col gap-1">
               <label
-                htmlFor="HighestQualification"
+                htmlFor="Previous School"
                 className="text-[12px] font-semibold text-[#333333]"
               >
-                Highest Qualification
+                Previous School
               </label>
               <input
                 type="text"
                 className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="B.Sc Mathematics"
+                placeholder="Enter your Previous School"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor="Previous Class"
+                className="text-[12px] font-semibold text-[#333333]"
+              >
+                Previous Class
+              </label>
+              <input
+                type="text"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                placeholder=" Enter your Previous Class"
               />
             </div>
           </div>
@@ -216,7 +199,7 @@ function Forms() {
               </label>
               <select
                 onChange={handleStateChange}
-                className="text-[#656565]  bg-white text-[14px] p-[8.5px] outline-none border border-solid border-[#dfe1e6] w-full"
+                className="text-[#656565] text-[14px] p-[8.5px] outline-none border border-solid border-[#dfe1e6] w-full"
               >
                 {states.map((state) => (
                   <option key={state} value={state}>
@@ -234,7 +217,7 @@ function Forms() {
               </label>
               <select
                 onChange={handleLgaChange}
-                className="text-[#656565]  bg-white text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
                 disabled={!selectedState}
               >
                 {lgas.map((lga) => (
@@ -258,40 +241,22 @@ function Forms() {
                 <option value="Nigeria">Nigeria</option>
               </select>
             </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="fileUpload"
-                className="cursor-pointer text-[12px] font-bold text-[#333333]"
-              >
-                Upload CV
-              </label>
-              <input
-                type="file"
-                id="fileUpload"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileChange}
-                className="text-[#656565] text-[12px] p-2 outline-none w-40"
-              />
-            </div>
           </div>
         </div>
-        <hr />
 
         {/* <!-- Buttons --> */}
+        <hr />
         <div className="flex mt-5 justify-end gap-3">
-          <CancelBtn>Cancel</CancelBtn>
-          <Button className="text-white">Add New Staff</Button>
+          <button className="text-[14px] font-normal border border-solid border-[#dfe1e6] p-2 rounded-lg">
+            Cancel
+          </button>
+          <button className="text-[14px] text-white bg-[#5243aa] font-normal border border-solid border-[#dfe1e6] px-4 rounded-lg">
+            Next
+          </button>
         </div>
       </form>
-      <StudentForm />
-      <SchoolCalender />
-      <TeacherAccountDetail />
-      <StudentClass />
     </div>
   );
 }
 
-// first form
-// className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] bg-[transparent] overflow-y-auto px-3 "
-
-export default Forms;
+export default StudentForm;
