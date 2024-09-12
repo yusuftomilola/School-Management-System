@@ -1,15 +1,14 @@
-// import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-
+// eslint-disable-next-line react/prop-types
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageChange = (page) => {
-    if (page < 1 || page > totalPages) return; // Just return if out of bounds
-    onPageChange(page); // Call onPageChange if within bounds
+    if (page < 1 || page > totalPages) return;
+    onPageChange(page);
   };
-  // "mx-2 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+
   return (
     <nav
       aria-label="Page Navigation"
-      className="flex justify-center items-center my-4"
+      className="flex justify-end items-center my-2"
     >
       <button
         className={`py-2 px-4 font-bold leading-tight text-gray-500 bg-[#FFFFFF00] border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ${
@@ -34,11 +33,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         </button>
       ))}
       <button
-        className="mx-2 px-4 py-2 bg-[#253858] text-white rounded disabled:opacity-50"
+        className={`py-2 px-4 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ${
+          currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        Next
+        &gt;
       </button>
     </nav>
   );

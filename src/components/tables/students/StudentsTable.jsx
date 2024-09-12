@@ -3,11 +3,20 @@ import studentsTableData from "./studentsTableData";
 import avatar from "../../../assets/icons/AvatarImage.png";
 import downArrow from "../../../assets/icons/shortDownArrowIcon.svg";
 import upDownArrow from "../../../assets/icons/upDownArrow.png";
-// import Pagination from "../../Pagination";
+import Pagination from "../../Pagination";
 
 const StudentsTable = () => {
+  const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
+  const totalPages = Math.ceil(studentsTableData.length / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = studentsTableData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-[200%] border-b-2 border-[#DFE1E6] my-4 table-auto md:min-w-full">
@@ -37,7 +46,7 @@ const StudentsTable = () => {
         </thead>
         {/* Table Body */}
         <tbody>
-          {studentsTableData.map((item) => (
+          {currentItems.map((item) => (
             <tr key={item.id}>
               <td>
                 <input
@@ -91,11 +100,11 @@ const StudentsTable = () => {
           ))}
         </tbody>
       </table>
-      {/* <Pagination
+      <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      /> */}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
