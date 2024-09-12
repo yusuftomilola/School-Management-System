@@ -20,8 +20,6 @@ const Scoresheet = () => {
       </div>
       {/* <Search /> */}
       <ScoresheetTable />
-      <StudentFeesTable />
-      <StaffSalariesTable />
     </div>
   );
 };
