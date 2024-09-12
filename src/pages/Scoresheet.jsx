@@ -1,7 +1,6 @@
 import ScoresheetTable from "../components/tables/scoresheet/ScoresheetTable";
 import Breadcrumbs from "../components/Breadcrumbs";
-import StudentFeesTable from "../components/tables/studentFees/StudentFeesTable";
-import StaffSalariesTable from "../components/tables/staffSalaries/StaffSalariesTable";
+
 // import Search from "../components/Search";
 
 const Scoresheet = () => {

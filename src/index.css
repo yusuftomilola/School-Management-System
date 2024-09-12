@@ -11,3 +11,7 @@
 body {
   background-color: #f4f7ff;
 }
+.center-calendar {
+  /* height: calc(100vh - 42.9px); */
+  height: calc(100vh - 120px);
+}
