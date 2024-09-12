@@ -5,6 +5,7 @@ import CreateSchool from "./pages/CreateSchool";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import ComponentsTesting from "./components/ComponentsTesting";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
@@ -21,7 +22,6 @@ import DashboardUsers from "./pages/DashboardUsers";
 import Forms from "./components/forms/Forms";
 import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
-import ComponentsTesting from "./components/ComponentsTesting";
 
 function App() {
   return (
