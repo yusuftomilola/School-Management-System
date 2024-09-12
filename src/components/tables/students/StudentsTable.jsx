@@ -1,13 +1,13 @@
-import {useState} from 'react'
+import { useState } from "react";
 import studentsTableData from "./studentsTableData";
 import avatar from "../../../assets/icons/AvatarImage.png";
 import downArrow from "../../../assets/icons/shortDownArrowIcon.svg";
 import upDownArrow from "../../../assets/icons/upDownArrow.png";
-import Pagination from "../../Pagination";
+// import Pagination from "../../Pagination";
 
 const StudentsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5
+  const totalPages = 5;
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-[200%] border-b-2 border-[#DFE1E6] my-4 table-auto md:min-w-full">
@@ -92,9 +92,10 @@ const StudentsTable = () => {
         </tbody>
       </table>
       <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={setCurrentPage}/>
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 };
