@@ -5,6 +5,7 @@ import CreateSchool from "./pages/CreateSchool";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import ComponentsTesting from "./components/ComponentsTesting";
 
 import {
   BrowserRouter as Router,
