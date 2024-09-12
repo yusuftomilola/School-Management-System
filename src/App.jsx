@@ -23,6 +23,7 @@ import Schools from "./pages/Schools";
 import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
 
+
 function App() {
   return (
     <Router>
@@ -44,6 +45,7 @@ function App() {
           <Route path="/scoresheet" element={<Scoresheet />} />
           <Route path="/school-calender" element={<SchoolCalender />} />
           <Route path="/userss" element={<DashboardUsers />} />
+         
         </Route>
 
         {/* ROUTES/PAGES WITHOUT LAYOUT */}
