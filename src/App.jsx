@@ -7,13 +7,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ComponentsTesting from "./components/ComponentsTesting";
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import { SchoolProvider } from "./contexts/schoolContext";
 import { TeachersProvider } from "./contexts/teachersContext";
