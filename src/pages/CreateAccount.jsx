@@ -6,21 +6,19 @@ function CreateAccount() {
   return (
     <>
       <div className="flex h-[100vh] flex-1">
-        
         <div className=" relative hidden w-0 flex-1  lg:block ">
           <img
             alt="boy-img"
-            src= {createAccountImg}
+            src={createAccountImg}
             className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
 
         <div className="flex flex-1 flex-col relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
-
-              <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Create Account
-              </h2>
+            <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              Create Account
+            </h2>
 
             <div className="mt-8">
               <div>
@@ -30,7 +28,7 @@ function CreateAccount() {
                       htmlFor="email"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                     Full Name 
+                      Full Name
                     </label>
                     <div className="mt-1">
                       <input
@@ -70,7 +68,7 @@ function CreateAccount() {
                       htmlFor="school name"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                     School Name
+                      School Name
                     </label>
                     <div className="mt-1">
                       <input
@@ -90,20 +88,26 @@ function CreateAccount() {
                       type="submit"
                       className="btn bg-white p-2 px-5 text-[12px] font-semibold "
                     >
-                     Cancel
+                      Cancel
                     </button>
-                    
-                    <Link to={'/home'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"> Register </Link>
+
+                    <Link
+                      to={"/home"}
+                      className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
                   </div>
                 </form>
               </div>
 
               <div className="mt- flex gap-1 absolute bottom-3">
                 <p>Already have an account?</p>
-                <Link to={'/sign-in'} className="text-blue-300">Login here</Link>
+                <Link to={"/sign-in"} className="text-blue-300">
+                  Login here
+                </Link>
               </div>
-
-
             </div>
           </div>
         </div>
