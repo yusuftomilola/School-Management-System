@@ -8,7 +8,9 @@ const Breadcrumbs = (props) => {
         Home {title1 && ` / ${title1}`}
         {title2 && ` / ${title2}`}
         {title3 && ` / ${title3}`}
+
       </div>
+      
     </>
   );
 };

@@ -24,49 +24,52 @@ import SchoolCalender from "./pages/SchoolCalender";
 import DashboardUsers from "./pages/DashboardUsers";
 
 import Forms from "./components/forms/Forms";
+import { FormProvider } from "./components/forms/context";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* ROUTES WITH HOME LAYOUT */}
-        <Route element={<HomeLayout />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/users" element={<Users />} />
-        </Route>
+    <FormProvider>
+      <Router>
+        <Routes>
+          {/* ROUTES WITH HOME LAYOUT */}
+          <Route element={<HomeLayout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/users" element={<Users />} />
+          </Route>
 
-        {/* ROUTES WITH GENERAL LAYOUT */}
-        <Route element={<GenLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/schools" element={<Schools />} />
-          <Route path="/teachers" element={<Teachers />} />
-          <Route path="/classrooms" element={<Classrooms />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/subjects" element={<Subjects />} />
-          <Route path="/scoresheet" element={<Scoresheet />} />
-          <Route path="/school-calender" element={<SchoolCalender />} />
-          <Route path="/userss" element={<DashboardUsers />} />
-          <Route path="/forms" element={<Forms />} />
-        </Route>
+          {/* ROUTES WITH GENERAL LAYOUT */}
+          <Route element={<GenLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/schools" element={<Schools />} />
+            <Route path="/teachers" element={<Teachers />} />
+            <Route path="/classrooms" element={<Classrooms />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/subjects" element={<Subjects />} />
+            <Route path="/scoresheet" element={<Scoresheet />} />
+            <Route path="/school-calender" element={<SchoolCalender />} />
+            <Route path="/userss" element={<DashboardUsers />} />
+            <Route path="/forms" element={<Forms />} />
+          </Route>
 
-        {/* ROUTES/PAGES WITHOUT LAYOUT */}
-        {/* Register/signIn Page */}
-        <Route
-          path="/"
-          element={
-            <div>
-              <h1 className="bg-red-500">Register/SignIn Page</h1>
-            </div>
-          }
-        />
+          {/* ROUTES/PAGES WITHOUT LAYOUT */}
+          {/* Register/signIn Page */}
+          <Route
+            path="/"
+            element={
+              <div>
+                <h1 className="bg-red-500">Register/SignIn Page</h1>
+              </div>
+            }
+          />
 
-        {/* Create School Page */}
-        <Route path="/create-school" element={<CreateSchool />} />
+          {/* Create School Page */}
+          <Route path="/create-school" element={<CreateSchool />} />
 
-        {/* NOT FOUND ROUTE */}
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </Router>
+          {/* NOT FOUND ROUTE */}
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </FormProvider>
   );
 }
 

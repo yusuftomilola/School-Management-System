@@ -1,0 +1,35 @@
+{
+  "TEACHERS": [
+    {
+      "accountName": "we",
+      "accountNumber": "5687962963",
+      "accountPin": "1111",
+      "transactions": [],
+      "id": "1"
+    },
+    {
+      "id": "2268",
+      "fullName": "Gabriel Obiagazie",
+      "email": "obiagaziegabriel@gmail.com",
+      "phoneNumber": "347017237526",
+      "religion": "Muslim",
+      "address": "ilaje-ajah, lagos",
+      "highestQualification": "jdghs",
+      "state": "Cross River",
+      "lga": "Calabar Municipal",
+      "file": {}
+    },
+    {
+      "id": "273c",
+      "fullName": "Gabriel Obiagazie",
+      "email": "obiagaziegabriel@gmail.com",
+      "phoneNumber": "47017237526",
+      "religion": "Muslim",
+      "address": "ilaje-ajah, lagos",
+      "highestQualification": "fghjk",
+      "state": "Cross River",
+      "lga": "Calabar Municipal",
+      "file": {}
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import React from "react";
 
-const CancelBtn = ({ onClick, children, className = "", ...props }) => {
+const CancelBtn = ({ children, className = "", ...props }) => {
   return (
     <button
-      onClick={onclick}
+      onClick={() => {}}
       className={`text-[14px] font-normal border border-solid border-[#dfe1e6] p-3 rounded-lg ${className}`}
       {...props}
     >

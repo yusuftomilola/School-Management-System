@@ -12,12 +12,17 @@
   "dependencies": {
     "@headlessui/react": "^2.1.5",
     "@heroicons/react": "^2.1.5",
+    "@hookform/resolvers": "^3.9.0",
     "antd": "^5.20.6",
+    "axios": "^1.7.7",
     "chart.js": "^4.4.4",
+    "json-server": "^1.0.0-beta.2",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-hook-form": "^7.53.0",
+    "react-router-dom": "^6.26.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
