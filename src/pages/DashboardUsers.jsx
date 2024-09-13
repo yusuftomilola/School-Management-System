@@ -56,14 +56,14 @@ const DashboardUsers = () => {
       <div className=" flex justify-between">
         <Breadcrumbs title1={"Dashboard"} title2={"Users"} />
         <CreateNewButton backgroundColor={"#EAE6FF"} color={"#403294"}>
-          Create New Teacher
+          Create New Users
         </CreateNewButton>
       </div>
 
       <div className="flex justify-end my-5">
         <SearchFilterButton />
       </div>
-      <div className="grid grid-cols-1 md: grid-cols-2 mb-4 gap-6 lg: grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-6 lg:grid-cols-3">
         {teachers.map((teacher) => {
          return <UserCard 
             name={teacher.name}
@@ -76,7 +76,7 @@ const DashboardUsers = () => {
         
       </div>
 
-      <SearchBoxWithoutFilter />
+     
     </div>
   );
 };

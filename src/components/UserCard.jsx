@@ -1,8 +1,8 @@
-
+import MoreDropdown from "./MoreDropdown";
 
 function UserCard({name, qualification, subject, clas, imageUser }) {
   return (
-    <div className="flex flex-col w-full rounded-md shadow-sm bg-white p-5 mb-5">
+    <div className="flex flex-col w-full rounded-md shadow-sm bg-white p-5 mb-8">
       <div className="flex">
         <div>
           <img src={imageUser} alt="user" />
@@ -17,8 +17,10 @@ function UserCard({name, qualification, subject, clas, imageUser }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 mt-4 justify-end ">
-        <p className="text-[#7A869A]">more</p>
+      <div className="flex items-center mt-4 justify-end ">
+        <MoreDropdown />
+        
+      
         <img src="src/assets/icons/shortDownArrowIcon2.svg" alt="arrow down" />
       </div>
     </div>
