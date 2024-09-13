@@ -205,7 +205,9 @@ function Forms() {
         </div>
         <hr />
 
+        {/* TOP INPUTS */}
         <div className="flex flex-col-reverse sm:flex-row gap-8 mt-3">
+          {/* LEFT */}
           <div className="flex flex-col gap-4 flex-1">
             {/* Full Name */}
             <div className="flex flex-col gap-1">
@@ -240,6 +242,8 @@ function Forms() {
             </div>
           </div>
 
+          {/* RIGHT */}
+          {/* IMAGE UPLOAD */}
           <div className="w-fit flex-1 flex items-center justify-center object-contain  rounded-md">
             <label htmlFor="image-upload">
               <img
@@ -259,7 +263,9 @@ function Forms() {
           </div>
         </div>
 
+        {/*  BOTTOM INPUTS */}
         <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6 ">
+          {/* LEFT */}
           <div className="flex flex-col gap-4 flex-1">
             {/* Phone Number */}
             <div className="flex flex-col gap-1 mt-3 sm:mt-0">
@@ -330,6 +336,7 @@ function Forms() {
             </div>
           </div>
 
+          {/* RIGHT */}
           <div className="flex flex-1 flex-col gap-[17px]">
             {/* State of Origin */}
             <div className="flex flex-col gap-1">
@@ -372,6 +379,8 @@ function Forms() {
                 {errors.lga?.message}
               </p>
             </div>
+
+            {/* Nationality */}
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="Nationality"
@@ -386,6 +395,8 @@ function Forms() {
                 <option value="Nigeria">Nigeria</option>
               </select>
             </div>
+
+            {/* CV */}
             <div className="flex flex-col gap-1">
               <label
                 htmlFor="fileUpload"
@@ -406,6 +417,7 @@ function Forms() {
 
         <div className="flex  justify-end sm:flex-row gap-3 md:gap-8">
           <CancelBtn onClick={toggleFormVisibility}>Cancel</CancelBtn>
+
           <Button className="text-white" type="submit">
             Add New Staff
           </Button>
@@ -416,12 +428,3 @@ function Forms() {
 }
 
 export default Forms;
-
-// first form
-// className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] bg-[transparent] overflow-y-auto px-3 "
-{
-  /* <StudentForm />
-      <SchoolCalender />
-      <TeacherAccountDetail />
-      <StudentClass /> */
-}

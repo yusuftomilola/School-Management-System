@@ -6,13 +6,21 @@ import CancelBtn from "../components/forms/CancelBtn";
 import { useContext } from "react";
 import FormContext from "../components/forms/context";
 
+// YUSUF'S CHANGES
+import UserCard from "../components/UserCard";
+import TeachersContext from "../contexts/teachersContext";
+
 const Teachers = () => {
   const { toggleFormVisibility, isFormVisible, setIsFormVisible } =
     useContext(FormContext);
 
+  const { teachersData } = useContext(TeachersContext);
+  console.log(teachersData);
+
   return (
     <div>
       <Breadcrumbs title1={"Dashboard"} title2={"Teachers"} />
+
       <div className="flex flex-col gap-5 items-end">
         <CancelBtn
           onClick={toggleFormVisibility}
@@ -23,8 +31,31 @@ const Teachers = () => {
         </CancelBtn>
         <SearchFilterField />
       </div>
+
       {/* Modal to display the form */}
       {isFormVisible && <Forms />}
+
+      {!teachersData || (teachersData.length === 0 && <p>Loading....</p>)}
+
+      {teachersData && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          {teachersData.map((teacher) => {
+            const { id, fullName, degree, subject, classs, image } = teacher;
+            return (
+              <div key={id}>
+                <UserCard
+                  id={id}
+                  name={fullName}
+                  qualification={degree}
+                  subject={subject}
+                  clas={classs}
+                  imageUser={image}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

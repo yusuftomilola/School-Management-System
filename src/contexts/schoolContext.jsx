@@ -11,7 +11,7 @@ const SchoolContext = createContext();
 export const SchoolProvider = ({ children }) => {
   const [schoolsData, setSchoolsData] = useState([]);
 
-  //Load our schools once the page loads
+  // Load our schools once the page loads
   useEffect(() => {
     const loadSchools = async () => {
       const schoolData = await getSchools();
@@ -21,7 +21,7 @@ export const SchoolProvider = ({ children }) => {
     loadSchools();
   }, []);
 
-  //Add a new School to our local database
+  // Add a new School to our local database
   const addNewSchool = async (schoolData) => {
     try {
       const newSchool = await addSchool(schoolData);
@@ -31,7 +31,7 @@ export const SchoolProvider = ({ children }) => {
     }
   };
 
-  //Delete a school
+  // Delete a school
   const removeSchool = async (id) => {
     try {
       const result = await deleteSchool(id);
