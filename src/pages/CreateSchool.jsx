@@ -1,134 +1,169 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import arrowBack from "../assets/images/arrowBack-img.svg";
 import createSchoolImg from "../assets/images/createSchool-img.svg";
-import arrowBack from "../assets/images/arrowBack-img.svg"
 
-function CreateAccount() {
+//formik validation functions
+const validationSchema = Yup.object({
+  nameOfSchool: Yup.string()
+    .min(5, "name of school must be atleast 5 characters")
+    .required("Name of school is required"),
+
+  schoolName: Yup.string()
+    .min(5, "School name must be at least 5 characters")
+    .required("School name is required"),
+
+  schoolType: Yup.string()
+    .min(5, "School type must be at least 5 characters")
+    .required("School type is required"),
+
+  schoolAddress: Yup.string()
+    .min(10, "Address must be at least 10 characters long")
+    .required("School address is required"),
+});
+
+function createSchool() {
+  const navigate = useNavigate()
+  // Initial values for the form fields
+  const initialValues = {
+    nameOfSchool: "",
+    schoolName: "",
+    schoolType: "",
+    schoolAddress: "",
+  };
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    alert("Form submitted successfully!");
+    navigate("/home")
+    setSubmitting(false);
+    resetForm();
+  };
+
   return (
     <>
-      <div className="flex h-[100vh] flex-1">
-        
-        <div className="   hidden sm:w-0 flex-1  lg:block relative ">
+      <div className="flex h-[100vh] flex-1 w-[100%]">
+        {/* LEFT  */}
+        <div className="   hidden sm:w-0 flex-1 w-[50%] lg:block relative ">
           <img
             alt="boy-img"
-            src= {createSchoolImg}
+            src={createSchoolImg}
             className="absolute inset-0 h-full w-full object-cover"
           />
 
-         
-            <Link to={'/home'} className="flex gap-2 absolute top-10 left-10">
-            <img src= {arrowBack} alt="back-arrow" />
-            <p className="text-white">Back</p></Link>
-          
+          <Link to={"/home"} className="flex gap-2 absolute top-10 left-10">
+            <img src={arrowBack} alt="back-arrow" />
+            <p className="text-white">Back</p>
+          </Link>
         </div>
 
-        <div className="flex flex-1 flex-col relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
+        {/* RIGHT */}
+        <div className="w-[50%] flex flex-1 flex-col relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+          <div className="mx-auto w-full max-w-sm ">
+            <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900 max-w-[300px]">
+              Create Your School
+            </h2>
 
-              <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Create your School
-              </h2>
-
-            <div className="mt-8">
-              <div>
-                <form action="#" method="POST" className="space-y-6">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ isSubmitting }) => (
+                <div className="mt-8">
                   <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                    Name of Schools 
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="nameOfSchool"
-                        name="name of school"
-                        type="text"
-                        required
-                        autoComplete="current name-of-school"
-                        placeholder="Kings Pride School Intl"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
-                      />
-                    </div>
+                    <Form className="space-y-6">
+                      {/* school name field  */}
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          School Name
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="schoolName"
+                            name="schoolName"
+                            type="text"
+                            placeholder="Enter School name"
+                            className={
+                              "block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                            }
+                          />
+                          <ErrorMessage
+                            name="schoolName"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+                      {/* school type field  */}
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          School Type
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="schoolType"
+                            name="schoolType"
+                            type="text"
+                            placeholder="Enter School Type"
+                            className={
+                              "block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6 "
+                            }
+                          />
+
+                          <ErrorMessage
+                            name="schoolType"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+                      {/* school Address field */}
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          School Address
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="schoolAddress"
+                            name="schoolAddress"
+                            type="text"
+                            placeholder="Enter School Address"
+                            className={
+                              "block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                            }
+                          />
+
+                          <ErrorMessage
+                            name="schoolAddress"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+                      {/* buttons section  */}
+                      <div className="flex justify-end gap-5">
+                        <button
+                          type="button"
+                          className="btn bg-white p-2 px-5 text-[12px] font-semibold ring-1 ring-[#5243AA] text-[#5243AA] rounded "
+                        >
+                          Cancel
+                        </button>
+
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"
+                        >
+                         {isSubmitting ? "Submitting..." : "Create School"}
+                        </button>
+                      </div>
+                    </Form>
                   </div>
-
-                  <div>
-                    <label
-                      htmlFor="school name"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                     School Name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="schoolName"
-                        name="school name"
-                        type="text"
-                        required
-                        autoComplete="current-school-name"
-                        placeholder="Enter School name"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                     School Type
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="schoolType"
-                        name="school type"
-                        type="text"
-                        required
-                        autoComplete="current-school-type"
-                        placeholder="Primary School"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                     School Address
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="schoolAddress"
-                        name="school address"
-                        type="text"
-                        required
-                        autoComplete="current-school-address"
-                        placeholder="Sabuwar Kasuwa Birnin Gwari"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-
-                  <div className="flex justify-end gap-5">
-                    <Link to={'/home'}>
-                      <button
-                        type="submit"
-                        className="btn bg-white p-2 px-5 text-[12px] font-semibold ring-1 ring-[#5243AA] text-[#5243AA] rounded "
-                      >
-                      Cancel
-                      </button>
-                    </Link>
-                    
-                    <Link to={'/dashboard'} className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"> Create School </Link>
-                  </div>
-                </form>
-              </div>
-
-            </div>
+                </div>
+              )}
+            </Formik>
           </div>
         </div>
       </div>
@@ -136,4 +171,4 @@ function CreateAccount() {
   );
 }
 
-export default CreateAccount;
+export default createSchool;

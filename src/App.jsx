@@ -46,7 +46,7 @@ function App() {
           <Route path="/subjects" element={<Subjects />} />
           <Route path="/scoresheet" element={<Scoresheet />} />
           <Route path="/school-calender" element={<SchoolCalender />} />
-          <Route path="/userss" element={<DashboardUsers />} />
+          <Route path="/users" element={<DashboardUsers />} />
           <Route path="/forms" element={<Forms />} />
         </Route>
 
