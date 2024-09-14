@@ -24,6 +24,8 @@ export const getTeachers = async () => {
   });
 };
 
+console.log(getTeachers);
+
 //function for adding a new teacher to local storage
 export const addTeacher = async (newTeacherData) => {
   const newTeacher = { id: uuidv4(), ...newTeacherData };

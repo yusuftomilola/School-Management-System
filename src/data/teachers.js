@@ -9,7 +9,8 @@ const teachersData = [
     lga: "Ikeja",
     address: "23 Adeola Street, Ikeja, Lagos",
     nationality: "Nigerian",
-    degree: "B.Sc Mathematics",
+
+    highestQualification: "B.Sc Mathematics",
     subject: "Mathematics",
     classs: "SS3",
     level: "Secondary Teacher",
@@ -25,7 +26,8 @@ const teachersData = [
     lga: "Nassarawa",
     address: "12 Zaria Road, Nassarawa, Kano",
     nationality: "Nigerian",
-    degree: "B.A English",
+
+    highestQualification: "B.A English",
     subject: "English",
     classs: "SS2",
     level: "Secondary Teacher",
@@ -41,7 +43,8 @@ const teachersData = [
     lga: "Onitsha South",
     address: "45 Ochanja Market Road, Onitsha, Anambra",
     nationality: "Nigerian",
-    degree: "B.Sc Physics",
+
+    highestQualification: "B.Sc Physics",
     subject: "Physics",
     classs: "SS1",
     level: "Secondary Teacher",
@@ -57,7 +60,8 @@ const teachersData = [
     lga: "Zaria",
     address: "20 Ahmadu Bello Way, Zaria, Kaduna",
     nationality: "Nigerian",
-    degree: "B.Sc Chemistry",
+
+    highestQualification: "B.Sc Chemistry",
     subject: "Chemistry",
     classs: "SS3",
     level: "Secondary Teacher",
@@ -73,7 +77,8 @@ const teachersData = [
     lga: "Maiduguri",
     address: "9 Gamboru Road, Maiduguri, Borno",
     nationality: "Nigerian",
-    degree: "B.Sc Biology",
+
+    highestQualification: "B.Sc Biology",
     subject: "Biology",
     classs: "SS2",
     level: "Secondary Teacher",
@@ -89,7 +94,8 @@ const teachersData = [
     lga: "Ibadan North",
     address: "14 Bodija Estate, Ibadan, Oyo",
     nationality: "Nigerian",
-    degree: "B.A Literature",
+
+    highestQualification: "B.A Literature",
     subject: "Literature",
     classs: "SS3",
     level: "Secondary Teacher",
@@ -105,7 +111,8 @@ const teachersData = [
     lga: "Ado-Ekiti",
     address: "15 Iworoko Road, Ado-Ekiti, Ekiti",
     nationality: "Nigerian",
-    degree: "B.Sc Mathematics",
+
+    highestQualification: "B.Sc Mathematics",
     subject: "Mathematics",
     classs: "Primary 6",
     level: "Primary Teacher",
@@ -121,7 +128,8 @@ const teachersData = [
     lga: "Daura",
     address: "13 Sabon Gari, Daura, Katsina",
     nationality: "Nigerian",
-    degree: "B.A History",
+
+    highestQualification: "B.A History",
     subject: "History",
     classs: "SS2",
     level: "Secondary Teacher",
@@ -137,7 +145,8 @@ const teachersData = [
     lga: "Nsukka",
     address: "22 University Road, Nsukka, Enugu",
     nationality: "Nigerian",
-    degree: "B.Sc Biology",
+
+    highestQualification: "B.Sc Biology",
     subject: "Biology",
     classs: "SS1",
     level: "Secondary Teacher",
@@ -153,7 +162,8 @@ const teachersData = [
     lga: "Abeokuta North",
     address: "7 Olumo Rock Street, Abeokuta, Ogun",
     nationality: "Nigerian",
-    degree: "B.Sc Chemistry",
+
+    highestQualification: "B.Sc Chemistry",
     subject: "Chemistry",
     classs: "SS2",
     level: "Secondary Teacher",

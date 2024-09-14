@@ -27,7 +27,7 @@ const Teachers = () => {
           type="button"
           className="w-fit px-2 py-1 bg-[#eae6ff] text-[#403294] font-medium text-[14px]"
         >
-          {isFormVisible ? "Cancel" : "Create New Teacher"}
+          {isFormVisible ? "Create New Teacher " : "Create New Teacher"}
         </CancelBtn>
         <SearchFilterField />
       </div>
@@ -35,18 +35,23 @@ const Teachers = () => {
       {/* Modal to display the form */}
       {isFormVisible && <Forms />}
 
-      {!teachersData || (teachersData.length === 0 && <p>Loading....</p>)}
-
       {teachersData && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {teachersData.map((teacher) => {
-            const { id, fullName, degree, subject, classs, image } = teacher;
+            const {
+              id,
+              fullName,
+              highestQualification,
+              subject,
+              classs,
+              image,
+            } = teacher;
             return (
               <div key={id}>
                 <UserCard
                   id={id}
                   name={fullName}
-                  qualification={degree}
+                  qualification={highestQualification}
                   subject={subject}
                   clas={classs}
                   imageUser={image}

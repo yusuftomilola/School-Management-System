@@ -1,13 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { lgaList } from "./lgaList";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "./Button";
 import CancelBtn from "./CancelBtn";
-import FormContext from "./context";
-import { v4 as uuidv4 } from "uuid";
-import teachersData from "../../data/teachers";
 
 // Array of religions and states
 const religions = ["Christian", "Muslim"];
@@ -53,28 +50,28 @@ const states = [
 
 // Yup validation schema
 const schema = yup.object({
-  fullName: yup.string().required("Full Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
+  guardianName: yup.string().required("Guardian Name is required"),
+  religion: yup.string().required("Religion is required"),
   phoneNumber: yup
     .string()
     .matches(/^\d+$/, "Number must be digits")
     .required("Phone number is required"),
-  religion: yup.string().required("Religion is required"),
+
   address: yup.string().required("Address is required"),
-  highestQualification: yup
-    .string()
-    .required("Highest Qualification is required"),
+  dateOfBirth: yup.string().required("DOB is required"),
+  occupation: yup.string().required("Occupation is required"),
+  relationshipWithStudent: yup.string().required(" required"),
   state: yup.string().required("State of Origin is required"),
   lga: yup.string().required("LGA is required"),
+  nationality: yup.string().required("Nationality is required"),
 });
 
 function Forms() {
-  const { toggleFormVisibility } = useContext(FormContext);
   const [selectedState, setSelectedState] = useState("");
   const [lgas, setLgas] = useState([]);
-  const [imagePreview, setImagePreview] = useState("./Assets/upload.svg");
   const [file, setFile] = useState(null);
-  const [myData, setMyData] = useState([]);
+  const [imagePreview, setImagePreview] = useState("./Assets/upload.svg");
+  const [submittedData, setSubmittedData] = useState(null); // Track submitted data
 
   // Initialize react-hook-form
   const {
@@ -86,19 +83,6 @@ function Forms() {
     resolver: yupResolver(schema), // Set yup validation resolver
   });
 
-  // Load teachers data from localStorage or initialize it with teachersData (only once)
-  useEffect(() => {
-    const storedTeachers = JSON.parse(localStorage.getItem("teachersData"));
-
-    if (storedTeachers) {
-      setMyData(storedTeachers); // If localStorage has data, use it
-    } else {
-      // If no localStorage data, initialize with teachersData
-      localStorage.setItem("teachersData", JSON.stringify(teachersData));
-      setMyData(teachersData);
-    }
-  }, []);
-
   // Handle image file selection and validation
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -106,27 +90,11 @@ function Forms() {
 
     if (selectedFile && allowedImageTypes.includes(selectedFile.type)) {
       setFile(selectedFile);
-      setImagePreview(URL.createObjectURL(selectedFile)); // Image preview
+      // Create an image preview URL and set it
+      setImagePreview(URL.createObjectURL(selectedFile));
     } else {
       alert("Please upload a valid image file (JPEG, JPG, PNG)");
       e.target.value = ""; // Reset file input
-    }
-  };
-
-  // Handle file change for CV
-  const handleCvChange = (e) => {
-    const [selectedFile] = e.target.files;
-    const allowedTypes = [
-      "application/pdf",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    ];
-
-    if (!allowedTypes.includes(selectedFile?.type)) {
-      alert("Please upload a valid PDF or Word document.");
-      e.target.value = ""; // Reset file input
-    } else {
-      setFile(selectedFile); // Set CV file
     }
   };
 
@@ -137,10 +105,9 @@ function Forms() {
     setLgas(lgaList[selectedState] || []);
   };
 
-  // Handle form submission
-  // Handle form submission
+  // Handle form submission with FormData for sending file and form data
   const onSubmit = (data) => {
-    // Validate image presence
+    // Validate image presence and type
     if (!file) {
       alert("Please upload an image");
       return;
@@ -149,45 +116,77 @@ function Forms() {
     // Convert image to Base64
     const reader = new FileReader();
     reader.onload = function (e) {
-      const base64Image = e.target.result;
+      const base64Image = e.target.result; // Base64 string
 
-      // Create a new teacher object
-      const newTeacher = {
-        id: uuidv4(),
+      // Create a new object with form data, base64 image, and file details
+      const formData = {
         ...data,
-        image: base64Image,
-        cvFileName: file.name,
+        image: base64Image, // Store image as Base64 string
+        cvFileName: file.name, // Store file name
       };
 
-      // Get existing teachers from localStorage
-      const existingTeachers =
-        JSON.parse(localStorage.getItem("teachersData")) || [];
-
-      // Add the new teacher to the list
-      const updatedTeachers = [...existingTeachers, newTeacher];
-
-      // Save updated list to localStorage and update state
-      localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
-      setMyData(updatedTeachers); // This ensures the UI updates immediately
-
-      // Reset form
-      reset();
-      toggleFormVisibility();
+      // Save form data to state
+      setSubmittedData(formData); // Set submitted data for display
+      reset(); // Reset the form
     };
 
     reader.readAsDataURL(file); // Convert image file to Base64
   };
 
+  // If submittedData is available, render the submitted data div
+  if (submittedData) {
+    return (
+      <div>
+        <p>
+          <strong>Full Name:</strong> {submittedData.fullName}
+        </p>
+        <p>
+          <strong>Email:</strong> {submittedData.email}
+        </p>
+        <p>
+          <strong>Phone Number:</strong> {submittedData.phoneNumber}
+        </p>
+        <p>
+          <strong>Religion:</strong> {submittedData.religion}
+        </p>
+        <p>
+          <strong>Address:</strong> {submittedData.address}
+        </p>
+        <p>
+          <strong>Highest Qualification:</strong>{" "}
+          {submittedData.highestQualification}
+        </p>
+        <p>
+          <strong>State:</strong> {submittedData.state}
+        </p>
+        <p>
+          <strong>LGA:</strong> {submittedData.lga}
+        </p>
+        <p>
+          <strong>CV File Name:</strong> {submittedData.cvFileName}
+        </p>
+
+        <img
+          src={submittedData.image}
+          alt="Uploaded Image"
+          style={{ width: "100px", height: "100px" }}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] bg-[transparent] overflow-y-auto px-3 ">
+    <div>
       <form
-        className="w-full max-w-[600px] p-[10px] max-h-[100vh]  overflow-y-auto "
+        className="w-full max-w-[500px] bg-white p-[10px] max-h-[100vh]  overflow-y-auto "
         onSubmit={handleSubmit(onSubmit)} // Attach handleSubmit from react-hook-form
       >
         <div className="flex flex-col mb-3 gap-4   max-[900px]:flex-col min-[900px]:flex-row">
-          <h1 className="text-[16px] font-bold text-[#3A3B3F]">Create Staff</h1>
+          <h1 className="text-[16px] font-bold text-[#3A3B3F]">
+            Create Student
+          </h1>
           <p className="text-[#66788A] text-[14px] font-light whitespace-nowrap">
-            The information can be edited from the profile page
+            Guardian's Information
           </p>
         </div>
         <hr />
@@ -196,35 +195,39 @@ function Forms() {
         <div className="flex flex-col-reverse sm:flex-row gap-8 mt-2">
           {/* LEFT */}
           <div className="flex flex-col gap-[6px] flex-1">
-            {/* Full Name */}
+            {/* Guardian Name */}
             <div className="flex flex-col gap-1">
               <label className="text-[12px] font-semibold text-[#333333]">
-                Full Name
+                Guardian Name
               </label>
               <input
                 type="text"
                 className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
                 placeholder="Moses Itodo Ane"
-                {...register("fullName")}
+                {...register("guardianName")}
               />
               <p className="form-error text-[12px] font-semibold text-red-600">
-                {errors.fullName?.message}
+                {errors.guardianName?.message}
               </p>
             </div>
 
-            {/* Email */}
+            {/* Religion*/}
             <div className="flex flex-col gap-1">
               <label className="text-[12px] font-semibold text-[#333333]">
-                Email
+                Religion
               </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
-                placeholder="example@gmail.com"
-                {...register("email")}
-              />
+              <select
+                className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                {...register("religion")}
+              >
+                {religions.map((religion) => (
+                  <option key={religion} value={religion}>
+                    {religion}
+                  </option>
+                ))}
+              </select>
               <p className="form-error text-[12px] font-semibold text-red-600">
-                {errors.email?.message}
+                {errors.religion?.message}
               </p>
             </div>
           </div>
@@ -269,27 +272,56 @@ function Forms() {
                 {errors.phoneNumber?.message}
               </p>
             </div>
-
-            {/* Religion */}
-            <div className="flex flex-col gap-1">
+            {/* DOB */}
+            <div className="flex flex-col gap-1 mt-1 sm:mt-0">
               <label className="text-[12px] font-semibold text-[#333333]">
-                Religion
+                Date Of Birth
               </label>
-              <select
-                className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
-                {...register("religion")}
-              >
-                {religions.map((religion) => (
-                  <option key={religion} value={religion}>
-                    {religion}
-                  </option>
-                ))}
-              </select>
+              <input
+                type="text"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full "
+                placeholder="DD/MM/YY"
+                {...register("dateOfBirth")}
+              />
               <p className="form-error text-[12px] font-semibold text-red-600">
-                {errors.religion?.message}
+                {errors.dateOfBirth?.message}
               </p>
             </div>
 
+            {/*Occupation*/}
+            <div className="flex flex-col gap-1">
+              <label className="text-[12px] font-semibold text-[#333333]">
+                Occupation
+              </label>
+              <input
+                type="text"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                placeholder="B.Sc Mathematics"
+                {...register("occupation")}
+              />
+              <p className="form-error text-[12px] font-semibold text-red-600">
+                {errors.occupation?.message}
+              </p>
+            </div>
+            {/* Highest Qualification */}
+            <div className="flex flex-col gap-1">
+              <label className="text-[12px] font-semibold text-[#333333]">
+                Relationship With Student
+              </label>
+              <input
+                type="text"
+                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                placeholder="B.Sc Mathematics"
+                {...register("relationshipWithStudent")}
+              />
+              <p className="form-error text-[12px] font-semibold text-red-600">
+                {errors.relationshipWithStudent?.message}
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="flex flex-1 flex-col gap-2">
             {/* Address */}
             <div className="flex flex-col gap-1">
               <label className="text-[12px] font-semibold text-[#333333]">
@@ -306,25 +338,6 @@ function Forms() {
               </p>
             </div>
 
-            {/* Highest Qualification */}
-            <div className="flex flex-col gap-1">
-              <label className="text-[12px] font-semibold text-[#333333]">
-                Highest Qualification
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
-                placeholder="B.Sc Mathematics"
-                {...register("highestQualification")}
-              />
-              <p className="form-error text-[12px] font-semibold text-red-600">
-                {errors.highestQualification?.message}
-              </p>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="flex flex-1 flex-col gap-2">
             {/* State of Origin */}
             <div className="flex flex-col gap-1">
               <label className="text-[12px] font-semibold text-[#333333]">
@@ -382,31 +395,14 @@ function Forms() {
                 <option value="Nigeria">Nigeria</option>
               </select>
             </div>
-
-            {/* CV */}
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="fileUpload"
-                className="cursor-pointer text-[12px] font-bold text-[#333333]"
-              >
-                Upload CV
-              </label>
-              <input
-                type="file"
-                id="fileUpload"
-                accept=".pdf,.doc,.docx"
-                onChange={handleCvChange}
-                className="text-[#656565] text-[12px] p-2 outline-none w-40 "
-              />
-            </div>
           </div>
         </div>
 
         <div className="flex justify-end sm:flex-row gap-3 md:gap-8">
-          <CancelBtn onClick={toggleFormVisibility}>Cancel</CancelBtn>
+          <CancelBtn>Cancel</CancelBtn>
 
-          <Button className="text-white" type="submit">
-            Add New Staff
+          <Button className="text-white" type="button">
+            Next
           </Button>
         </div>
       </form>
@@ -415,3 +411,5 @@ function Forms() {
 }
 
 export default Forms;
+
+// className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] bg-[transparent] overflow-y-auto px-3 "

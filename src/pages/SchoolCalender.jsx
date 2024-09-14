@@ -1,6 +1,11 @@
-import Breadcrumbs from "../components/Breadcrumbs";
-
+import React from "react";
+import Calender from "../components/forms/Calender";
+import DateContext from "../contexts/calenderContext";
+import { useContext } from "react";
 const SchoolCalender = () => {
+  const { toggleCalenderVisibility, calender, setCalender } =
+    useContext(DateContext);
+
   return (
     <div className="w-full center-calendar">
       <h1 className="text-xl font-bold">School Calendar</h1>
@@ -14,9 +19,19 @@ const SchoolCalender = () => {
           <h2 className="text-xl font-bold">
             You currently don't have an active calendar
           </h2>
-          <button className="text-[#0052CC] p-5">Add Academic Calendar</button>
+          <button
+            className="text-[#0052CC] p-5"
+            onClick={() => setCalender(true)}
+          >
+            Add Academic Calender
+          </button>
         </div>
       </div>
+      {calender && (
+        <div className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center  bg-[transparent] ">
+          <Calender />
+        </div>
+      )}
     </div>
   );
 };

@@ -23,6 +23,7 @@ import Forms from "./components/forms/Forms";
 import { FormProvider } from "./components/forms/context";
 import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
+import { CalenderProvider } from "./contexts/calenderContext";
 // YUSUF'S CHANGES
 import { TeachersProvider } from "./contexts/teachersContext";
 
@@ -31,48 +32,50 @@ function App() {
     <TeachersProvider>
       <FormProvider>
         <SchoolProvider>
-          <Router>
-            <Routes>
-              {/* ROUTES WITH HOME LAYOUT */}
-              <Route element={<HomeLayout />}>
-                <Route path="/home" element={<Home />} />
-                <Route path="/users" element={<Users />} />
-              </Route>
+          <CalenderProvider>
+            <Router>
+              <Routes>
+                {/* ROUTES WITH HOME LAYOUT */}
+                <Route element={<HomeLayout />}>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/users" element={<Users />} />
+                </Route>
 
-              {/* ROUTES WITH GENERAL LAYOUT */}
-              <Route element={<GenLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/schools" element={<Schools />} />
-                <Route path="/teachers" element={<Teachers />} />
-                <Route path="/classrooms" element={<Classrooms />} />
-                <Route path="/students" element={<Students />} />
-                <Route path="/subjects" element={<Subjects />} />
-                <Route path="/scoresheet" element={<Scoresheet />} />
-                <Route path="/school-calender" element={<SchoolCalender />} />
-                <Route path="/userss" element={<DashboardUsers />} />
-                <Route path="/forms" element={<Forms />} />
-              </Route>
+                {/* ROUTES WITH GENERAL LAYOUT */}
+                <Route element={<GenLayout />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/schools" element={<Schools />} />
+                  <Route path="/teachers" element={<Teachers />} />
+                  <Route path="/classrooms" element={<Classrooms />} />
+                  <Route path="/students" element={<Students />} />
+                  <Route path="/subjects" element={<Subjects />} />
+                  <Route path="/scoresheet" element={<Scoresheet />} />
+                  <Route path="/school-calender" element={<SchoolCalender />} />
+                  <Route path="/userss" element={<DashboardUsers />} />
+                  <Route path="/forms" element={<Forms />} />
+                </Route>
 
-              {/* ROUTES/PAGES WITHOUT LAYOUT */}
-              {/* Register/signIn Page */}
-              <Route path="/" element={<CreateAccount />} />
-              <Route path="/sign-in" element={<SignIn />}>
-                {" "}
-              </Route>
+                {/* ROUTES/PAGES WITHOUT LAYOUT */}
+                {/* Register/signIn Page */}
+                <Route path="/" element={<CreateAccount />} />
+                <Route path="/sign-in" element={<SignIn />}>
+                  {" "}
+                </Route>
 
-              {/* Create School Page */}
-              <Route path="/create-school" element={<CreateSchool />} />
+                {/* Create School Page */}
+                <Route path="/create-school" element={<CreateSchool />} />
 
-              {/* hajia route */}
-              <Route
-                path="/components-testing"
-                element={<ComponentsTesting />}
-              />
+                {/* hajia route */}
+                <Route
+                  path="/components-testing"
+                  element={<ComponentsTesting />}
+                />
 
-              {/* NOT FOUND ROUTE */}
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </Router>
+                {/* NOT FOUND ROUTE */}
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+            </Router>
+          </CalenderProvider>
         </SchoolProvider>
       </FormProvider>
     </TeachersProvider>

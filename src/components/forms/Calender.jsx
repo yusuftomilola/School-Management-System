@@ -2,6 +2,8 @@ import React from "react";
 import { DatePicker } from "antd";
 import Button from "./Button";
 import CancelBtn from "./CancelBtn";
+import DateContext from "../../contexts/calenderContext";
+import { useContext } from "react";
 
 const { RangePicker } = DatePicker;
 const onChange = (date, dateString) => {
@@ -9,9 +11,11 @@ const onChange = (date, dateString) => {
 };
 
 const SchoolCalender = () => {
+  const { toggleCalenderVisibility, calender, setCalender } =
+    useContext(DateContext);
   return (
     <div>
-      <form className=" border border-solid border-red-600 max-w-[500px] p-5">
+      <form className=" border border-solid border-red-600 max-w-[800px] p-5 bg-white">
         <h1 className="font-medium text-[20px] pt-3 pb-3">School Calender</h1>
         <div className="flex flex-col gap-4">
           <div>
@@ -50,7 +54,7 @@ const SchoolCalender = () => {
           </div>
         </div>
         <div className="flex gap-5 mt-8">
-          <CancelBtn>Cancel</CancelBtn>
+          <CancelBtn onclick={toggleCalenderVisibility}>Cancel</CancelBtn>
           <Button className="text-white font-normal border border-solid border-[#dfe1e6]">
             Create Clender
           </Button>
