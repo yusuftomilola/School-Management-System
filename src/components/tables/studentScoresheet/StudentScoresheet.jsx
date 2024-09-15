@@ -6,15 +6,15 @@ const StudentScoresheet = () => {
     <>
       <div className="flex justify-between items-center">
         <p className="font-[700] text-sm">Student Scoresheet</p>
-        <button className="bg-[#091E420A] rounded font-[400]text-sm py-1 px-3">
+        <button className="font-[400] text-[13px] py-1 px-2 bg-[#90909072] text-[#42526E] rounded">
           Add Subject
         </button>
       </div>
       <div>
-        <div>
-          <table className="border-b-2 border-[#DFE1E6] my-4 w-full bg-white">
+        <div className="overflow-auto bg-white rounded-b-md">
+          <table className="border-b-2 border-[#DFE1E6] mt-1 mb-4 w-full bg-white overflow-x-auto">
             {/* Table Head */}
-            <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-xs font-[600] text-left">
+            <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-[11px] font-[600] text-left">
               <tr>
                 <td>
                   <input
@@ -45,14 +45,14 @@ const StudentScoresheet = () => {
                       />
                     </td>
                   </td>
-                  <td className="font-[400] text-sm text-[#172B4D] px-3 py-3">
+                  <td className="font-[400] text-[13px] text-[#172B4D] px-3 py-3">
                     {item.subject}
                   </td>
-                  <td className="font-[400] text-sm">{item.assignment}</td>
-                  <td className="font-[400] text-sm">{item.testOne}</td>
-                  <td className="font-[400] text-sm">{item.testTwo}</td>
-                  <td className="font-[400] text-sm">{item.exams}</td>
-                  <td className="font-[400] text-sm">{item.total}</td>
+                  <td className="font-[400] text-[13px]">{item.assignment}</td>
+                  <td className="font-[400] text-[13px]">{item.testOne}</td>
+                  <td className="font-[400] text-[13px]">{item.testTwo}</td>
+                  <td className="font-[400] text-[13px]">{item.exams}</td>
+                  <td className="font-[400] text-[13px]">{item.total}</td>
                 </tr>
               ))}
             </tbody>

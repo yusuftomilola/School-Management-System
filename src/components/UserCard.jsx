@@ -1,6 +1,14 @@
+import { useContext } from "react";
+import TeachersContext from "../contexts/teachersContext";
 import MoreDropdown from "./MoreDropdown";
 
-function UserCard({name, qualification, subject, clas, imageUser }) {
+function UserCard({ name, qualification, subject, clas, imageUser, id }) {
+  const { removeTeacher } = useContext(TeachersContext);
+
+  function deleteTeacher() {
+    removeTeacher(id);
+  }
+
   return (
     <div className="flex flex-col w-full rounded-md shadow-sm bg-white p-5 mb-8">
       <div className="flex">
@@ -19,8 +27,7 @@ function UserCard({name, qualification, subject, clas, imageUser }) {
 
       <div className="flex items-center mt-4 justify-end ">
         <MoreDropdown />
-        
-      
+
         <img src="src/assets/icons/shortDownArrowIcon2.svg" alt="arrow down" />
       </div>
     </div>
