@@ -10,7 +10,6 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-// Import your SVG icons
 import dashboardIcon from "../assets/icons/dashboardIcon.svg";
 import usersIcon from "../assets/icons/usersIcon.svg";
 import JohnPetersonIcon from "../assets/icons/johnPetersonIcon.svg";
@@ -140,7 +139,7 @@ export default function HomeLayout() {
                             <Link
                               to={item.href}
                               className={classNames(
-                                location.pathname === item.href
+                                location.pathname.startsWith(item.href)
                                   ? "bg-[#6554C0] text-[#EAE6FF]"
                                   : "text-white hover:bg-[#6554C0] hover:text-[#EAE6FF]",
                                 "group flex gap-x-3 rounded-md py-2 px-4 text-[13px] font-semibold leading-6 justify-between"
@@ -150,7 +149,7 @@ export default function HomeLayout() {
                                 <img
                                   aria-hidden="true"
                                   className={classNames(
-                                    location.pathname === item.href
+                                    location.pathname.startsWith(item.href)
                                       ? "text-white"
                                       : "text-indigo-200 group-hover:text-white",
                                     "h-6 w-6 shrink-0"
@@ -160,7 +159,7 @@ export default function HomeLayout() {
                                 />
                                 {item.name}
                               </div>
-                              <img src={item.arrow} alt="" />
+                              {/* {item.arrow && <img src={item.arrow} alt="" />} */}
                             </Link>
                           </li>
                         ))}
@@ -195,7 +194,7 @@ export default function HomeLayout() {
                         <Link
                           to={item.href}
                           className={classNames(
-                            location.pathname === item.href
+                            location.pathname.startsWith(item.href)
                               ? "bg-[#6554C0] text-[#EAE6FF]"
                               : "text-white hover:bg-[#6554C0] hover:text-[#EAE6FF]",
                             "group flex gap-x-3 rounded-md py-2 px-4  font-semibold leading-6 justify-between text-[13px]"
@@ -205,7 +204,7 @@ export default function HomeLayout() {
                             <img
                               aria-hidden="true"
                               className={classNames(
-                                location.pathname === item.href
+                                location.pathname.startsWith(item.href)
                                   ? "text-white"
                                   : "text-indigo-200 group-hover:text-white",
                                 "h-6 w-6 shrink-0"
@@ -215,7 +214,7 @@ export default function HomeLayout() {
                             />
                             {item.name}
                           </div>
-                          <img src={item.arrow} alt="" />
+                          {/* {item.arrow && <img src={item.arrow} alt="" />} */}
                         </Link>
                       </li>
                     ))}

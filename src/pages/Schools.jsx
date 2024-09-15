@@ -10,37 +10,59 @@ const Schools = () => {
     schoolName: "",
     schoolType: "",
     schoolLocation: "",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
+    schoolLogo: null,
   });
 
   const [editSchoolData, setEditSchoolData] = useState(null);
 
   function handleInputChange(e) {
-    const { name, value } = e.target;
-    setNewSchoolData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+    if (name === "schoolLogo") {
+      setNewSchoolData((prevState) => ({
+        ...prevState,
+        [name]: files[0],
+      }));
+    } else {
+      setNewSchoolData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   }
 
   function handleEditInputChange(e) {
-    const { name, value } = e.target;
-    setEditSchoolData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+    if (name === "schoolLogo") {
+      setEditSchoolData((prevState) => ({
+        ...prevState,
+        [name]: files[0],
+      }));
+    } else {
+      setEditSchoolData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   }
 
   function handleFormSubmit(e) {
     e.preventDefault();
     console.log("form submitted");
     addNewSchool(newSchoolData);
+    // Reset form after submission
+    setNewSchoolData({
+      schoolName: "",
+      schoolType: "",
+      schoolLocation: "",
+      schoolLogo: null,
+    });
   }
 
   function handleEditFormSubmit(e) {
     e.preventDefault();
     if (editSchoolData) {
       updateExistingSchool(editSchoolData.id, editSchoolData);
+      setEditSchoolData(null); // Close edit form after submission
     }
   }
 
@@ -61,7 +83,6 @@ const Schools = () => {
             value={newSchoolData.schoolName}
             onChange={handleInputChange}
           />
-          <p>{newSchoolData.schoolName}</p>
         </div>
 
         <div>
@@ -73,7 +94,6 @@ const Schools = () => {
             value={newSchoolData.schoolType}
             onChange={handleInputChange}
           />
-          <p>{newSchoolData.schoolType}</p>
         </div>
 
         <div>
@@ -85,7 +105,17 @@ const Schools = () => {
             value={newSchoolData.schoolLocation}
             onChange={handleInputChange}
           />
-          <p>{newSchoolData.schoolLocation}</p>
+        </div>
+
+        <div>
+          <label htmlFor="schoolLogo">School Logo:</label>
+          <input
+            type="file"
+            id="schoolLogo"
+            name="schoolLogo"
+            accept="image/*"
+            onChange={handleInputChange}
+          />
         </div>
 
         <button type="submit">Submit</button>
@@ -123,6 +153,17 @@ const Schools = () => {
               id="editSchoolLocation"
               name="schoolLocation"
               value={editSchoolData.schoolLocation}
+              onChange={handleEditInputChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="editSchoolLogo">School Logo:</label>
+            <input
+              type="file"
+              id="editSchoolLogo"
+              name="schoolLogo"
+              accept="image/*"
               onChange={handleEditInputChange}
             />
           </div>

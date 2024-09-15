@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
 
-function CreateNewButton({children, backgroundColor, color}) {
+function CreateNewButton({ children, backgroundColor, textColor }) {
   return (
     <div>
-    <button className={`px-[8px] py-3 font-bold text-[12px] text-[${color}] bg-[${backgroundColor}] rounded`}>{children}</button>
+      <button
+        className={`px-[12px] py-[6px] text-[#403294] text-[${textColor}] bg-[${backgroundColor}] 
+        rounded text-[13px] font-semibold `}
+      >
+        {children}
+      </button>
     </div>
   );
 }
 
-export default CreateNewButton
+export default CreateNewButton;
