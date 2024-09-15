@@ -1,4 +1,5 @@
 import React from "react";
+import React from "react";
 
 function CreateNewButton({ children, backgroundColor }) {
   return (
@@ -13,4 +14,5 @@ function CreateNewButton({ children, backgroundColor }) {
   );
 }
 
+export default CreateNewButton;
 export default CreateNewButton;
