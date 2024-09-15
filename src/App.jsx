@@ -24,12 +24,18 @@ import Forms from "./components/forms/Forms";
 import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
 
+import Success from "./pages/Success";
+import Student from "./pages/Student";
+
 function App() {
   return (
     <TeachersProvider>
       <SchoolProvider>
         <Router>
           <Routes>
+            {/* SUCCESS PAGES */}
+            <Route path="/success" element={<Success />} />
+
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
               <Route path="/home" element={<Home />} />
@@ -43,6 +49,7 @@ function App() {
               <Route path="/teachers" element={<Teachers />} />
               <Route path="/classrooms" element={<Classrooms />} />
               <Route path="/students" element={<Students />} />
+              <Route path="/students/:id/:studentName" element={<Student />} />
               <Route path="/subjects" element={<Subjects />} />
               <Route path="/scoresheet" element={<Scoresheet />} />
               <Route path="/school-calender" element={<SchoolCalender />} />
