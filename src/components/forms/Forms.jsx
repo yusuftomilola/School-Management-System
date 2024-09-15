@@ -137,7 +137,6 @@ function Forms() {
     setLgas(lgaList[selectedState] || []);
   };
 
-  // Handle form submission
   const onSubmit = (data) => {
     // Validate image presence
     if (!file) {
@@ -163,15 +162,17 @@ function Forms() {
         JSON.parse(localStorage.getItem("teachersData")) || [];
 
       // Add the new teacher to the list
-      const updatedTeachers = [...existingTeachers, newTeacher];
+      const updatedTeachers = [newTeacher, ...existingTeachers];
 
-      // Save updated list to localStorage and update state
+      // Save updated list to localStorage
       localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
-      setMyData(updatedTeachers); // Update state so UI renders immediately
 
-      // Reset form
+      // Update state immediately so UI reflects the new data
+      setMyData(updatedTeachers);
+
+      // Reset form and close form visibility
       reset();
-      toggleFormVisibility();
+      toggleFormVisibility(); // Close form after successful submission
     };
 
     reader.readAsDataURL(file); // Convert image file to Base64
@@ -395,16 +396,18 @@ function Forms() {
                 id="fileUpload"
                 accept=".pdf,.doc,.docx"
                 onChange={handleCvChange}
-                className="text-[#656565] text-[12px] p-2 outline-none w-40 "
+                className="text-[#656565] text-[12px] p-1 outline-none w-40"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex justify-end sm:flex-row gap-3 md:gap-8">
-          <CancelBtn onClick={toggleFormVisibility}>Cancel</CancelBtn>
+        <div className="flex justify-end sm:flex-row gap-3 md:gap-3">
+          <CancelBtn onClick={toggleFormVisibility} className="p-1">
+            Cancel
+          </CancelBtn>
 
-          <Button className="text-white" type="submit">
+          <Button className="text-white p-1" type="submit">
             Add New Staff
           </Button>
         </div>
