@@ -22,6 +22,7 @@ import DashboardUsers from "./pages/DashboardUsers";
 import Forms from "./components/forms/Forms";
 import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
+import PrimaryOne from "./pages/PrimaryOne";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Route path="/school-calender" element={<SchoolCalender />} />
             <Route path="/userss" element={<DashboardUsers />} />
             <Route path="/forms" element={<Forms />} />
+            <Route path="/primary1" element={<PrimaryOne />} />
           </Route>
 
           {/* ROUTES/PAGES WITHOUT LAYOUT */}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { classroomData } from "./classroomTableData";
 import { Avatar } from "flowbite-react";
 import image from "../../../assets/icons/AvatarImage.png";
@@ -37,8 +38,8 @@ const ClassroomTable = () => {
                   className="outline-none cursor-pointer w-3 h-3 rounded-sm mx-2"
                 />
               </td>
-              <td className="text-sm font-[400] text-[#172B4D] px-3 py-3">
-                {item.className}
+              <td className="text-sm font-[400] text-[#172B4D] px-3 py-3 whitespace-nowrap">
+                <Link to={"/primary1"}> {item.className}</Link>
               </td>
               <td className="text-[#0052CC] font-[400] text-sm">
                 {item.studentNumber}
@@ -48,10 +49,10 @@ const ClassroomTable = () => {
               </td>
               <td>
                 <Avatar.Group>
-                  <Avatar img={image} rounded stacked />
-                  <Avatar img={imageTwo} rounded stacked />
-                  <Avatar img={image} rounded stacked />
-                  <Avatar img={imageTwo} rounded stacked />
+                  <Avatar img={image} rounded />
+                  <Avatar img={imageTwo} rounded />
+                  <Avatar img={image} rounded />
+                  <Avatar img={imageTwo} rounded />
                   <Avatar.Counter total={3} href="#" />
                 </Avatar.Group>
               </td>
@@ -61,13 +62,15 @@ const ClassroomTable = () => {
                   <span className="text-[#172B4D] text-sm font-[400]">
                     {item.assignedStaff.fullName}
                   </span>
-                  <br />
-                  <span className="text-[#6B778C] font-[400] text-[11px]">
-                    {item.assignedStaff.subject}
-                  </span>
-                  <span className="text-[#6B778C] font-[400] text-[11px] px-2">
-                    {item.assignedStaff.assignedDate}
-                  </span>
+
+                  <div className="whitespace-nowrap">
+                    <span className="text-[#6B778C] font-[400] text-[11px]">
+                      {item.assignedStaff.subject}
+                    </span>
+                    <span className="text-[#6B778C] font-[400] text-[11px] px-2">
+                      {item.assignedStaff.assignedDate}
+                    </span>
+                  </div>
                 </div>
               </td>
             </tr>
