@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
 });
 
 function CreateAccount() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const initialValues = {
     fullName: "",
     email: "",
@@ -30,7 +30,7 @@ function CreateAccount() {
     alert("Account Created successfully!");
     setSubmitting(false);
     resetForm();
-    navigate ('/sign-in')
+    navigate("/sign-in");
   };
 
   return (
@@ -40,7 +40,6 @@ function CreateAccount() {
         <div className=" relative hidden w-[50%] flex-1  lg:block ">
           <img
             alt="boy-img"
-            src={createAccountImg}
             src={createAccountImg}
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -133,7 +132,7 @@ function CreateAccount() {
                           Cancel
                         </button>
 
-                        <button 
+                        <button
                           type="submit"
                           disabled={isSubmitting}
                           className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"
@@ -146,14 +145,16 @@ function CreateAccount() {
 
                   <div className="mt- flex gap-1 absolute bottom-3">
                     <p>Already have an account?</p>
-                    <Link to={"/sign-in"} className="text-[#5243AA] font-semibold">
+                    <Link
+                      to={"/sign-in"}
+                      className="text-[#5243AA] font-semibold"
+                    >
                       Login here
                     </Link>
                   </div>
                 </div>
               )}
             </Formik>
-
           </div>
         </div>
       </div>
