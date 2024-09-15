@@ -1,57 +1,87 @@
+import React, { useRef, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  LineElement,
-  PointElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
 } from "chart.js";
 
-ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler
+);
 
 const EarningsChart = () => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const chart = chartRef.current;
+
+    if (chart) {
+      const ctx = chart.ctx;
+      const gradient = ctx.createLinearGradient(0, 0, 0, chart.height);
+      gradient.addColorStop(0, "rgba(255, 159, 64, 0.3)");
+      gradient.addColorStop(1, "rgba(255, 159, 64, 0)");
+
+      chart.data.datasets[0].backgroundColor = gradient;
+      chart.update();
+    }
+  }, []);
+
   const data = {
-    labels: ["", "", "", "", "", "", ""],
+    labels: ["", "", "", "", "", ""],
     datasets: [
       {
-        label: "Wave Line",
-        data: [2, 3, 1, 4, 3, 5, 4], // Points for the wavy shape
-        borderColor: "#FF8C00", // Orange color for the line
+        fill: true,
+        data: [50, 25, 75, 30, 60, 80],
+        borderColor: "rgb(255, 159, 64)",
         borderWidth: 3,
-        fill: {
-          target: "origin", // This fills the area below the line
-          above: "rgba(255, 165, 0, 0.3)", // Orange-like background for the filled part
-        },
-        pointRadius: [0, 0, 0, 0, 0, 0, 6], // Adding a larger point for the last circle
-        pointBackgroundColor: "#FF8C00", // The color of the circle
+        backgroundColor: "rgba(255, 159, 64, 0.1)", // This will be overwritten by the gradient
+        tension: 0.4,
+        pointRadius: [0, 0, 0, 0, 6, 0],
+        pointBackgroundColor: "#fff",
       },
     ],
   };
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false, // This ensures the chart doesn't maintain the default aspect ratio
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
       },
+      tooltip: {
+        enabled: false,
+      },
     },
     scales: {
       x: {
-        display: false, // Hide x-axis
+        display: false,
       },
       y: {
-        display: false, // Hide y-axis
-      },
-    },
-    elements: {
-      line: {
-        tension: 0.4, // This creates the curve effect
+        display: false,
+        min: 0,
+        max: 100,
       },
     },
   };
 
-  return <Line data={data} options={options} height={120} />;
+  return (
+    <div className="w-full h-full">
+      <Line ref={chartRef} data={data} options={options} />
+    </div>
+  );
 };
 
 export default EarningsChart;
