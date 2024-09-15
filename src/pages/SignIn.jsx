@@ -2,10 +2,10 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import signInImg from "../assets/images/signIn-img.svg";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Initial values for form fields
   const initialValues = {
@@ -26,7 +26,7 @@ const SignIn = () => {
   // Submit handler
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     alert("Logged In Successfully!");
-    // navigate("/home"); // Navigate to the home page after submission
+    navigate("/home"); // Navigate to the home page after submission
     setSubmitting(false);
     resetForm();
   };
