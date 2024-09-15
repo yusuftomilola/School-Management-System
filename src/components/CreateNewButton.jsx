@@ -1,12 +1,11 @@
 import React from "react";
 
-// eslint-disable-next-line react/prop-types
-function CreateNewButton({ children, backgroundColor }) {
+function CreateNewButton({ children, backgroundColor, textColor }) {
   return (
     <div>
       <button
-        style={{ backgroundColor }}
-        className={`px-[6px] py-3 text-[#403294] text-sm bg-[${backgroundColor}] rounded`}
+        className={`px-[12px] py-[6px] text-[#403294] text-[${textColor}] bg-[${backgroundColor}] 
+        rounded text-[13px] font-semibold `}
       >
         {children}
       </button>
