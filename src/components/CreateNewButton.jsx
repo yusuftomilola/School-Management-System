@@ -1,6 +1,6 @@
 import React from "react";
-import React from "react";
 
+// eslint-disable-next-line react/prop-types
 function CreateNewButton({ children, backgroundColor }) {
   return (
     <div>
@@ -14,5 +14,4 @@ function CreateNewButton({ children, backgroundColor }) {
   );
 }
 
-export default CreateNewButton;
 export default CreateNewButton;
