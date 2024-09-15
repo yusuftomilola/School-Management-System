@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { lgaList } from "./lgaList";
 import { Upload } from "antd";
 import StudentForm from "./StudentForm";
-import SchoolCalender from "./SchoolCalender";
+import SchoolCalender from "./Calender";
 import CancelBtn from "./CancelBtn";
 import Button from "./Button";
 

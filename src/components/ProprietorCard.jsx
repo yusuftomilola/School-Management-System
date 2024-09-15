@@ -9,7 +9,6 @@ function UserCard({ name, qualification, rank, imageUser }) {
           <h3 className="text-[#172B4D] text-[20px] font-bold">{name}</h3>
           <p className="text-[#5243aa] bg-[#faf5f7] p-1">{qualification}</p>
           <p className="text-[#172B4D]">Rank: {rank}</p>
-          
         </div>
       </div>
 

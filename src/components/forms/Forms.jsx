@@ -138,7 +138,6 @@ function Forms() {
   };
 
   // Handle form submission
-  // Handle form submission
   const onSubmit = (data) => {
     // Validate image presence
     if (!file) {
@@ -149,13 +148,13 @@ function Forms() {
     // Convert image to Base64
     const reader = new FileReader();
     reader.onload = function (e) {
-      const base64Image = e.target.result;
+      const base64Image = e.target.result; // This includes the proper data URL format like data:image/jpeg;base64,...
 
       // Create a new teacher object
       const newTeacher = {
         id: uuidv4(),
         ...data,
-        image: base64Image,
+        image: base64Image, // Correctly formatted base64 image with data URL
         cvFileName: file.name,
       };
 
@@ -168,7 +167,7 @@ function Forms() {
 
       // Save updated list to localStorage and update state
       localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
-      setMyData(updatedTeachers); // This ensures the UI updates immediately
+      setMyData(updatedTeachers); // Update state so UI renders immediately
 
       // Reset form
       reset();
