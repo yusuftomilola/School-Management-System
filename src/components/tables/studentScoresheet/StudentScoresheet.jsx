@@ -12,7 +12,7 @@ const StudentScoresheet = () => {
       </div>
       <div>
         <div className="overflow-auto bg-white rounded-b-md">
-          <table className="border-b-2 border-[#DFE1E6] mt-1 mb-4 w-full bg-white overflow-x-auto">
+          <table className="min-w-[200%] border-b-2 border-[#DFE1E6] mt-1 mb-4 w-full bg-white overflow-x-auto md:min-w-full">
             {/* Table Head */}
             <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-[11px] font-[600] text-left">
               <tr>
