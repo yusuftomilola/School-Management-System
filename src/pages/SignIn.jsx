@@ -2,10 +2,10 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import signInImg from "../assets/images/signIn-img.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Initial values for form fields
   const initialValues = {
@@ -26,7 +26,7 @@ const SignIn = () => {
   // Submit handler
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     alert("Logged In Successfully!");
-    navigate("/home"); // Navigate to the home page after submission
+    // navigate("/home"); // Navigate to the home page after submission
     setSubmitting(false);
     resetForm();
   };
@@ -55,7 +55,7 @@ const SignIn = () => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ isSubmitting }) => (
+              {({ isSubmitting, resetForm }) => (
                 <Form className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -104,6 +104,7 @@ const SignIn = () => {
                   <div className="flex justify-end gap-5">
                     <button
                       type="button"
+                      onClick={() => resetForm()}
                       className="btn bg-white p-2 px-5 font-semibold ring-1 ring-[#5243AA] rounded text-[#5243AA]"
                     >
                       Cancel
