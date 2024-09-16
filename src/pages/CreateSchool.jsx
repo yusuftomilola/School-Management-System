@@ -29,10 +29,17 @@ function CreateSchool() {
   };
 
   const handleCreateSchoolSubmit = (values, { setSubmitting, resetForm }) => {
-    alert("Form submitted successfully!");
+    navigate("/creating-school");
     setSubmitting(false);
     resetForm();
-    navigate("/home");
+
+    setTimeout(() => {
+      navigate("/school-created");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
+    }, 4000);
   };
 
   return (
@@ -62,7 +69,7 @@ function CreateSchool() {
             validationSchema={validationSchema}
             onSubmit={handleCreateSchoolSubmit}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, resetForm }) => (
               <div className="mt-8">
                 <Form className="space-y-6">
                   {/* School Name Field */}
@@ -128,12 +135,20 @@ function CreateSchool() {
                     </div>
                   </div>
 
-                  {/* Submit Button */}
-                  <div className="flex justify-end ">
+                  {/* Buttons */}
+                  <div className="flex justify-end gap-5">
+                    <button
+                      type="button"
+                      onClick={() => resetForm()}
+                      className="btn bg-white p-2 px-5 text-[12px] font-semibold ring-1 ring-[#5243AA] text-[#5243AA] rounded"
+                    >
+                      Cancel
+                    </button>
+
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn bg-[#5243AA] mt-5 p-2 px-5 text-[12px] rounded text-white font-semibold"
+                      className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"
                     >
                       {isSubmitting ? "Submitting..." : "Create School"}
                     </button>

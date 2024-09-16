@@ -29,6 +29,7 @@ import Success from "./pages/Success";
 import Student from "./pages/Student";
 import CreatingSchool from "./pages/CreatingSchool";
 import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
+import AccountCreated from "./pages/AccountCreated";
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
               path="/school-created"
               element={<CreatedSchoolSuccessfully />}
             />
+
+            {/* ACCOUNT CREATED SUCCESSFULLY */}
+            <Route path="/_" element={<AccountCreated />} />
 
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
