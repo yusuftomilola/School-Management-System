@@ -13,7 +13,7 @@ const Student = () => {
 
   return (
     <div>
-      <section className="flex items-center justify-between mb-8">
+      <section className="flex items-start justify-between mb-8 flex-col sm:flex-row sm:items-center gap-5 sm:gap-0">
         <Breadcrumbs
           title1={"Dashboard"}
           url1={"/dashboard"}
@@ -186,9 +186,34 @@ const Student = () => {
                           {student.total_subjects}
                         </span>
                       </div>
+
+                      {/* teacher details */}
+                      <div className=" w-full pt-2 hidden xl:block">
+                        <h3 className="text-[13px] font-semibold">Teacher</h3>
+
+                        <div className="flex pt-2 gap-2">
+                          <img
+                            src={student.teacher.teacher_image}
+                            alt={student.teacher.fullName}
+                          />
+
+                          <div>
+                            <p className="text-[13px] font-semibold">
+                              {student.teacher.fullName}
+                            </p>
+                            <div
+                              className="text-[10px] 
+                          mt-[-3px]"
+                            >
+                              {student.teacher.email} |{" "}
+                              {student.teacher.contact}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div>
+                    <div className="xl:hidden block">
                       {/* teacher details */}
                       <div className=" w-full pt-2">
                         <h3 className="text-[13px] font-semibold">Teacher</h3>

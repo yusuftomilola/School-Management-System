@@ -8,7 +8,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <nav
       aria-label="Page Navigation"
-      className="flex justify-end items-center my-2"
+      className="flex justify-end items-center mt-6 mb-3 "
     >
       <button
         className={`py-2 px-4 font-bold leading-tight text-gray-500 bg-[#FFFFFF00] border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ${

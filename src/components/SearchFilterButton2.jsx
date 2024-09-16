@@ -12,8 +12,8 @@ function SearchFilterButton2({
   sortOrder,
 }) {
   return (
-    <div className="flex gap-2 items-center">
-      <div className="flex bg-white pl-2 pr-12 items-center border-[#DFE1E6] border-2 rounded h-[30px] w-[200px]">
+    <div className="flex flex-col sm:flex-row sm:justify-end gap-2 items-center justify-start w-full">
+      <div className="flex pl-2 pr-12 bg-white items-center border-[#DFE1E6] border-2 rounded h-[30px] w-[200px]">
         <img src={searchIcon} alt="search-icon" className="w-[16px] h-[16px]" />
         <input
           type="text"
@@ -24,35 +24,37 @@ function SearchFilterButton2({
         />
       </div>
 
-      <button
-        onClick={handleSearch}
-        className="bg-[#403294] px-[12px] rounded text-white outline-none h-[28px] text-[13px]"
-      >
-        Search
-      </button>
-
-      <div>
-        <select
-          value={sortOrder}
-          onChange={(e) => handleSort(e.target.value)}
-          className="flex items-center gap-1 bg-[#90909072] text-[#42526E] rounded text-[14px] 
-    px-[10px] h-[28px] w-[85px] appearance-none text-center leading-none border-none"
-          style={{ paddingTop: "2px", paddingBottom: "2px" }}
-        >
-          <option value="none">Filter</option>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
-        </select>
-      </div>
-
-      {isFiltered && (
+      <div className="flex gap-2">
         <button
-          onClick={handleReset}
-          className="text-red-500 text-[13px] font-medium"
+          onClick={handleSearch}
+          className="bg-[#403294] px-[12px] rounded text-white outline-none h-[28px] text-[13px]"
         >
-          Reset
+          Search
         </button>
-      )}
+
+        <div>
+          <select
+            value={sortOrder}
+            onChange={(e) => handleSort(e.target.value)}
+            className="flex items-center gap-1 bg-[#90909072] text-[#42526E] rounded text-[14px] 
+    px-[10px] h-[28px] w-[85px] appearance-none text-center leading-none border-none"
+            style={{ paddingTop: "2px", paddingBottom: "2px" }}
+          >
+            <option value="none">Filter</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
+        </div>
+
+        {isFiltered && (
+          <button
+            onClick={handleReset}
+            className="text-red-500 text-[13px] font-medium"
+          >
+            Reset
+          </button>
+        )}
+      </div>
     </div>
   );
 }

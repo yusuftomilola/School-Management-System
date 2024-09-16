@@ -6,12 +6,13 @@ const StudentScoresheet = () => {
     <>
       <div className="flex justify-between items-center">
         <p className="font-[700] text-sm">Student Scoresheet</p>
+
         <button className="font-[400] text-[13px] py-1 px-2 bg-[#90909072] text-[#42526E] rounded">
           Add Subject
         </button>
       </div>
       <div>
-        <div className="overflow-auto bg-white rounded-b-md">
+        <div className="overflow-auto w-full bg-white rounded-b-md">
           <table className="min-w-[200%] border-b-2 border-[#DFE1E6] mt-1 mb-4 w-full bg-white overflow-x-auto md:min-w-full">
             {/* Table Head */}
             <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-[11px] font-[600] text-left">

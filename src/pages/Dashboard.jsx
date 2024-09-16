@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-7 mb-[70px] lg:mb-0">
       <Breadcrumbs title1={"Dashboard"} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

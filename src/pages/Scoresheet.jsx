@@ -92,7 +92,7 @@ const Scoresheet = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex justify-between items-center">
+      <section className="flex items-start flex-col sm:flex-row sm:justify-between gap-6 sm:gap-none">
         <Breadcrumbs title1={"Dashboard"} title2={"Scoresheet"} />
 
         <div className="flex gap-3">
@@ -110,7 +110,7 @@ const Scoresheet = () => {
         </div>
       </section>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end mb-[-10px]">
         <SearchFilterButton2
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
