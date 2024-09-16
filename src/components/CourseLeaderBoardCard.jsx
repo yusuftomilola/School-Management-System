@@ -2,7 +2,7 @@ import React from "react";
 
 function CourseLeaderBoardCard({ name, score, avatar, position, suffix }) {
   return (
-    <div className="flex justify-between bg-[white] border-stone-500 w-full rounded p-6">
+    <div className="flex justify-between bg-[white] border-stone-500 w-full rounded px-4 pt-2 pb-0">
       <div className="flex gap-5">
         <div>
           <img src={avatar} alt="student-image" />

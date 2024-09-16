@@ -1,49 +1,64 @@
-import React, { useReducer } from "react";
-import DashboardUsers from "../pages/DashboardUsers";
+import React, { useReducer } from 'react';
+import DashboardUsers from '../pages/DashboardUsers';
+import searchIcon from "../assets/icons/searchIcon.svg";
+import shortDownArrowIcon from "../assets/icons/shortDownArrowIcon.svg";
 
-function SearchFilterButton() {
+function SearchFilterButton({
+  searchTerm,
+  setSearchTerm,
+  handleSearch,
+  handleReset,
+  isFiltered,
+  handleSort,
+  sortOrder,
+}) {
   return (
-    <div>
-      <form>
-        <div className="flex gap-2">
-          <div className="flex gap-2">
-            <div className="flex bg-white gap-2 pl-2 pr-12 items-center border-[#DFE1E6] border-2 rounded-md">
-              <img
-                src="src/assets/icons/search-icon.png"
-                alt="search-icon"
-                className="w-3 h-3"
-              />
-              <input
-                type="text"
-                placeholder="Search"
-                className="border-none font-medium outline-none"
-              />
-            </div>
-            <button
-              className="bg-[#403294] px-[28px] rounded text-white font-medium outline-none"
-              type="submit"
-            >
-              Search
-            </button>
-          </div>
+    <div className="flex flex-col sm:flex-row sm:justify-end gap-2 items-center justify-start w-full">
+      <div className="flex pl-2 pr-12 bg-white items-center border-[#DFE1E6] border-2 rounded h-[30px] w-[200px]">
+        <img src={searchIcon} alt="search-icon" className="w-[16px] h-[16px]" />
+        <input
+          type="text"
+          placeholder="Search Student"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border-none font-medium h-[20px] outline-none focus:ring-0 focus:outline-none placeholder:text-[11px] w-full text-[12px] text-gray-500"
+        />
+      </div>
 
-          <div>
-            <select
-              name="filter"
-              id=""
-              className="bg-[#DFE1E6] rounded px-2 py-3 text-[#42526e] text-[14px] font-light outline-none"
-            >
-              <option value="">Filter</option>
-              <option value="A-z">A-Z</option>
-              <option value="DateCreated">Date Created</option>
-              <option value="Filter1">Filter 1</option>
-              <option value="Filter2">Filter 2</option>
-            </select>
-          </div>
+      <div className="flex gap-2">
+        <button
+          onClick={handleSearch}
+          className="bg-[#403294] px-[12px] rounded text-white outline-none h-[28px] text-[13px]"
+        >
+          Search
+        </button>
+
+        <div>
+          <select
+            value={sortOrder}
+            onChange={(e) => handleSort(e.target.value)}
+            className="flex items-center gap-1 bg-[#90909072] text-[#42526E] rounded text-[14px] 
+    px-[10px] h-[28px] w-[85px] appearance-none text-center leading-none border-none"
+            style={{ paddingTop: "2px", paddingBottom: "2px" }}
+          >
+            <option value="none">Filter</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
         </div>
-      </form>
+
+        {isFiltered && (
+          <button
+            onClick={handleReset}
+            className="text-red-500 text-[13px] font-medium"
+          >
+            Reset
+          </button>
+        )}
+      </div>
     </div>
   );
 }
+
 
 export default SearchFilterButton;

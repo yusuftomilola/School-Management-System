@@ -4,7 +4,7 @@ function ClassromCard({ image, headerText, text, backgroundColor }) {
   return (
     <div>
       <div
-        className={`flex items-center w-full p-8 gap-5 rounded shadow bg-[${backgroundColor}]`}
+        className={`flex items-center w-full p-6 gap-5 rounded shadow bg-[${backgroundColor}]`}
       >
         <div>
           <img src={image} alt="plus-sign" width={60} />

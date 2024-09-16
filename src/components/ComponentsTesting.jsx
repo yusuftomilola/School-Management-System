@@ -8,6 +8,7 @@ import SearchFilterButton from "./SearchFilterButton";
 import SearchBoxWithoutFilter from "./SearchBoxWithoutFilter";
 import ProprietorCard from "./ProprietorCard";
 
+
 const ComponentsTesting = () => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -50,8 +51,10 @@ const ComponentsTesting = () => {
       </CreateNewButton>
 
       <SearchFilterButton />
+      
 
       <SearchBoxWithoutFilter />
+      
       <br />
     </div>
   );
