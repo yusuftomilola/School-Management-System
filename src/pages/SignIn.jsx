@@ -26,10 +26,17 @@ const SignIn = () => {
 
   // Submit handler
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    alert("Logged In Successfully!");
+    // alert("Logged In Successfully!");
     navigate("/home"); // Navigate to the home page after submission
     setSubmitting(false);
     resetForm();
+
+    setTimeout(() => {
+      navigate("/_");
+      setTimeout(() => {
+        navigate("/home");
+      }, 2500);
+    }, 400);
   };
 
   return (

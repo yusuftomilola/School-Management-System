@@ -4,7 +4,7 @@ import userImg from '../assets/images/ProprietorImg.svg'
 
 const Users = () => {
   return (
-    <div className='w-[50%] ring-1'>
+    <div className='w-[40%] ring-1'>
       <PreprietorCard
       img={userImg}
       name={'Mark May John Doe'}
