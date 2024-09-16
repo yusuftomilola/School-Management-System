@@ -33,7 +33,7 @@ const ComponentsTesting = () => {
 
       <SubjectCard
         image={"src/assets/icons/Math-icon.svg"}
-        subject={"Mathermatics"}
+        subject={"Mathematics"}
         noOfStudent={"12 Students"}
       />
 

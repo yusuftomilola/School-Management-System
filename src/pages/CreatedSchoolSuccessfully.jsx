@@ -6,7 +6,7 @@ const Success = () => {
     <div className="flex flex-col gap-2 items-center py-10">
       <LottieAnimation />
       <h1 className="font-semibold text-[20px] text-[#404040]">
-        Student Created Successfully
+        School Created Successfully
       </h1>
     </div>
   );
