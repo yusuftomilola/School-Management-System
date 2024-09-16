@@ -8,7 +8,7 @@ import {
   TotalStudentsIcon,
 } from "../assets/icons/students";
 import CreateNewButton from "../components/CreateNewButton";
-
+import MultiStepStudentForm from "../components/forms/StudentsForm";
 import {
   Dialog,
   DialogBackdrop,
@@ -22,13 +22,17 @@ import { useNavigate } from "react-router-dom";
 import studentsTableData from "../data/students";
 
 const Students = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Manage modal visibility
-  const [loading, setLoading] = useState(false); // State for loader
-  const [file, setFile] = useState(null); // State to store the uploaded file
-  const navigate = useNavigate(); // React Router's hook for navigation
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] =
+    useState(false);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
-  const openModal = () => setIsModalOpen(true); // Function to open modal
-  const closeModal = () => setIsModalOpen(false); // Function to close modal
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const openCreateStudentModal = () => setIsCreateStudentModalOpen(true);
+  const closeCreateStudentModal = () => setIsCreateStudentModalOpen(false);
 
   // Count Male Students
   const NrofMaleStudents = studentsTableData.reduce((acc, val) => {
@@ -73,7 +77,7 @@ const Students = () => {
   // Initialize Dropzone for drag and drop functionality
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    multiple: false, // Accept only one file
+    multiple: false,
     accept:
       "application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // Accept Excel file types
   });
@@ -90,9 +94,11 @@ const Students = () => {
             </CreateNewButton>
           </div>
 
-          <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
-            Create New Student
-          </CreateNewButton>
+          <div onClick={openCreateStudentModal}>
+            <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
+              Create New Student
+            </CreateNewButton>
+          </div>
         </div>
       </section>
 
@@ -191,6 +197,12 @@ const Students = () => {
           </div>
         </Dialog>
       )}
+
+      {/* Create Student Modal */}
+      <MultiStepStudentForm
+        isOpen={isCreateStudentModalOpen}
+        onClose={closeCreateStudentModal}
+      />
     </div>
   );
 };

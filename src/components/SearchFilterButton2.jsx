@@ -17,7 +17,7 @@ function SearchFilterButton2({
         <img src={searchIcon} alt="search-icon" className="w-[16px] h-[16px]" />
         <input
           type="text"
-          placeholder="Search Schools"
+          placeholder="Search Student"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border-none font-medium h-[20px] outline-none focus:ring-0 focus:outline-none placeholder:text-[11px] w-full text-[12px] text-gray-500"
@@ -36,7 +36,7 @@ function SearchFilterButton2({
           value={sortOrder}
           onChange={(e) => handleSort(e.target.value)}
           className="flex items-center gap-1 bg-[#90909072] text-[#42526E] rounded text-[14px] 
-    px-[10px] h-[28px] w-[85px] appearance-none text-center leading-none"
+    px-[10px] h-[28px] w-[85px] appearance-none text-center leading-none border-none"
           style={{ paddingTop: "2px", paddingBottom: "2px" }}
         >
           <option value="none">Filter</option>
@@ -48,7 +48,7 @@ function SearchFilterButton2({
       {isFiltered && (
         <button
           onClick={handleReset}
-          className="text-red-500 text-[13px] font-medium cursor-pointer"
+          className="text-red-500 text-[13px] font-medium"
         >
           Reset
         </button>
