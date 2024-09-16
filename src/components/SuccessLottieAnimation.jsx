@@ -1,14 +1,14 @@
 import React from "react";
 import Lottie from "react-lottie";
-import animationData from "./successLottie.json"; // Replace with the correct path to your Lottie JSON file
+import animationData from "./successLottie.json";
 
 const LottieAnimation = () => {
   const defaultOptions = {
-    loop: true,
+    loop: false,
     autoplay: true,
-    animationData: animationData, // The Lottie JSON file
+    animationData: animationData,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice", // Adjust as needed
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
 

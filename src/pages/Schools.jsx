@@ -1,184 +1,96 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import SchoolContext from "../contexts/schoolContext";
 import SubjectCard from "../components/SubjectCard";
+import CreateNewButton from "../components/CreateNewButton";
+import schoolsData from "../data/schools";
+import SearchFilterButton2 from "../components/SearchFilterButton2";
+import { Link } from "react-router-dom";
 
 const Schools = () => {
-  const { schoolsData, addNewSchool, updateExistingSchool } =
-    useContext(SchoolContext);
-  const [newSchoolData, setNewSchoolData] = useState({
-    schoolName: "",
-    schoolType: "",
-    schoolLocation: "",
-    schoolLogo: null,
-  });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSchools, setFilteredSchools] = useState(schoolsData);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [sortOrder, setSortOrder] = useState("none");
 
-  const [editSchoolData, setEditSchoolData] = useState(null);
+  const handleSearch = () => {
+    let filtered = schoolsData.filter(
+      (school) =>
+        school.schoolName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        school.schoolLocation.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  function handleInputChange(e) {
-    const { name, value, files } = e.target;
-    if (name === "schoolLogo") {
-      setNewSchoolData((prevState) => ({
-        ...prevState,
-        [name]: files[0],
-      }));
+    if (sortOrder === "A-Z") {
+      filtered.sort((a, b) => a.schoolName.localeCompare(b.schoolName));
+    }
+
+    if (sortOrder === "Z-A") {
+      filtered.sort((a, b) => b.schoolName.localeCompare(a.schoolName));
+    }
+
+    setFilteredSchools(filtered);
+    setIsFiltered(searchTerm !== "" || sortOrder !== "none");
+  };
+
+  const handleReset = () => {
+    setSearchTerm("");
+    setSortOrder("none");
+    setFilteredSchools(schoolsData);
+    setIsFiltered(false);
+  };
+
+  const handleSort = (order) => {
+    setSortOrder(order);
+    let sorted = [...filteredSchools];
+    if (order === "A-Z") {
+      sorted.sort((a, b) => a.schoolName.localeCompare(b.schoolName));
+    } else if (order === "Z-A") {
+      sorted.sort((a, b) => b.schoolName.localeCompare(a.schoolName));
     } else {
-      setNewSchoolData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+      sorted = schoolsData.filter(
+        (school) =>
+          school.schoolName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          school.schoolLocation.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
-  }
-
-  function handleEditInputChange(e) {
-    const { name, value, files } = e.target;
-    if (name === "schoolLogo") {
-      setEditSchoolData((prevState) => ({
-        ...prevState,
-        [name]: files[0],
-      }));
-    } else {
-      setEditSchoolData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
-  }
-
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    console.log("form submitted");
-    addNewSchool(newSchoolData);
-    // Reset form after submission
-    setNewSchoolData({
-      schoolName: "",
-      schoolType: "",
-      schoolLocation: "",
-      schoolLogo: null,
-    });
-  }
-
-  function handleEditFormSubmit(e) {
-    e.preventDefault();
-    if (editSchoolData) {
-      updateExistingSchool(editSchoolData.id, editSchoolData);
-      setEditSchoolData(null); // Close edit form after submission
-    }
-  }
+    setFilteredSchools(sorted);
+    setIsFiltered(searchTerm !== "" || order !== "none");
+  };
 
   return (
-    <div>
-      <Breadcrumbs title1={"Dashboard"} title2={"Schools"} />
+    <div className="flex flex-col gap-6">
+      <Breadcrumbs
+        title1={"Dashboard"}
+        url1={"/dashboard"}
+        title2={"Schools"}
+      />
 
-      <h1 className="font-bold">All Schools ({schoolsData.length})</h1>
+      <div className="flex justify-between">
+        <h1 className="font-bold">All Schools ({filteredSchools.length})</h1>
 
-      {/* Create a new school Form */}
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="schoolName">School Name:</label>
-          <input
-            type="text"
-            id="schoolName"
-            name="schoolName"
-            value={newSchoolData.schoolName}
-            onChange={handleInputChange}
-          />
-        </div>
+        <Link to={"/create-school"}>
+          <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
+            Create New School
+          </CreateNewButton>
+        </Link>
+      </div>
 
-        <div>
-          <label htmlFor="schoolType">School Type:</label>
-          <input
-            type="text"
-            id="schoolType"
-            name="schoolType"
-            value={newSchoolData.schoolType}
-            onChange={handleInputChange}
-          />
-        </div>
+      <div className="flex justify-end">
+        <SearchFilterButton2
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          handleSearch={handleSearch}
+          handleReset={handleReset}
+          isFiltered={isFiltered}
+          handleSort={handleSort}
+          sortOrder={sortOrder}
+        />
+      </div>
 
-        <div>
-          <label htmlFor="schoolLocation">School Location:</label>
-          <input
-            type="text"
-            id="schoolLocation"
-            name="schoolLocation"
-            value={newSchoolData.schoolLocation}
-            onChange={handleInputChange}
-          />
-        </div>
+      {!filteredSchools || (filteredSchools.length === 0 && "No schools found")}
 
-        <div>
-          <label htmlFor="schoolLogo">School Logo:</label>
-          <input
-            type="file"
-            id="schoolLogo"
-            name="schoolLogo"
-            accept="image/*"
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-
-      {/* Edit Form */}
-      {editSchoolData && (
-        <form onSubmit={handleEditFormSubmit}>
-          <div>
-            <label htmlFor="editSchoolName">School Name:</label>
-            <input
-              type="text"
-              id="editSchoolName"
-              name="schoolName"
-              value={editSchoolData.schoolName}
-              onChange={handleEditInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="editSchoolType">School Type:</label>
-            <input
-              type="text"
-              id="editSchoolType"
-              name="schoolType"
-              value={editSchoolData.schoolType}
-              onChange={handleEditInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="editSchoolLocation">School Location:</label>
-            <input
-              type="text"
-              id="editSchoolLocation"
-              name="schoolLocation"
-              value={editSchoolData.schoolLocation}
-              onChange={handleEditInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="editSchoolLogo">School Logo:</label>
-            <input
-              type="file"
-              id="editSchoolLogo"
-              name="schoolLogo"
-              accept="image/*"
-              onChange={handleEditInputChange}
-            />
-          </div>
-
-          <button type="submit">Update</button>
-        </form>
-      )}
-
-      <div className={"mb-[100px]"} />
-
-      {!schoolsData || (schoolsData.length === 0 && "Loading....")}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {schoolsData &&
-          schoolsData.map((eachSchool) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredSchools &&
+          filteredSchools.map((eachSchool) => {
             const { id, schoolName, schoolLocation, schoolLogo } = eachSchool;
 
             return (
@@ -189,9 +101,6 @@ const Schools = () => {
                   subject={schoolName}
                   noOfStudent={schoolLocation}
                 />
-                <button onClick={() => setEditSchoolData(eachSchool)}>
-                  Edit
-                </button>
               </div>
             );
           })}

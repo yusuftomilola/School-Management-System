@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
 });
 
 function createSchool() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // Initial values for the form fields
   const initialValues = {
     nameOfSchool: "",
@@ -36,7 +36,7 @@ function createSchool() {
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     alert("Form submitted successfully!");
-    navigate("/home")
+    navigate("/home");
     setSubmitting(false);
     resetForm();
   };
@@ -156,7 +156,7 @@ function createSchool() {
                           disabled={isSubmitting}
                           className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"
                         >
-                         {isSubmitting ? "Submitting..." : "Create School"}
+                          {isSubmitting ? "Submitting..." : "Create School"}
                         </button>
                       </div>
                     </Form>
