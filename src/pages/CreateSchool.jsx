@@ -32,10 +32,22 @@ function CreateSchool() {
   };
 
   const handleCreateSchoolSubmit = (values, { setSubmitting, resetForm }) => {
-    alert("Form submitted successfully!");
-    navigate("/home");
+    // alert("Form submitted successfully!");
+    // navigate("/home");
+    // setSubmitting(false);
+    // resetForm();
+
+    navigate("/create-school");
     setSubmitting(false);
     resetForm();
+
+    setTimeout(() => {
+      navigate("/success");
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 2500);
+    }, 2000);
   };
 
   return (
