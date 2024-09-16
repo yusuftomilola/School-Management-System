@@ -27,6 +27,10 @@ import PrimaryOne from "./pages/PrimaryOne";
 
 import Success from "./pages/Success";
 import Student from "./pages/Student";
+import CreatingSchool from "./pages/CreatingSchool";
+import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
+import AccountCreated from "./pages/AccountCreated";
+import ScoresheetSuccess from "./pages/ScoresheetSuccess";
 
 function App() {
   return (
@@ -36,6 +40,13 @@ function App() {
           <Routes>
             {/* SUCCESS PAGES */}
             <Route path="/success" element={<Success />} />
+            <Route path="/creating-school" element={<CreatingSchool />} />
+            <Route
+              path="/school-created"
+              element={<CreatedSchoolSuccessfully />}
+            />
+            <Route path="/_" element={<AccountCreated />} />
+            <Route path="/scoresheet-created" element={<ScoresheetSuccess />} />
 
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
@@ -57,7 +68,7 @@ function App() {
               <Route path="/userss" element={<DashboardUsers />} />
               <Route path="/forms" element={<Forms />} />
               <Route path="/primary1" element={<PrimaryOne />} />
-          </Route>
+            </Route>
 
             {/* ROUTES/PAGES WITHOUT LAYOUT */}
             {/* Register/signIn Page */}
