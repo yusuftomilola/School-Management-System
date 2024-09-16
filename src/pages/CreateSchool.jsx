@@ -1,6 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import arrowBack from "../assets/images/arrowBack-img.svg";
 import createSchoolImg from "../assets/images/createSchool-img.svg";
@@ -21,6 +21,7 @@ const validationSchema = Yup.object({
 });
 
 function CreateSchool() {
+  const navigate = useNavigate()
 
   // Initial values for the form fields
   const initialValues = {
@@ -33,6 +34,7 @@ function CreateSchool() {
     alert("Form submitted successfully!");
     setSubmitting(false);
     resetForm();
+    navigate('/home')
   };
 
   return (
