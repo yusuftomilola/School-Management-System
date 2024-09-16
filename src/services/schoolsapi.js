@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import SchoolIcon from "/src/assets/icons/school/schoolIcon.svg";
 
 const initialSchoolsData = [
   {
@@ -6,28 +7,28 @@ const initialSchoolsData = [
     schoolName: "Green Valley",
     schoolType: "Primary School",
     schoolLocation: "Kaduna, Nigeria",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
+    schoolLogo: SchoolIcon,
   },
   {
     id: 2,
     schoolName: "Starlight Academy",
     schoolType: "Primary School",
     schoolLocation: "Lagos, Nigeria",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
+    schoolLogo: SchoolIcon,
   },
   {
     id: 3,
     schoolName: "Oceanview High",
     schoolType: "Primary School",
-    schoolLocation: "Kaduna, Nigeria",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
+    schoolLocation: "Abuja, Nigeria",
+    schoolLogo: SchoolIcon,
   },
   {
     id: 4,
     schoolName: "Hilltop College",
     schoolType: "Primary School",
-    schoolLocation: "Kaduna, Nigeria",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
+    schoolLocation: "Ibadan, Nigeria",
+    schoolLogo: SchoolIcon,
   },
 ];
 

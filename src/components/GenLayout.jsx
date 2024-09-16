@@ -172,60 +172,60 @@ export default function HomeLayout() {
           </div>
         </Dialog>
 
-        {/* STATIC SIDEBAR FOR DESKTOP */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-[233px] lg:flex-col">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#403294] px-6 pb-4 lg:pt-11">
-            <div className="flex items-center gap-3 mt-8 mb-4">
-              <img src={JohnPetersonIcon} alt="john peterson icon" />
-              <div className="flex flex-col">
-                <p className="text-[#DEEBFF] font-semibold text-[14px]">
-                  John Peterson
-                </p>
-                <p className="text-[#B3D4FF] text-[12px] mt-[-3px]">Admin</p>
-              </div>
-            </div>
-
-            <nav className="flex flex-1 flex-col">
-              <ul role="list" className="flex flex-1 flex-col gap-y-7">
-                <li>
-                  <ul role="list" className="-mx-2 space-y-[5px]">
-                    {navigation.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.href}
-                          className={classNames(
-                            location.pathname.startsWith(item.href)
-                              ? "bg-[#6554C0] text-[#EAE6FF]"
-                              : "text-white hover:bg-[#6554C0] hover:text-[#EAE6FF]",
-                            "group flex gap-x-3 rounded-md py-2 px-4  font-semibold leading-6 justify-between text-[13px]"
-                          )}
-                        >
-                          <div className="flex gap-2">
-                            <img
-                              aria-hidden="true"
-                              className={classNames(
-                                location.pathname.startsWith(item.href)
-                                  ? "text-white"
-                                  : "text-indigo-200 group-hover:text-white",
-                                "h-6 w-6 shrink-0"
-                              )}
-                              src={item.src}
-                              alt={item.name}
-                            />
-                            {item.name}
-                          </div>
-                          {/* {item.arrow && <img src={item.arrow} alt="" />} */}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
         <div className="">
+          {/* STATIC SIDEBAR FOR DESKTOP */}
+          <div className="hidden lg:fixed lg:inset-y-0 lg:z-40 lg:flex lg:w-[233px] lg:flex-col">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#403294] px-6 pb-4 lg:pt-11">
+              <div className="flex items-center gap-3 mt-8 mb-4">
+                <img src={JohnPetersonIcon} alt="john peterson icon" />
+                <div className="flex flex-col">
+                  <p className="text-[#DEEBFF] font-semibold text-[14px]">
+                    John Peterson
+                  </p>
+                  <p className="text-[#B3D4FF] text-[12px] mt-[-3px]">Admin</p>
+                </div>
+              </div>
+
+              <nav className="flex flex-1 flex-col">
+                <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                  <li>
+                    <ul role="list" className="-mx-2 space-y-[5px]">
+                      {navigation.map((item) => (
+                        <li key={item.name}>
+                          <Link
+                            to={item.href}
+                            className={classNames(
+                              location.pathname.startsWith(item.href)
+                                ? "bg-[#6554C0] text-[#EAE6FF]"
+                                : "text-white hover:bg-[#6554C0] hover:text-[#EAE6FF]",
+                              "group flex gap-x-3 rounded-md py-2 px-4  font-semibold leading-6 justify-between text-[13px]"
+                            )}
+                          >
+                            <div className="flex gap-2">
+                              <img
+                                aria-hidden="true"
+                                className={classNames(
+                                  location.pathname.startsWith(item.href)
+                                    ? "text-white"
+                                    : "text-indigo-200 group-hover:text-white",
+                                  "h-6 w-6 shrink-0"
+                                )}
+                                src={item.src}
+                                alt={item.name}
+                              />
+                              {item.name}
+                            </div>
+                            {/* {item.arrow && <img src={item.arrow} alt="" />} */}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
           {/* Sticky top header */}
           <div className="sticky top-0 z-40 flex h-[50px] shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:pl-5 lg:pr-2">
             <button

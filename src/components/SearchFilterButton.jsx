@@ -1,11 +1,10 @@
-import React, { useReducer } from 'react';
-import DashboardUsers from '../pages/DashboardUsers';
-
+import React, { useReducer } from "react";
+import DashboardUsers from "../pages/DashboardUsers";
 
 function SearchFilterButton() {
   return (
     <div>
-      <form >
+      <form>
         <div className="flex gap-2">
           <div className="flex gap-2">
             <div className="flex bg-white gap-2 pl-2 pr-12 items-center border-[#DFE1E6] border-2 rounded-md">
@@ -43,7 +42,6 @@ function SearchFilterButton() {
           </div>
         </div>
       </form>
-      
     </div>
   );
 }

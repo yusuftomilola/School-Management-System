@@ -8,7 +8,7 @@ import {
   TotalStudentsIcon,
 } from "../assets/icons/students";
 import CreateNewButton from "../components/CreateNewButton";
-
+import MultiStepStudentForm from "../components/forms/StudentsForm";
 import {
   Dialog,
   DialogBackdrop,
@@ -22,13 +22,17 @@ import { useNavigate } from "react-router-dom";
 import studentsTableData from "../data/students";
 
 const Students = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Manage modal visibility
-  const [loading, setLoading] = useState(false); // State for loader
-  const [file, setFile] = useState(null); // State to store the uploaded file
-  const navigate = useNavigate(); // React Router's hook for navigation
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] =
+    useState(false);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
-  const openModal = () => setIsModalOpen(true); // Function to open modal
-  const closeModal = () => setIsModalOpen(false); // Function to close modal
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const openCreateStudentModal = () => setIsCreateStudentModalOpen(true);
+  const closeCreateStudentModal = () => setIsCreateStudentModalOpen(false);
 
   // Count Male Students
   const NrofMaleStudents = studentsTableData.reduce((acc, val) => {
@@ -73,14 +77,14 @@ const Students = () => {
   // Initialize Dropzone for drag and drop functionality
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    multiple: false, // Accept only one file
+    multiple: false,
     accept:
       "application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // Accept Excel file types
   });
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex justify-between items-center">
+      <section className="flex flex-col sm:flex-row justify-between items-start gap-10">
         <Breadcrumbs title1={"Dashboard"} title2={"Students"} />
 
         <div className="flex gap-3">
@@ -90,9 +94,12 @@ const Students = () => {
             </CreateNewButton>
           </div>
 
-          <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
-            Create New Student
-          </CreateNewButton>
+          {/* <div onClick={openCreateStudentModal}> */}
+          <div>
+            <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
+              Create New Student
+            </CreateNewButton>
+          </div>
         </div>
       </section>
 
@@ -127,70 +134,71 @@ const Students = () => {
             transition
             className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           />
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-              <DialogPanel
-                transition
-                className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6"
-              >
-                <div>
-                  <div
-                    className="mx-auto flex items-center justify-end rounded-full gap-2 text-[15px] font-semibold cursor-pointer"
-                    onClick={closeModal}
-                  >
-                    Close
-                    <img src={CloseIcon} alt="close icon" />
-                  </div>
-
-                  <div className="mt-3 text-center sm:mt-5">
-                    <DialogTitle
-                      as="h3"
-                      className="text-base lg:text-[20px] font-bold leading-6 text-[#172B4D]"
-                    >
-                      Import Student Information
-                    </DialogTitle>
-
-                    <div
-                      {...getRootProps()}
-                      className={`mt-2 text-[#403294] bg-[#EAE6FF] flex flex-col gap-2 items-center py-4 px-6 rounded cursor-pointer ${
-                        isDragActive
-                          ? "border border-dashed border-[#403294]"
-                          : ""
-                      }`}
-                    >
-                      <input {...getInputProps()} />
-                      <img
-                        src={UploadIcon1}
-                        alt="icon to upload student info"
-                      />
-                      <p className="text-[13px] text-center">
-                        {isDragActive
-                          ? "Drop the file here..."
-                          : "Drag and drop the file or click here to upload"}
-                      </p>
-                    </div>
-                  </div>
+          <div className="fixed inset-0 z-10 flex items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6"
+            >
+              <div>
+                <div
+                  className="mx-auto flex items-center justify-end rounded-full gap-2 text-[15px] font-semibold cursor-pointer"
+                  onClick={closeModal}
+                >
+                  Close
+                  <img src={CloseIcon} alt="close icon" />
                 </div>
 
-                <div className="mt-5 sm:mt-6">
-                  <button
-                    type="button"
-                    onClick={handleFileUpload}
-                    disabled={!file || loading}
-                    className={`inline-flex w-full justify-center rounded bg-[#5243AA] px-3 py-2 text-sm text-white shadow-sm 
+                <div className="mt-3 text-center sm:mt-5">
+                  <DialogTitle
+                    as="h3"
+                    className="text-base lg:text-[20px] font-bold leading-6 text-[#172B4D]"
+                  >
+                    Import Student Information
+                  </DialogTitle>
+
+                  <div
+                    {...getRootProps()}
+                    className={`mt-2 text-[#403294] bg-[#EAE6FF] flex flex-col gap-2 items-center py-4 px-6 rounded cursor-pointer ${
+                      isDragActive
+                        ? "border border-dashed border-[#403294]"
+                        : ""
+                    }`}
+                  >
+                    <input {...getInputProps()} />
+                    <img src={UploadIcon1} alt="icon to upload student info" />
+                    <p className="text-[13px] text-center">
+                      {isDragActive
+                        ? "Drop the file here..."
+                        : "Drag and drop the file or click here to upload"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 sm:mt-6">
+                <button
+                  type="button"
+                  onClick={handleFileUpload}
+                  disabled={!file || loading}
+                  className={`inline-flex w-full justify-center rounded bg-[#5243AA] px-3 py-2 text-sm text-white shadow-sm 
     hover:bg-[#4a3aa3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 
     ${!file || loading ? "opacity-90 cursor-not-allowed" : ""}`}
-                  >
-                    {!file && !loading && "Create Student Account"}
-                    {file && !loading && "Upload File"}
-                    {loading && "Uploading..."}
-                  </button>
-                </div>
-              </DialogPanel>
-            </div>
+                >
+                  {!file && !loading && "Create Student Account"}
+                  {file && !loading && "Upload File"}
+                  {loading && "Uploading..."}
+                </button>
+              </div>
+            </DialogPanel>
           </div>
         </Dialog>
       )}
+
+      {/* Create Student Modal */}
+      <MultiStepStudentForm
+        isOpen={isCreateStudentModalOpen}
+        onClose={closeCreateStudentModal}
+      />
     </div>
   );
 };

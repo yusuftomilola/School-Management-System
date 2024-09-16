@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ComponentsTesting from "./components/ComponentsTesting";
 
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import { SchoolProvider } from "./contexts/schoolContext";
@@ -31,6 +30,7 @@ import Student from "./pages/Student";
 import CreatingSchool from "./pages/CreatingSchool";
 import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
 import AccountCreated from "./pages/AccountCreated";
+import ScoresheetSuccess from "./pages/ScoresheetSuccess";
 import EditUsers from "./pages/EditUsers";
 import ViewUsers from "./pages/ViewUsers";
 
@@ -42,18 +42,13 @@ function App() {
           <Routes>
             {/* SUCCESS PAGES */}
             <Route path="/success" element={<Success />} />
-
-            {/* CREATING SCHOOL PAGE */}
             <Route path="/creating-school" element={<CreatingSchool />} />
-
-            {/* SCHOOL CREATED SUCCESSFULLY */}
             <Route
               path="/school-created"
               element={<CreatedSchoolSuccessfully />}
             />
-
-            {/* ACCOUNT CREATED SUCCESSFULLY */}
             <Route path="/_" element={<AccountCreated />} />
+            <Route path="/scoresheet-created" element={<ScoresheetSuccess />} />
 
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
