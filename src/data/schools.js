@@ -27,13 +27,6 @@ const schoolsData = [
     schoolLocation: "Ibadan, Nigeria",
     schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
   },
-  {
-    id: 5,
-    schoolName: "Bright Future School",
-    schoolType: "Primary School",
-    schoolLocation: "Port Harcourt, Nigeria",
-    schoolLogo: "/src/assets/icons/school/schoolIcon.svg",
-  },
 ];
 
 export default schoolsData;
