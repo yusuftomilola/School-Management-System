@@ -6,7 +6,7 @@ import SubjectCard from "./SubjectCard";
 import CourseLeaderBoardCard from "./CourseLeaderBoardCard";
 import SearchFilterButton from "./SearchFilterButton";
 import SearchBoxWithoutFilter from "./SearchBoxWithoutFilter";
-import ProprietorCard from "./ProprietorCard"
+import ProprietorCard from "./ProprietorCard";
 
 const ComponentsTesting = () => {
   return (
@@ -21,6 +21,8 @@ const ComponentsTesting = () => {
       <CourseLeaderBoardCard
         name={"Hanson John"}
         score={"92%"}
+        position={1}
+        suffix={"st"}
         avatar={"src/assets/icons/courseLeadershipAvatar.svg"}
       />
 
@@ -48,7 +50,6 @@ const ComponentsTesting = () => {
       </CreateNewButton>
 
       <SearchFilterButton />
-
 
       <SearchBoxWithoutFilter />
       <br />
