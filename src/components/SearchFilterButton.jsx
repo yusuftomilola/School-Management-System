@@ -47,4 +47,3 @@ function SearchFilterButton() {
 }
 
 export default SearchFilterButton;
-export default SearchFilterButton;
