@@ -37,17 +37,17 @@ function CreateSchool() {
     // setSubmitting(false);
     // resetForm();
 
-    navigate("/create-school");
+    navigate("/creating-school");
     setSubmitting(false);
     resetForm();
 
     setTimeout(() => {
-      navigate("/success");
+      navigate("/school-created");
 
       setTimeout(() => {
-        navigate("/home");
-      }, 2500);
-    }, 2000);
+        navigate("/dashboard");
+      }, 3000);
+    }, 4000);
   };
 
   return (

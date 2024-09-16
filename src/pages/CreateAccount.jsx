@@ -27,10 +27,16 @@ function CreateAccount() {
   };
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    alert("Account Created successfully!");
+    // alert("Account Created successfully!");
     setSubmitting(false);
     resetForm();
-    navigate("/home");
+
+    setTimeout(() => {
+      navigate("/_");
+      setTimeout(() => {
+        navigate("/home");
+      }, 3000);
+    }, 500);
   };
 
   return (
