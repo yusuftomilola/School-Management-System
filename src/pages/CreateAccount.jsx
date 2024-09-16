@@ -30,7 +30,7 @@ function CreateAccount() {
     alert("Account Created successfully!");
     setSubmitting(false);
     resetForm();
-    navigate('/home');
+    navigate("/home");
   };
 
   return (
@@ -48,7 +48,6 @@ function CreateAccount() {
         {/* RIGHT SIDE */}
         <div className="flex flex-1 flex-col w-[50%] relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
-
             <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Create Account
             </h2>

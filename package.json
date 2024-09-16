@@ -25,6 +25,8 @@
     "react-dropzone": "^14.2.3",
     "react-lottie": "^1.2.4",
     "react-router-dom": "^6.26.1",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
     "uuid": "^10.0.0",
     "yup": "^1.4.0"
   },
