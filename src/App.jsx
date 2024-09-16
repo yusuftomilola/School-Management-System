@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ComponentsTesting from "./components/ComponentsTesting";
 
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import { SchoolProvider } from "./contexts/schoolContext";
@@ -26,6 +27,8 @@ import SignIn from "./pages/SignIn";
 
 import Success from "./pages/Success";
 import Student from "./pages/Student";
+import EditUsers from "./pages/EditUsers";
+import ViewUsers from "./pages/ViewUsers";
 
 function App() {
   return (
@@ -69,6 +72,8 @@ function App() {
 
             {/* hajia route */}
             <Route path="/components-testing" element={<ComponentsTesting />} />
+            <Route path="/edit" element={<EditUsers />} />
+            <Route path="/view" element={<ViewUsers />} />
 
             {/* NOT FOUND ROUTE */}
             <Route path="/*" element={<NotFound />} />

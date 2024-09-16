@@ -2,21 +2,10 @@ import React, { useReducer } from 'react';
 import DashboardUsers from '../pages/DashboardUsers';
 
 
-function SearchFilterButton({ teachers }) {
-  const [state, dispatch] = useReducer(Reducer, initialState);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    dispatch({ type: 'FILTER_DATA' }); 
-  };
-
-  const handleCategoryChange = (e) => {
-    dispatch({ type: 'SETCATEGORY', payload: e.target.value });
-  };
-
+function SearchFilterButton() {
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form >
         <div className="flex gap-2">
           <div className="flex gap-2">
             <div className="flex bg-white gap-2 pl-2 pr-12 items-center border-[#DFE1E6] border-2 rounded-md">
@@ -28,10 +17,6 @@ function SearchFilterButton({ teachers }) {
               <input
                 type="text"
                 placeholder="Search"
-                value={state.searchValue}
-                onChange={(e) =>
-                  dispatch({ type: 'SETSEARCH', payload: e.target.value })
-                }
                 className="border-none font-medium outline-none"
               />
             </div>
@@ -48,7 +33,6 @@ function SearchFilterButton({ teachers }) {
               name="filter"
               id=""
               className="bg-[#DFE1E6] rounded px-2 py-3 text-[#42526e] text-[14px] font-light outline-none"
-              onChange={handleCategoryChange}
             >
               <option value="">Filter</option>
               <option value="A-z">A-Z</option>
@@ -59,16 +43,7 @@ function SearchFilterButton({ teachers }) {
           </div>
         </div>
       </form>
-      <div>
-        {state.error && <p className="text-red-500">{state.error}</p>}
-      {state.filteredData.length > 0 ? (
-      state.filteredData.map((teacher, index) => (
-        <div key={index}>{teacher.name}</div>
-      ))
-    ) : (
-      <p>No data to display</p>
-    )}
-      </div>
+      
     </div>
   );
 }
