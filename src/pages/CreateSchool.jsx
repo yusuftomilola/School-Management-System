@@ -20,9 +20,14 @@ const validationSchema = Yup.object({
     .required("School address is required"),
 });
 
+<<<<<<< HEAD
 function CreateSchool() {
   const navigate = useNavigate()
 
+=======
+function createSchool() {
+  const navigate = useNavigate();
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
   // Initial values for the form fields
   const initialValues = {
     schoolName: "",
@@ -32,6 +37,10 @@ function CreateSchool() {
 
   const handleCreateSchoolSubmit = (values, { setSubmitting, resetForm }) => {
     alert("Form submitted successfully!");
+<<<<<<< HEAD
+=======
+    navigate("/home");
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
     setSubmitting(false);
     resetForm();
     navigate('/home')
@@ -131,6 +140,7 @@ function CreateSchool() {
                       </div>
                     </div>
 
+<<<<<<< HEAD
                     {/* Buttons */}
                     <div className="flex justify-end gap-5">
                       <button
@@ -150,6 +160,18 @@ function CreateSchool() {
                       </button>
                     </div>
                   </Form>
+=======
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded text-white font-semibold"
+                        >
+                          {isSubmitting ? "Submitting..." : "Create School"}
+                        </button>
+                      </div>
+                    </Form>
+                  </div>
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
                 </div>
               )}
             </Formik>

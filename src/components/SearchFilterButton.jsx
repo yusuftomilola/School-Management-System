@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function SearchFilterButton() {
   return (
@@ -42,4 +42,4 @@ function SearchFilterButton() {
   );
 }
 
-export default SearchFilterButton
+export default SearchFilterButton;

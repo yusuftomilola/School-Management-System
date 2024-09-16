@@ -30,7 +30,11 @@ function CreateAccount() {
     alert("Account Created successfully!");
     setSubmitting(false);
     resetForm();
+<<<<<<< HEAD
     navigate('/home');
+=======
+    navigate("/sign-in");
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
   };
 
   return (
@@ -61,6 +65,7 @@ function CreateAccount() {
               {({ isSubmitting, resetForm }) => (
                 <Form className="space-y-6 mt-8">
                   <div>
+<<<<<<< HEAD
                     <label className="block text-sm font-medium leading-6 text-gray-900">
                       Full Name
                     </label>
@@ -98,6 +103,96 @@ function CreateAccount() {
                         className="text-red-500 text-sm"
                       />
                     </div>
+=======
+                    <Form className="space-y-6">
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          Full Name
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="fullName"
+                            name="fullName"
+                            type="text"
+                            placeholder="Ahmad Abdulkareem"
+                            className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                          />
+                          <ErrorMessage
+                            name="fullName"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          Email
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="example@email.com"
+                            className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                          />
+                          <ErrorMessage
+                            name="email"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium leading-6 text-gray-900">
+                          School Name
+                        </label>
+                        <div className="mt-1">
+                          <Field
+                            id="schoolName"
+                            name="schoolName"
+                            type="text"
+                            placeholder="King's Pride School Intl"
+                            className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                          />
+                          <ErrorMessage
+                            name="schoolName"
+                            component="p"
+                            className="text-red-500 text-sm"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end gap-5">
+                        <button
+                          type="button"
+                          className="btn bg-white p-2 px-5 text-[12px] ring-1 ring-[#5243AA] rounded-sm font-semibold "
+                        >
+                          Cancel
+                        </button>
+
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"
+                        >
+                          {isSubmitting ? "Submitting..." : "Register"}
+                        </button>
+                      </div>
+                    </Form>
+                  </div>
+
+                  <div className="mt- flex gap-1 absolute bottom-3">
+                    <p>Already have an account?</p>
+                    <Link
+                      to={"/sign-in"}
+                      className="text-[#5243AA] font-semibold"
+                    >
+                      Login here
+                    </Link>
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
                   </div>
 
                   <div>
@@ -141,6 +236,7 @@ function CreateAccount() {
                 </Form>
               )}
             </Formik>
+<<<<<<< HEAD
 
             <div className="mt- flex gap-1 absolute bottom-3">
               <p>Already have an account?</p>
@@ -148,6 +244,8 @@ function CreateAccount() {
                 Login here
               </Link>
             </div>
+=======
+>>>>>>> e86820d209382f3996a65ef1e6b61765bba7bb6d
           </div>
         </div>
       </div>

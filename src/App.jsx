@@ -23,9 +23,12 @@ import DashboardUsers from "./pages/DashboardUsers";
 import Forms from "./components/forms/Forms";
 import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
+import PrimaryOne from "./pages/PrimaryOne";
 
 import Success from "./pages/Success";
 import Student from "./pages/Student";
+import CreatingSchool from "./pages/CreatingSchool";
+import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
 
 function App() {
   return (
@@ -35,6 +38,15 @@ function App() {
           <Routes>
             {/* SUCCESS PAGES */}
             <Route path="/success" element={<Success />} />
+
+            {/* CREATING SCHOOL PAGE */}
+            <Route path="/creating-school" element={<CreatingSchool />} />
+
+            {/* SCHOOL CREATED SUCCESSFULLY */}
+            <Route
+              path="/school-created"
+              element={<CreatedSchoolSuccessfully />}
+            />
 
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
@@ -55,6 +67,7 @@ function App() {
               <Route path="/school-calender" element={<SchoolCalender />} />
               <Route path="/userss" element={<DashboardUsers />} />
               <Route path="/forms" element={<Forms />} />
+              <Route path="/primary1" element={<PrimaryOne />} />
             </Route>
 
             {/* ROUTES/PAGES WITHOUT LAYOUT */}
