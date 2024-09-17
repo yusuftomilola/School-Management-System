@@ -10,27 +10,6 @@ const TeachersContext = createContext();
 
 export const TeachersProvider = ({ children }) => {
   const [teachersData, setTeachersData] = useState([]);
-  //   const [searchTerm, setSearchTerm] = useState("");
-  // const [filteredData, setFilteredData] = useState([]);
-
-  // Handle search input change
-  // const handleSearchChange = (e) => {
-  //   setSearchTerm(e.target.value);
-  // };
-
-  // Function to handle search
-  // const handleSearch = () => {
-  //   if (searchTerm === "") {
-  //     // If no search term, reset the filtered data to show all teachers
-  //     setFilteredData(myData);
-  //   } else {
-  // Filter the teachers based on searchTerm
-  //     const filtered = teachersData.filter((teacher) =>
-  //       teacher.fullName.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  //     setFilteredData(filtered);
-  //   }
-  // };
 
   useEffect(() => {
     const loadTeachers = async () => {

@@ -1,12 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import createAccountImg from "../assets/images/Create-account-img.svg";
 
+const validationSchema = Yup.object({
+  fullName: Yup.string()
+    .min(5, "Full Name must be at least 5 characters")
+    .required("Full Name is required"),
+
+  email: Yup.string()
+    .min(10, "Email must be at least 10 characters")
+    .required("Email is required"),
+
+  schoolName: Yup.string()
+    .min(5, "School name must be at least 5 characters")
+    .required("School name is required"),
+});
+
 function CreateAccount() {
+  const navigate = useNavigate();
+  const initialValues = {
+    fullName: "",
+    email: "",
+    schoolName: "",
+  };
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    // alert("Account Created successfully!");
+    setSubmitting(false);
+    resetForm();
+
+    setTimeout(() => {
+      navigate("/_");
+      setTimeout(() => {
+        navigate("/home");
+      }, 3000);
+    }, 500);
+  };
+
   return (
     <>
-      <div className="flex h-[100vh] flex-1">
-        <div className=" relative hidden w-0 flex-1  lg:block ">
+      <div className="flex h-[100vh] w-[100%] flex-1">
+        {/* LEFT SIDE */}
+        <div className="relative hidden w-[50%] flex-1 lg:block">
           <img
             alt="boy-img"
             src={createAccountImg}
@@ -14,100 +51,107 @@ function CreateAccount() {
           />
         </div>
 
-        <div className="flex flex-1 flex-col relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+        {/* RIGHT SIDE */}
+        <div className="flex flex-1 flex-col w-[50%] relative justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <h2 className="text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Create Account
             </h2>
 
-            <div className="mt-8">
-              <div>
-                <form action="#" method="POST" className="space-y-6">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ isSubmitting, resetForm }) => (
+                <Form className="space-y-6 mt-8">
                   <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
                       Full Name
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Field
                         id="fullName"
-                        name="full name"
+                        name="fullName"
                         type="text"
-                        required
-                        autoComplete="full name"
                         placeholder="Ahmad Abdulkareem"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 sm:text-sm sm:leading-6"
+                      />
+                      <ErrorMessage
+                        name="fullName"
+                        component="p"
+                        className="text-red-500 text-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
                       Email
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Field
                         id="email"
                         name="email"
                         type="email"
-                        required
-                        autoComplete="current-email"
                         placeholder="example@email.com"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 sm:text-sm sm:leading-6"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="p"
+                        className="text-red-500 text-sm"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="school name"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
                       School Name
                     </label>
                     <div className="mt-1">
-                      <input
+                      <Field
                         id="schoolName"
-                        name="school name"
+                        name="schoolName"
                         type="text"
-                        required
-                        autoComplete="current-school-name"
                         placeholder="King's Pride School Intl"
-                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1  sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 sm:text-sm sm:leading-6"
+                      />
+                      <ErrorMessage
+                        name="schoolName"
+                        component="p"
+                        className="text-red-500 text-sm"
                       />
                     </div>
                   </div>
 
                   <div className="flex justify-end gap-5">
+                    {/* Updated Cancel Button */}
                     <button
-                      type="submit"
-                      className="btn bg-white p-2 px-5 text-[12px] font-semibold "
+                      type="button"
+                      onClick={() => resetForm()} // Reset form fields when clicking cancel
+                      className="btn bg-white p-2 px-5 text-[12px] ring-1 ring-[#5243AA] rounded-sm font-semibold"
                     >
                       Cancel
                     </button>
 
-                    <Link
-                      to={"/home"}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
                       className="btn bg-[#5243AA] p-2 px-5 text-[12px] rounded-sm text-white font-semibold"
                     >
-                      {" "}
-                      Register{" "}
-                    </Link>
+                      {isSubmitting ? "Submitting..." : "Register"}
+                    </button>
                   </div>
-                </form>
-              </div>
+                </Form>
+              )}
+            </Formik>
 
-              <div className="mt- flex gap-1 absolute bottom-3">
-                <p>Already have an account?</p>
-                <Link to={"/sign-in"} className="text-blue-300">
-                  Login here
-                </Link>
-              </div>
+            <div className="mt- flex gap-1 absolute bottom-3">
+              <p>Already have an account?</p>
+              <Link to={"/sign-in"} className="text-[#5243AA] font-semibold">
+                Login here
+              </Link>
             </div>
           </div>
         </div>

@@ -15,7 +15,6 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-// Import your SVG icons
 import dashboardIcon from "../assets/icons/dashboardIcon.svg";
 import usersIcon from "../assets/icons/usersIcon.svg";
 import JohnPetersonIcon from "../assets/icons/johnPetersonIcon.svg";
@@ -125,7 +124,7 @@ export default function HomeLayout() {
                                 />
                                 {item.name}
                               </div>
-                              <img src={item.arrow} alt="" />
+                              {/* <img src={item.arrow} alt="" /> */}
                             </Link>
                           </li>
                         ))}
@@ -180,7 +179,7 @@ export default function HomeLayout() {
                             />
                             {item.name}
                           </div>
-                          <img src={item.arrow} alt="" />
+                          {/* <img src={item.arrow} alt="" /> */}
                         </Link>
                       </li>
                     ))}

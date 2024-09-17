@@ -18,7 +18,7 @@ const ProgressBar = ({ title, amount, mainColor, secondaryColor }) => {
   }, []);
 
   return (
-    <div className="flex rounded-md py-3 px-4 w-full h-[90px] items-center bg-white justify-between">
+    <div className="flex rounded-md py-3 px-4 w-full h-[90px] items-center bg-white justify-between gap-x-3">
       <div style={{ width: 60, height: 60 }}>
         <CircularProgressbar
           value={percentage}
@@ -51,7 +51,7 @@ const ProgressBar = ({ title, amount, mainColor, secondaryColor }) => {
 
       <div>
         <h3 className="text-[22px] text-[#172B4D] font-semibold">{amount}</h3>
-        <p className="text-[#172B4D] text-[14px]">{title}</p>
+        <p className="text-[#172B4D] text-[13px]">{title}</p>
       </div>
     </div>
   );

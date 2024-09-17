@@ -6,7 +6,7 @@ import SubjectCard from "./SubjectCard";
 import CourseLeaderBoardCard from "./CourseLeaderBoardCard";
 import SearchFilterButton from "./SearchFilterButton";
 import SearchBoxWithoutFilter from "./SearchBoxWithoutFilter";
-import ProprietorCard from "./ProprietorCard"
+import ProprietorCard from "./ProprietorCard";
 
 const ComponentsTesting = () => {
   return (
@@ -21,6 +21,8 @@ const ComponentsTesting = () => {
       <CourseLeaderBoardCard
         name={"Hanson John"}
         score={"92%"}
+        position={1}
+        suffix={"st"}
         avatar={"src/assets/icons/courseLeadershipAvatar.svg"}
       />
 
@@ -33,7 +35,7 @@ const ComponentsTesting = () => {
 
       <SubjectCard
         image={"src/assets/icons/Math-icon.svg"}
-        subject={"Mathermatics"}
+        subject={"Mathematics"}
         noOfStudent={"12 Students"}
       />
 
@@ -43,12 +45,12 @@ const ComponentsTesting = () => {
         rank={"Prorietor I"}
         imageUser={"src/assets/icons/userProprietor.svg"}
       />
-      <CreateNewButton backgroundColor={"#EAE6FF"}>
+
+      <CreateNewButton backgroundColor={"#EAE6FF"} color={"#403294"}>
         Create New School
       </CreateNewButton>
 
       <SearchFilterButton />
-
 
       <SearchBoxWithoutFilter />
       <br />
