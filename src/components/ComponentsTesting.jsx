@@ -45,6 +45,7 @@ const ComponentsTesting = () => {
         rank={"Prorietor I"}
         imageUser={"src/assets/icons/userProprietor.svg"}
       />
+
       <CreateNewButton backgroundColor={"#EAE6FF"} color={"#403294"}>
         Create New School
       </CreateNewButton>
