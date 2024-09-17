@@ -20,7 +20,6 @@ const validationSchema = Yup.object({
 
 function CreateAccount() {
   const navigate = useNavigate();
-  const navigate = useNavigate();
   const initialValues = {
     fullName: "",
     email: "",
