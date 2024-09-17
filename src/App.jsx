@@ -61,7 +61,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/schools" element={<Schools />} />
               <Route path="/teachers" element={<Teachers />} />
-              <Route path="/teachers/:id" element={<Teachers />} />
+              <Route path="/teachers/:id/:fullName" element={<Teachers />} />
               <Route path="/classrooms" element={<Classrooms />} />
               <Route path="/students" element={<Students />} />
               <Route path="/students/:id/:studentName" element={<Student />} />
