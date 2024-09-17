@@ -5,8 +5,13 @@ import CreateNewButton from "../components/CreateNewButton";
 import SubjectCardSlider from "../components/SubjectCardSlider";
 import EarningsChartContainer from "../components/dashboard/EarningsChartContainer";
 import ProgressBar from "../components/ProgressBar";
+import ClassSubject from "../components/ClassSubject";
+import { useState } from "react";
 
 const PrimaryOne = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <>
       <Breadcrumbs
@@ -44,7 +49,8 @@ const PrimaryOne = () => {
 
       {/*  */}
       <section>
-        <SubjectCardSlider />
+        <SubjectCardSlider onClick={openModal} />
+        <ClassSubject isOpen={isModalOpen} onClose={closeModal} />
       </section>
 
       {/*  */}

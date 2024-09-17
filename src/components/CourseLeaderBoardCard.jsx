@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-function CourseLeaderBoardCard({name, score, avatar}) {
+function CourseLeaderBoardCard({ name, score, avatar, position, suffix }) {
   return (
     <div className="flex justify-between bg-[white] border-stone-500 w-full rounded p-6">
       <div className="flex gap-5">
@@ -14,11 +14,12 @@ function CourseLeaderBoardCard({name, score, avatar}) {
       </div>
       <div className="bg-[#36B37E] w-14 h-14 text-white rounded-full flex items-center justify-center">
         <p className="font-bold text-white text-2xl">
-          1<span className="font-light text-[16px]">st</span>
+          {position}
+          <span className="font-light text-[16px]">{suffix}</span>
         </p>
       </div>
     </div>
   );
 }
 
-export default CourseLeaderBoardCard
+export default CourseLeaderBoardCard;
