@@ -15,7 +15,7 @@ const SchoolCalender = () => {
     useContext(DateContext);
   return (
     <div>
-      <form className=" border border-solid border-red-600 max-w-[800px] p-5 bg-white">
+      <form className="max-w-[800px] p-5 bg-white">
         <h1 className="font-medium text-[20px] pt-3 pb-3">School Calender</h1>
         <div className="flex flex-col gap-4">
           <div>

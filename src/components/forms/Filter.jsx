@@ -24,13 +24,14 @@ const items = [
   },
 ];
 
-const Filter = () => {
+const Filter = ({ className = "" }) => {
   return (
     <Dropdown
       menu={{
         items,
       }}
       trigger={["click"]}
+      className={`${className}`}
     >
       <a onClick={(e) => e.preventDefault()}>
         <Space className="bg-[#f1efff] text-[#42526e] font-normal text-[14px] py-[10px] px-5 rounded-lg">

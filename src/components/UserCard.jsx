@@ -3,11 +3,11 @@ import { Dropdown, Space } from "antd";
 
 const items = [
   {
-    label: <a href="https://www.antgroup.com">View</a>,
+    label: <a href="#">View</a>,
     key: "0",
   },
   {
-    label: <a href="https://www.aliyun.com">Edit </a>,
+    label: <a href="#">Edit </a>,
     key: "1",
   },
 

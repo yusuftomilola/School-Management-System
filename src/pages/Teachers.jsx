@@ -25,7 +25,7 @@ const Teachers = () => {
         <CancelBtn
           onClick={toggleFormVisibility}
           type="button"
-          className="w-fit px-2 py-1 bg-[#eae6ff] text-[#403294] font-medium text-[14px]"
+          className="w-fit px-2 py-2 bg-[#eae6ff] text-[#403294] font-medium text-[14px]"
         >
           {isFormVisible ? "Create New Teacher " : "Create New Teacher"}
         </CancelBtn>
