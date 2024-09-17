@@ -30,6 +30,9 @@ import Student from "./pages/Student";
 import CreatingSchool from "./pages/CreatingSchool";
 import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
 import AccountCreated from "./pages/AccountCreated";
+import ScoresheetSuccess from "./pages/ScoresheetSuccess";
+import EditUsers from "./pages/EditUsers";
+import ViewUsers from "./pages/ViewUsers";
 
 function App() {
   return (
@@ -39,18 +42,13 @@ function App() {
           <Routes>
             {/* SUCCESS PAGES */}
             <Route path="/success" element={<Success />} />
-
-            {/* CREATING SCHOOL PAGE */}
             <Route path="/creating-school" element={<CreatingSchool />} />
-
-            {/* SCHOOL CREATED SUCCESSFULLY */}
             <Route
               path="/school-created"
               element={<CreatedSchoolSuccessfully />}
             />
-
-            {/* ACCOUNT CREATED SUCCESSFULLY */}
             <Route path="/_" element={<AccountCreated />} />
+            <Route path="/scoresheet-created" element={<ScoresheetSuccess />} />
 
             {/* ROUTES WITH HOME LAYOUT */}
             <Route element={<HomeLayout />}>
@@ -63,6 +61,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/schools" element={<Schools />} />
               <Route path="/teachers" element={<Teachers />} />
+              <Route path="/teachers/:id" element={<Teachers />} />
               <Route path="/classrooms" element={<Classrooms />} />
               <Route path="/students" element={<Students />} />
               <Route path="/students/:id/:studentName" element={<Student />} />
@@ -86,6 +85,8 @@ function App() {
 
             {/* hajia route */}
             <Route path="/components-testing" element={<ComponentsTesting />} />
+            <Route path="/edit" element={<EditUsers />} />
+            <Route path="/view" element={<ViewUsers />} />
 
             {/* NOT FOUND ROUTE */}
             <Route path="/*" element={<NotFound />} />

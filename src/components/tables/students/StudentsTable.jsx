@@ -77,14 +77,14 @@ const StudentsTable = () => {
   };
 
   return (
-    <div className="overflow-x-auto w-full">
-      <div className="flex justify-between mb-12">
+    <div>
+      <div className="flex justify-between mb-6 flex-col md:flex-row gap-5">
         <BtnWithDownArrow
           text={currentSection}
           handleSectionFilter={handleSectionFilter}
         />
 
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-3 items-center flex-col md:flex-row">
           <SearchFilterButton
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -126,90 +126,92 @@ const StudentsTable = () => {
         </div>
       </div>
 
-      <table className="min-w-[200%] border-b-2 border-[#DFE1E6] my-4 table-auto md:min-w-full">
-        {/* Table Head */}
-        <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-xs font-[600] text-left">
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                className="outline-none cursor-pointer w-3 h-3 rounded-sm mx-2"
-              />
-            </th>
-            <th className="px-3 py-3">Student Name</th>
-            <th>
-              Gender <img src={downArrow} alt="" className="inline" />
-            </th>
-            <th className="px-3">
-              Class <img src={downArrow} alt="" className="inline" />{" "}
-              <img src={upDownArrow} alt="" className="inline" />
-            </th>
-            <th>Average Score</th>
-            <th className="px-3">
-              School Fees <img src={downArrow} alt="" className="inline" />
-            </th>
-            <th>Parent/Guardian</th>
-          </tr>
-        </thead>
-        {/* Table Body */}
-        <tbody>
-          {currentItems.map((item) => (
-            <tr key={item.id}>
-              <td>
+      <div className="overflow-x-auto w-full">
+        <table className="min-w-[200%] border-b-2 border-[#DFE1E6] my-4 table-auto md:min-w-full">
+          {/* Table Head */}
+          <thead className="border-b-2 border-[#DFE1E6] text-[#6B778C] text-xs font-[600] text-left">
+            <tr>
+              <th>
                 <input
                   type="checkbox"
                   className="outline-none cursor-pointer w-3 h-3 rounded-sm mx-2"
-                  checked={selectedStudents[item.id] || false}
-                  onChange={() => handleStudentSelection(item.id)}
                 />
-              </td>
-              <Link to={`/students/${item.id}/${item.student_name}`}>
-                <td className="text-[12px] font-[400] text-[#172B4D] px-3 py-3 flex items-center cursor-pointer">
-                  <img src={item.student_image} alt="" className="pr-2" />
-                  <span>{item.student_name}</span>
-                </td>
-              </Link>
-              <td className="text-[#172B4D] font-[400] text-sm">
-                {item.gender}
-              </td>
-              <td className="text-[#0052CC] font-[400] text-sm px-3">
-                {item.class}
-              </td>
-              <td className="text-[#6B778C] text-xs font-[600] ">
-                {item.average_score}
-              </td>
-              <td>
-                <p
-                  className={`w-fit rounded-sm text-[11px] font-[700] ${
-                    item.school_fees === "PAID"
-                      ? "text-[#006644] bg-[#E3FCEF]"
-                      : "text-[#BF2600] bg-[#FFEBE6]"
-                  } px-1`}
-                >
-                  {item.school_fees}
-                </p>
-              </td>
-              <td className="flex items-center gap-2 px-3">
-                <img src={item.parent.parent_image} alt="" />
-                <div className="flex flex-col items-start justify-start">
-                  <span className="text-[#172B4D] text-sm font-[400]">
-                    {item.parent.fullName}
-                  </span>
-
-                  <div className=" mt-[-8px]">
-                    <span className="text-[#6B778C] font-[400] text-[11px]">
-                      {item.parent.email}
-                    </span>
-                    <span className="text-[#6B778C] font-[400] text-[11px] px-2">
-                      {item.parent.contact}
-                    </span>
-                  </div>
-                </div>
-              </td>
+              </th>
+              <th className="px-3 py-3">Student Name</th>
+              <th>
+                Gender <img src={downArrow} alt="" className="inline" />
+              </th>
+              <th className="px-3">
+                Class <img src={downArrow} alt="" className="inline" />{" "}
+                <img src={upDownArrow} alt="" className="inline" />
+              </th>
+              <th>Average Score</th>
+              <th className="px-3">
+                School Fees <img src={downArrow} alt="" className="inline" />
+              </th>
+              <th>Parent/Guardian</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          {/* Table Body */}
+          <tbody>
+            {currentItems.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    className="outline-none cursor-pointer w-3 h-3 rounded-sm mx-2"
+                    checked={selectedStudents[item.id] || false}
+                    onChange={() => handleStudentSelection(item.id)}
+                  />
+                </td>
+                <Link to={`/students/${item.id}/${item.student_name}`}>
+                  <td className="text-[12px] font-[400] text-[#172B4D] px-3 py-3 flex items-center cursor-pointer">
+                    <img src={item.student_image} alt="" className="pr-2" />
+                    <span>{item.student_name}</span>
+                  </td>
+                </Link>
+                <td className="text-[#172B4D] font-[400] text-sm">
+                  {item.gender}
+                </td>
+                <td className="text-[#0052CC] font-[400] text-sm px-3">
+                  {item.class}
+                </td>
+                <td className="text-[#6B778C] text-xs font-[600] ">
+                  {item.average_score}
+                </td>
+                <td>
+                  <p
+                    className={`w-fit rounded-sm text-[11px] font-[700] ${
+                      item.school_fees === "PAID"
+                        ? "text-[#006644] bg-[#E3FCEF]"
+                        : "text-[#BF2600] bg-[#FFEBE6]"
+                    } px-1`}
+                  >
+                    {item.school_fees}
+                  </p>
+                </td>
+                <td className="flex items-center gap-2 px-3">
+                  <img src={item.parent.parent_image} alt="" />
+                  <div className="flex flex-col items-start justify-start">
+                    <span className="text-[#172B4D] text-sm font-[400]">
+                      {item.parent.fullName}
+                    </span>
+
+                    <div className=" mt-[-8px]">
+                      <span className="text-[#6B778C] font-[400] text-[11px]">
+                        {item.parent.email}
+                      </span>
+                      <span className="text-[#6B778C] font-[400] text-[11px] px-2">
+                        {item.parent.contact}
+                      </span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import arrowLeft from "../assets/icons/arrowLeft.png";
 import arrowRight from "../assets/icons/arrowRight.png";
 
-const SubjectCardSlider = () => {
+const SubjectCardSlider = ({ onClick }) => {
   const sliderRef = useRef();
   const settings = {
     dots: false,
@@ -54,11 +54,13 @@ const SubjectCardSlider = () => {
       </button>
 
       <Slider ref={sliderRef} {...settings}>
-        <SubjectCard
-          image={"src/assets/icons/Math-icon.svg"}
-          subject={"Mathematics"}
-          noOfStudent={"12 Students"}
-        />
+        <div className="cursor-pointer" onClick={onClick}>
+          <SubjectCard
+            image={"src/assets/icons/Math-icon.svg"}
+            subject={"Mathematics"}
+            noOfStudent={"12 Students"}
+          />
+        </div>
         <SubjectCard
           image={"src/assets/icons/english.png"}
           subject={"English"}

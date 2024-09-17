@@ -41,6 +41,12 @@ const studentsTableData = [
       lga: "Chikun",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 8,
+      exams: 91,
+      averageScore: "91%",
+    },
   },
   {
     id: 2,
@@ -76,6 +82,12 @@ const studentsTableData = [
       state: "Lagos",
       lga: "Ikeja",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 8,
+      exams: 91,
+      averageScore: "91%",
     },
   },
   {
@@ -113,6 +125,12 @@ const studentsTableData = [
       lga: "Gwale",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 8,
+      testTwo: 7,
+      exams: 90,
+      averageScore: "90%",
+    },
   },
   {
     id: 4,
@@ -148,6 +166,12 @@ const studentsTableData = [
       state: "Anambra",
       lga: "Onitsha North",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
     },
   },
   {
@@ -185,6 +209,12 @@ const studentsTableData = [
       lga: "Owerri",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 7,
+      testTwo: 8,
+      exams: 90,
+      averageScore: "90%",
+    },
   },
   {
     id: 6,
@@ -220,6 +250,12 @@ const studentsTableData = [
       state: "Borno",
       lga: "Maiduguri",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 5,
+      testTwo: 6,
+      exams: 82,
+      averageScore: "82%",
     },
   },
   {
@@ -257,6 +293,12 @@ const studentsTableData = [
       lga: "Warri South",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 7,
+      testTwo: 9,
+      exams: 10,
+      averageScore: "10%",
+    },
   },
   {
     id: 8,
@@ -292,6 +334,12 @@ const studentsTableData = [
       state: "Sokoto",
       lga: "Wurno",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
     },
   },
   {
@@ -329,6 +377,12 @@ const studentsTableData = [
       lga: "Umuahia",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
+    },
   },
   {
     id: 10,
@@ -364,6 +418,12 @@ const studentsTableData = [
       state: "Niger",
       lga: "Minna",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
     },
   },
   {
@@ -401,6 +461,12 @@ const studentsTableData = [
       lga: "Nsukka",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
+    },
   },
   {
     id: 12,
@@ -436,6 +502,12 @@ const studentsTableData = [
       state: "Zamfara",
       lga: "Gusau",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
     },
   },
   {
@@ -473,6 +545,12 @@ const studentsTableData = [
       lga: "Dala",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
+    },
   },
   {
     id: 14,
@@ -509,6 +587,12 @@ const studentsTableData = [
       lga: "Afikpo",
       parent_image: StudentParentIcon,
     },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
+    },
   },
   {
     id: 15,
@@ -543,6 +627,12 @@ const studentsTableData = [
       state: "Kaduna",
       lga: "Igabi",
       parent_image: StudentParentIcon,
+    },
+    scoresheet: {
+      testOne: 9,
+      testTwo: 6,
+      exams: 96,
+      averageScore: "96%",
     },
   },
 ];

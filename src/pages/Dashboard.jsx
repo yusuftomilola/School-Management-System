@@ -9,21 +9,29 @@ import {
 import EarningsChartContainer from "../components/dashboard/EarningsChartContainer";
 import ProgressBar from "../components/ProgressBar";
 import checkIcon from "../assets/icons/purpleCheckIcon.svg";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col gap-7">
+    <div className="flex flex-col gap-7 mb-[70px] lg:mb-0">
       <Breadcrumbs title1={"Dashboard"} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card number={"1,200"} title={"Students"} url={StudentsIcon} />
-        <Card number={"1,200"} title={"Teachers"} url={TeachersIcon} />
-        <Card number={"1,200"} title={"Classrooms"} url={ClassroomsIcon} />
-        <Card
-          number={"24"}
-          title={"Total Number Subjects"}
-          url={SubjectsIcon}
-        />
+        <Link to="/students">
+          <Card number={"1,200"} title={"Students"} url={StudentsIcon} />
+        </Link>
+
+        <Link to="/teachers">
+          <Card number={"1,200"} title={"Teachers"} url={TeachersIcon} />
+        </Link>
+
+        <Link to="/classrooms">
+          <Card number={"1,200"} title={"Classrooms"} url={ClassroomsIcon} />
+        </Link>
+
+        <Link to="/subjects">
+          <Card number={"24"} title={"Subjects"} url={SubjectsIcon} />
+        </Link>
       </div>
 
       <div>

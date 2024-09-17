@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import arrowBack from "../assets/images/arrowBack-img.svg";
 import createSchoolImg from "../assets/images/createSchool-img.svg";
+import SchoolContext from "../contexts/schoolContext";
 
 // Formik validation schema
 const validationSchema = Yup.object({
@@ -20,6 +21,7 @@ const validationSchema = Yup.object({
 
 function CreateSchool() {
   const navigate = useNavigate();
+  const { addNewSchool } = useContext(SchoolContext);
 
   // Initial values for the form fields
   const initialValues = {
@@ -28,18 +30,33 @@ function CreateSchool() {
     schoolAddress: "",
   };
 
-  const handleCreateSchoolSubmit = (values, { setSubmitting, resetForm }) => {
-    navigate("/creating-school");
-    setSubmitting(false);
-    resetForm();
+  const handleCreateSchoolSubmit = async (
+    values,
+    { setSubmitting, resetForm }
+  ) => {
+    try {
+      await addNewSchool({
+        schoolName: values.schoolName,
+        schoolType: values.schoolType,
+        schoolLocation: values.schoolAddress,
+        schoolLogo: "/src/assets/icons/school/schoolIcon.svg", // Default logo
+      });
 
-    setTimeout(() => {
-      navigate("/school-created");
+      navigate("/creating-school");
+      setSubmitting(false);
+      resetForm();
 
       setTimeout(() => {
-        navigate("/dashboard");
-      }, 3000);
-    }, 4000);
+        navigate("/school-created");
+
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
+      }, 4000);
+    } catch (error) {
+      console.error("Error creating school:", error);
+      setSubmitting(false);
+    }
   };
 
   return (

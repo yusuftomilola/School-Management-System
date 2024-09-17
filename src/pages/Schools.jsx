@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import SubjectCard from "../components/SubjectCard";
 import CreateNewButton from "../components/CreateNewButton";
-import schoolsData from "../data/schools";
 import SearchFilterButton2 from "../components/SearchFilterButton2";
 import { Link } from "react-router-dom";
+import SchoolContext from "../contexts/schoolContext";
 
 const Schools = () => {
+  const { schoolsData } = useContext(SchoolContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredSchools, setFilteredSchools] = useState(schoolsData);
+  const [filteredSchools, setFilteredSchools] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
   const [sortOrder, setSortOrder] = useState("none");
+
+  useEffect(() => {
+    setFilteredSchools(schoolsData);
+  }, [schoolsData]);
 
   const handleSearch = () => {
     let filtered = schoolsData.filter(
@@ -57,7 +62,7 @@ const Schools = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 mb-[50px] lg:mb-0">
       <Breadcrumbs
         title1={"Dashboard"}
         url1={"/dashboard"}
@@ -88,7 +93,7 @@ const Schools = () => {
 
       {!filteredSchools || (filteredSchools.length === 0 && "No schools found")}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {filteredSchools &&
           filteredSchools.map((eachSchool) => {
             const { id, schoolName, schoolLocation, schoolLogo } = eachSchool;

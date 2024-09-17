@@ -1,7 +1,7 @@
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
 import ClassromCard from "../components/ClassromCard";
-import SearchFilterButton from "../components/SearchFilterButton";
+
 import ClassroomTable from "../components/tables/classroom/ClassroomTable";
 
 const Classrooms = () => {
@@ -35,10 +35,8 @@ const Classrooms = () => {
           backgroundColor={"#DEEBFF"}
         />
       </section>
-      {/* Search Filter Component */}
-      <section className="flex justify-end mt-10 mb-2">
-        <SearchFilterButton />
-      </section>
+     
+      
       <ClassroomTable />
     </>
   );
