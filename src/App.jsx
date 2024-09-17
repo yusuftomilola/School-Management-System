@@ -31,6 +31,8 @@ import CreatingSchool from "./pages/CreatingSchool";
 import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
 import AccountCreated from "./pages/AccountCreated";
 import ScoresheetSuccess from "./pages/ScoresheetSuccess";
+import EditUsers from "./pages/EditUsers";
+import ViewUsers from "./pages/ViewUsers";
 
 function App() {
   return (
@@ -82,6 +84,8 @@ function App() {
 
             {/* hajia route */}
             <Route path="/components-testing" element={<ComponentsTesting />} />
+            <Route path="/edit" element={<EditUsers />} />
+            <Route path="/view" element={<ViewUsers />} />
 
             {/* NOT FOUND ROUTE */}
             <Route path="/*" element={<NotFound />} />
