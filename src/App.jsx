@@ -36,6 +36,7 @@ import EditUsers from "./pages/EditUsers";
 import ViewUsers from "./pages/ViewUsers";
 import DashboardUser from "./pages/DashboardUser";
 import { CalenderProvider } from "./contexts/calenderContext";
+import Teacher from "./pages/Teacher";
 
 function App() {
   return (
@@ -69,10 +70,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/schools" element={<Schools />} />
                   <Route path="/teachers" element={<Teachers />} />
-                  <Route
-                    path="/teachers/:id/:fullName"
-                    element={<Teachers />}
-                  />
+                  <Route path="/teachers/:userName" element={<Teacher />} />
                   <Route path="/classrooms" element={<Classrooms />} />
                   <Route path="/students" element={<Students />} />
                   <Route

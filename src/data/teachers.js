@@ -9,12 +9,12 @@ const teachersData = [
     lga: "Ikeja",
     address: "23 Adeola Street, Ikeja, Lagos",
     nationality: "Nigerian",
-
     highestQualification: "B.Sc Mathematics",
     subject: "Mathematics",
     classs: "SS3",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_1.svg",
+    staffID: "teacher",
   },
   {
     id: 2,
@@ -26,12 +26,12 @@ const teachersData = [
     lga: "Nassarawa",
     address: "12 Zaria Road, Nassarawa, Kano",
     nationality: "Nigerian",
-
     highestQualification: "B.A English",
     subject: "English",
     classs: "SS2",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_2.svg",
+    staffID: "teacher",
   },
   {
     id: 3,
@@ -43,12 +43,12 @@ const teachersData = [
     lga: "Onitsha South",
     address: "45 Ochanja Market Road, Onitsha, Anambra",
     nationality: "Nigerian",
-
     highestQualification: "B.Sc Physics",
     subject: "Physics",
     classs: "SS1",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_3.svg",
+    staffID: "teacher",
   },
   {
     id: 4,
@@ -66,6 +66,7 @@ const teachersData = [
     classs: "SS3",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_4.svg",
+    staffID: "teacher",
   },
   {
     id: 5,
@@ -83,6 +84,7 @@ const teachersData = [
     classs: "SS2",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_5.svg",
+    staffID: "teacher",
   },
   {
     id: 6,
@@ -100,6 +102,7 @@ const teachersData = [
     classs: "SS3",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_6.svg",
+    staffID: "teacher",
   },
   {
     id: 7,
@@ -111,12 +114,12 @@ const teachersData = [
     lga: "Ado-Ekiti",
     address: "15 Iworoko Road, Ado-Ekiti, Ekiti",
     nationality: "Nigerian",
-
     highestQualification: "B.Sc Mathematics",
     subject: "Mathematics",
     classs: "Primary 6",
     level: "Primary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_1.svg",
+    staffID: "teacher",
   },
   {
     id: 8,
@@ -128,12 +131,12 @@ const teachersData = [
     lga: "Daura",
     address: "13 Sabon Gari, Daura, Katsina",
     nationality: "Nigerian",
-
     highestQualification: "B.A History",
     subject: "History",
     classs: "SS2",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_3.svg",
+    staffID: "teacher",
   },
   {
     id: 9,
@@ -145,12 +148,12 @@ const teachersData = [
     lga: "Nsukka",
     address: "22 University Road, Nsukka, Enugu",
     nationality: "Nigerian",
-
     highestQualification: "B.Sc Biology",
     subject: "Biology",
     classs: "SS1",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_5.svg",
+    staffID: "teacher",
   },
   {
     id: 10,
@@ -162,12 +165,12 @@ const teachersData = [
     lga: "Abeokuta North",
     address: "7 Olumo Rock Street, Abeokuta, Ogun",
     nationality: "Nigerian",
-
     highestQualification: "B.Sc Chemistry",
     subject: "Chemistry",
     classs: "SS2",
     level: "Secondary Teacher",
     image: "/src/assets/icons/teachers/teacherIcon_2.svg",
+    staffID: "teacher",
   },
 ];
 
