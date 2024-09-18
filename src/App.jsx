@@ -29,9 +29,9 @@ import Student from "./pages/Student";
 
 import EditUsers from "./pages/EditUsers";
 import ViewUsers from "./pages/ViewUsers";
+import DashboardUser from "./pages/DashboardUser";
 import { CalenderProvider } from "./contexts/calenderContext";
-// YUSUF'S CHANGES
-import { TeachersProvider } from "./contexts/teachersContext";
+import Teacher from "./pages/Teacher";
 
 function App() {
   return (
@@ -41,6 +41,19 @@ function App() {
           <CalenderProvider>
             <Router>
               <Routes>
+                {/* SUCCESS PAGES */}
+                <Route path="/success" element={<Success />} />
+                <Route path="/creating-school" element={<CreatingSchool />} />
+                <Route
+                  path="/school-created"
+                  element={<CreatedSchoolSuccessfully />}
+                />
+                <Route path="/_" element={<AccountCreated />} />
+                <Route
+                  path="/scoresheet-created"
+                  element={<ScoresheetSuccess />}
+                />
+
                 {/* ROUTES WITH HOME LAYOUT */}
                 <Route element={<HomeLayout />}>
                   <Route path="/home" element={<Home />} />
@@ -52,7 +65,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/schools" element={<Schools />} />
                   <Route path="/teachers" element={<Teachers />} />
-                  <Route path="/teachers/:id" element={<Teachers />} />
+                  <Route path="/teachers/:userName" element={<Teacher />} />
                   <Route path="/classrooms" element={<Classrooms />} />
                   <Route path="/students" element={<Students />} />
                   <Route
@@ -63,6 +76,7 @@ function App() {
                   <Route path="/scoresheet" element={<Scoresheet />} />
                   <Route path="/school-calender" element={<SchoolCalender />} />
                   <Route path="/userss" element={<DashboardUsers />} />
+                  <Route path="/userss/:userName" element={<DashboardUser />} />
                   <Route path="/forms" element={<Forms />} />
                   <Route path="/primary1" element={<PrimaryOne />} />
                 </Route>

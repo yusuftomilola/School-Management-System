@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
+function TeacherCard({
+  id,
+  name,
+  qualification,
+  classs,
+  subject,
+  imageUser,
+  staffID,
+}) {
   const [openDropdownId, setOpenDropdownId] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
@@ -20,7 +28,7 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
 
   return (
     <div className="flex flex-col w-full rounded-md shadow-sm bg-white px-3 pt-3 border-slate-500 mb-8">
-      <Link to={`/userss/${name}`}>
+      <Link to={`/teachers/${name}`}>
         <div className="flex">
           <div className="">
             <img src={imageUser} alt="user" />
@@ -32,7 +40,9 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
             <p className="text-[#5243aa] bg-[#faf5f7] p-1 text-sm mb-2">
               {qualification}
             </p>
-            <p className="text-[#5E6C84] text-sm">Rank: {rank}</p>
+            <p className="text-[#5E6C84] text-sm">Subject: {subject}</p>
+
+            <p className="text-[#5E6C84] text-sm">Class: {classs}</p>
           </div>
         </div>
       </Link>
@@ -58,12 +68,12 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
                 <li
                   key={action}
                   className={`text-[12px] p-1 cursor-pointer ${
-                    activeItem?.path === `/userss/${name}` &&
+                    activeItem?.path === `/teachers/${name}` &&
                     activeItem?.userId === id
                       ? "bg-gray-200 font-bold"
                       : ""
                   } hover:bg-gray-300 font-medium`}
-                  onClick={() => handleNavigation(`/userss/${name}`, id)}
+                  onClick={() => handleNavigation(`/teachers/${name}`, id)}
                 >
                   {action}
                 </li>
@@ -76,4 +86,4 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
   );
 }
 
-export default ProprietorCard;
+export default TeacherCard;

@@ -3,6 +3,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/forms/filter";
 import { useState } from "react";
 import TeacherCard from "../components/forms/TeacherCard";
+import SubjectCard from "../components/SubjectCard";
 
 const Subjects = () => {
   // for popup
@@ -166,24 +167,20 @@ const Subjects = () => {
         <Filter className="hidden md:flex sm:ml-5" />
       </div>
 
-      <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 items-center justify-center gap-4  md:m-auto">
-        {filteredSubjects.map((subject, index) => (
-          <div
-            className="w-full sm:max-w-[639px] grid justify-center items-center justify-self-center text-center bg-[#eae6ff] p-4 rounded-lg shadow-lg sm:w-full gap-2 mt-7"
-            key={index}
-            id="content"
-            onClick={handleImageClick}
-          >
-            <img src={subject.url} alt="" className="m-auto" />
-            <h3 className="text-[#4032944] font-bold text-[14px] m-auto w-full">
-              {subject.name}
-            </h3>
-            <p className="font-normal text-[12px]">
-              {subject.students} students
-            </p>
-          </div>
-        ))}
+      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {filteredSubjects.map((subject, index) => {
+          return (
+            <div onClick={handleImageClick} key={index}>
+              <SubjectCard
+                image={subject.url}
+                subject={subject.name}
+                noOfStudent={subject.students}
+              />
+            </div>
+          );
+        })}
       </div>
+
       {/* pop up section */}
       {isModalVisible && (
         <div className="fixed top-0 right-0 h-full mt-4 w-[400px] p-5 bg-white shadow-lg z-50">
