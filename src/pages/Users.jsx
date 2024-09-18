@@ -1,18 +1,26 @@
 import React from "react";
 import PreprietorCard from "../components/ProprietorCard";
 import userImg from "../assets/images/ProprietorImg.svg";
+import CreateNewButton from "../components/CreateNewButton";
 
 const Users = () => {
   return (
     <>
-      <div className="flex justify-between">
-        <h1 className="font-bold text-2xl text-[#172B4D]">Users</h1>
-        <button className="btn  bg-[#5243AA] items-center text-white font-semibold px-7 py-2 rounded-sm">Create Users</button>
+      <div className="flex justify-between mt-5 mb-4 items-center">
+        <h1 className="font-semibold text-base text-[#172B4D]">Users</h1>
+
+        <CreateNewButton backgroundColor={"#403294"} textColor={"#EAE6FF"}>
+          Create New User
+        </CreateNewButton>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  mt-10 w-full ">
+
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3
+      "
+      >
         <PreprietorCard
           imageUser={userImg}
-          name={"Mark May John Doe"}
+          name={"Mary Joe Angela"}
           qualification={"BSC Computer Science"}
           rank={"Proprietor 1"}
         />
