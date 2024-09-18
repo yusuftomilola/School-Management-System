@@ -33,6 +33,7 @@ import AccountCreated from "./pages/AccountCreated";
 import ScoresheetSuccess from "./pages/ScoresheetSuccess";
 import EditUsers from "./pages/EditUsers";
 import ViewUsers from "./pages/ViewUsers";
+import DashboardUser from "./pages/DashboardUser";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
               <Route path="/scoresheet" element={<Scoresheet />} />
               <Route path="/school-calender" element={<SchoolCalender />} />
               <Route path="/userss" element={<DashboardUsers />} />
+              <Route path="/userss/:userName" element={<DashboardUser />} />
               <Route path="/forms" element={<Forms />} />
               <Route path="/primary1" element={<PrimaryOne />} />
             </Route>
