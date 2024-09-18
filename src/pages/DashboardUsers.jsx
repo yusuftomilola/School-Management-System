@@ -61,7 +61,7 @@ const DashboardUsers = () => {
         </CreateNewButton>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3">
         {userss.map((user) => {
           return (
             <ProprietorCard
@@ -77,7 +77,7 @@ const DashboardUsers = () => {
       <div>
         <h1 className="text-xl font-normal mb-4">School Staffs</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3">
           {schoolStaffs.map((staff) => {
             return (
               <ProprietorCard
