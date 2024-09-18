@@ -1,8 +1,8 @@
-import { scoresheetData } from "./scoresheet";
 import avatar from "../../../assets/icons/avatar.png";
 import upDownArrow from "../../../assets/icons/upDownArrow.png";
+import { Link } from "react-router-dom";
 
-const ScoresheetTable = () => {
+const ScoresheetTable = ({ data }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-[150%] border-b-2 border-[#DFE1E6] my-4 table-auto md:min-w-full">
@@ -32,7 +32,7 @@ const ScoresheetTable = () => {
         </thead>
         {/* Table Body */}
         <tbody>
-          {scoresheetData.map((item) => (
+          {data.map((item) => (
             <tr key={item.id}>
               <td>
                 <input
@@ -40,32 +40,36 @@ const ScoresheetTable = () => {
                   className="outline-none cursor-pointer w-3 h-3 rounded-sm mx-2"
                 />
               </td>
-              <td className="flex items-center gap-x-2 px-3">
-                <span>
-                  <img src={avatar} width={30} alt="" />
-                </span>
 
-                <div>
-                  <span className="font-[400] text-sm text-[#172B4D] ">
-                    {item.student_name.fullName}
-                  </span>{" "}
-                  <br />
-                  <span className="font-[400] text-[11px] text-[#6B778C]">
-                    {item.student_name.class}
+              <Link to={`/students/${item.id}/${item.student_name}`}>
+                <td className="flex items-center gap-x-2 px-3 mb-2">
+                  <span>
+                    <img src={item.student_image} width={30} alt="" />
                   </span>
-                </div>
+
+                  <div className="flex flex-col">
+                    <span className="font-[400] text-[13px] text-[#172B4D] ">
+                      {item.student_name}
+                    </span>
+
+                    <span className="font-[400] text-[11px] text-[#6B778C] mt-[-2px]">
+                      {item.fullclass}
+                    </span>
+                  </div>
+                </td>
+              </Link>
+
+              <td className="text-[#6B778C] text-[11px] font-[400] px-3">
+                {item.scoresheet.testOne}
               </td>
               <td className="text-[#6B778C] text-[11px] font-[400] px-3">
-                {item.testOne}
+                {item.scoresheet.testTwo}
               </td>
               <td className="text-[#6B778C] text-[11px] font-[400] px-3">
-                {item.testTwo}
+                {item.scoresheet.exams}
               </td>
-              <td className="text-[#6B778C] text-[11px] font-[400] px-3">
-                {item.exams}
-              </td>
-              <td className="text-[#0052CC] text-sm font-[400] px-3">
-                {item.averageScore}
+              <td className="text-[#0052CC] text-[13px] font-[400] px-3">
+                {item.scoresheet.averageScore}
               </td>
             </tr>
           ))}

@@ -1,3 +1,21 @@
+.studentInfo h3 {
+  font-size: 12px;
+  color: #42526e;
+  padding-bottom: 3px;
+  /* font-weight: 500; */
+}
+
+span.studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.studentInfo p {
+  font-size: 12px;
+  color: #000000;
+  font-weight: 500;
+}
 /* Hide the scrollbar arrows and customize the width */
 .teacher-list::-webkit-scrollbar {
   width: 6px; /* Make the scrollbar narrower */

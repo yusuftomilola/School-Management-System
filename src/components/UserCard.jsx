@@ -57,3 +57,4 @@ function UserCard({ name, qualification, subject, clas, imageUser }) {
 }
 
 export default UserCard;
+
