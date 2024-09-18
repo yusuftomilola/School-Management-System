@@ -8,6 +8,8 @@ import FormContext from "../components/forms/context";
 // YUSUF'S CHANGES
 import UserCard from "../components/UserCard";
 import TeachersContext from "../contexts/teachersContext";
+import TeacherCard from "../components/TeacherCard";
+import teacherssData from "../data/teachers";
 
 const Teachers = () => {
   const { toggleFormVisibility, isFormVisible, setIsFormVisible } =
@@ -18,7 +20,11 @@ const Teachers = () => {
 
   return (
     <div>
-      <Breadcrumbs title1={"Dashboard"} title2={"Teachers"} />
+      <Breadcrumbs
+        title1={"Dashboard"}
+        url1={"/dashboard"}
+        title2={"Teachers"}
+      />
 
       <div className="flex flex-col gap-5 items-end">
         <CancelBtn
@@ -34,7 +40,24 @@ const Teachers = () => {
       {/* Modal to display the form */}
       {isFormVisible && <Forms />}
 
-      {teachersData && (
+      <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3">
+        {teacherssData.map((teacher) => {
+          if (teacher.staffID === "teacher") {
+            return (
+              <TeacherCard
+                key={teacher.id}
+                name={teacher.fullName}
+                qualification={teacher.highestQualification}
+                subject={teacher.subject}
+                classs={teacher.classs}
+                imageUser={teacher.image}
+              />
+            );
+          }
+        })}
+      </div>
+
+      {/* {teachersData && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
           {teachersData.map((teacher) => {
             const {
@@ -59,7 +82,7 @@ const Teachers = () => {
             );
           })}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

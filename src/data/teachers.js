@@ -1,3 +1,10 @@
+import TeacherOne from "/src/assets/icons/teachers/teacherIcon_1.svg";
+import TeacherTwo from "/src/assets/icons/teachers/teacherIcon_2.svg";
+import TeacherThree from "/src/assets/icons/teachers/teacherIcon_3.svg";
+import TeacherFour from "/src/assets/icons/teachers/teacherIcon_4.svg";
+import TeacherFive from "/src/assets/icons/teachers/teacherIcon_5.svg";
+import TeacherSix from "/src/assets/icons/teachers/teacherIcon_6.svg";
+
 const teachersData = [
   {
     id: 1,
@@ -13,7 +20,7 @@ const teachersData = [
     subject: "Mathematics",
     classs: "SS3",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_1.svg",
+    image: TeacherOne,
     staffID: "teacher",
   },
   {
@@ -30,7 +37,7 @@ const teachersData = [
     subject: "English",
     classs: "SS2",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_2.svg",
+    image: TeacherTwo,
     staffID: "teacher",
   },
   {
@@ -47,7 +54,7 @@ const teachersData = [
     subject: "Physics",
     classs: "SS1",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_3.svg",
+    image: TeacherThree,
     staffID: "teacher",
   },
   {
@@ -65,7 +72,7 @@ const teachersData = [
     subject: "Chemistry",
     classs: "SS3",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_4.svg",
+    image: TeacherFour,
     staffID: "teacher",
   },
   {
@@ -83,7 +90,7 @@ const teachersData = [
     subject: "Biology",
     classs: "SS2",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_5.svg",
+    image: TeacherFive,
     staffID: "teacher",
   },
   {
@@ -101,7 +108,7 @@ const teachersData = [
     subject: "Literature",
     classs: "SS3",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_6.svg",
+    image: TeacherSix,
     staffID: "teacher",
   },
   {
@@ -118,7 +125,7 @@ const teachersData = [
     subject: "Mathematics",
     classs: "Primary 6",
     level: "Primary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_1.svg",
+    image: TeacherOne,
     staffID: "teacher",
   },
   {
@@ -135,7 +142,7 @@ const teachersData = [
     subject: "History",
     classs: "SS2",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_3.svg",
+    image: TeacherTwo,
     staffID: "teacher",
   },
   {
@@ -152,7 +159,7 @@ const teachersData = [
     subject: "Biology",
     classs: "SS1",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_5.svg",
+    image: TeacherThree,
     staffID: "teacher",
   },
   {
@@ -169,7 +176,7 @@ const teachersData = [
     subject: "Chemistry",
     classs: "SS2",
     level: "Secondary Teacher",
-    image: "/src/assets/icons/teachers/teacherIcon_2.svg",
+    image: TeacherFour,
     staffID: "teacher",
   },
 ];
