@@ -5,9 +5,11 @@ import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 
 const Subjects = () => {
-  // for popup
   const [selectedClass, setSelectedClass] = useState("All");
-  const [selectedSubject, setSelectedSubject] = useState(null); // New state to store selected subject
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isCreateFormVisible, setCreateFormVisible] = useState(false); // State for the form visibility
 
   const classes = [
     "All",
@@ -20,8 +22,14 @@ const Subjects = () => {
     "Primary 1",
     "Primary 2",
   ];
-  const [searchTerm, setSearchTerm] = useState("");
-  const subjects = [
+
+  const [newSubject, setNewSubject] = useState({
+    name: "",
+    students: "",
+    url: "",
+  }); // State for new subject form
+
+  const [subjects, setSubjects] = useState([
     {
       name: "Mathematics",
       students: 12,
@@ -33,23 +41,23 @@ const Subjects = () => {
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
-      name: "Literature",
-      students: 15,
+      name: "Biology",
+      students: 12,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
       name: "Chemistry",
+      students: 11,
+      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+    },
+    {
+      name: "",
       students: 12,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
-      name: "Physics",
-      students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "History",
-      students: 12,
+      name: "English",
+      students: 11,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
@@ -63,26 +71,36 @@ const Subjects = () => {
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
-      name: "Literature",
-      students: 15,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "Chemistry",
+      name: "Mathematics",
       students: 12,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
-      name: "Physics",
+      name: "English",
+      students: 11,
+      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+    },
+    {
+      name: "Mathematics",
       students: 12,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
     {
-      name: "History",
+      name: "English",
+      students: 11,
+      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+    },
+    {
+      name: "Mathematics",
       students: 12,
       url: "/src/assets/icons/subjects/subjectsIcon.svg",
     },
-  ];
+    {
+      name: "English",
+      students: 11,
+      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+    },
+  ]);
 
   const teachers = [
     {
@@ -97,18 +115,46 @@ const Subjects = () => {
     subject.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  // Function to handle subject click and show the modal
   const handleImageClick = (subject) => {
-    setSelectedSubject(subject); // Set the clicked subject
+    setSelectedSubject(subject);
     setModalVisible(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setModalVisible(false);
-    setSelectedSubject(null); // Clear the selected subject when closing the modal
+    setSelectedSubject(null);
+  };
+
+  // Show the create subject form
+  const handleCreateNewSubject = () => {
+    setCreateFormVisible(true);
+  };
+
+  // Handle input changes in the form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewSubject((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle file change for the subject image
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setNewSubject((prev) => ({ ...prev, url: imageUrl }));
+    }
+  };
+
+  // Handle form submission to add a new subject
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newSubject.name && newSubject.students && newSubject.url) {
+      setSubjects([...subjects, newSubject]); // Add new subject to the subjects array
+      setNewSubject({ name: "", students: "", url: "" }); // Reset the form fields
+      setCreateFormVisible(false); // Hide the form
+    } else {
+      alert("Please fill all fields");
+    }
   };
 
   return (
@@ -119,11 +165,14 @@ const Subjects = () => {
           All Subjects (25)
         </h1>
         <div className="flex gap-2 justify-start mt-2 items-center">
-          <button className="whitespace-nowrap text-center text-[#5243aa] text[14px] py-2 px-2 pb-[10px] rounded-md font-medium bg-[#eae6ff]">
+          <button className="whitespace-nowrap text-center text-[#5243aa] text-[10px] py-2 px-2 rounded-md font-medium bg-[#eae6ff]">
             Import Subject
           </button>
-          <button className="whitespace-nowrap text-[#ffffff] text[14px] py-2 px-2 pb-[10px] rounded-md font-medium bg-[#5243aa]">
-            Create New subject
+          <button
+            className="whitespace-nowrap text-[#ffffff] text-[10px] py-2 px-2  rounded-md font-medium bg-[#5243aa]"
+            onClick={handleCreateNewSubject}
+          >
+            Create New Subject
           </button>
         </div>
       </div>
@@ -133,36 +182,28 @@ const Subjects = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search"
-          className=" bg-[url('./Assets/search-svgrepo-com.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat py-5 px-8  h-6 rounded-lg outline-none border border-solid border-[#eae6ff]"
+          className="bg-[url('./Assets/search-svgrepo-com.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat py-5 px-8 h-6 rounded-lg outline-none border border-solid border-[#eae6ff]"
         />
-        <button
-          className="py-[8px] px-4 text-white bg-[#403294] rounded-md"
-          onClick={filteredSubjects}
-        >
-          Search
-        </button>
-        <Filter className="hidden md:flex sm:ml-5" />
+        <Filter className="hidden md:flex sm:ml-5 text-[10px]" />
       </div>
 
       <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {filteredSubjects.map((subject, index) => {
-          return (
-            <div onClick={() => handleImageClick(subject)} key={index}>
-              <SubjectCard
-                image={subject.url}
-                subject={subject.name}
-                noOfStudent={subject.students}
-              />
-            </div>
-          );
-        })}
+        {filteredSubjects.map((subject, index) => (
+          <div onClick={() => handleImageClick(subject)} key={index}>
+            <SubjectCard
+              image={subject.url}
+              subject={subject.name}
+              noOfStudent={subject.students}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* pop up section */}
+      {/* Popup for subject details */}
       {isModalVisible && selectedSubject && (
         <div className="fixed top-0 right-0 h-full mt-4 w-[400px] p-5 bg-white shadow-lg z-50">
           <div className="flex justify-between">
-            <h1 className="text-[#403294] font-bold text-[20px]">
+            <h1 className="text-[#403294] font-bold  text-[20px]">
               {selectedSubject.name} {/* Display the clicked subject name */}
             </h1>
             <div className="flex gap-1">
@@ -279,7 +320,64 @@ const Subjects = () => {
         </div>
       )}
 
-      {/* end of popup section */}
+      {/* Form to create a new subject */}
+      {isCreateFormVisible && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-8 rounded-md shadow-md w-[400px]"
+          >
+            <h2 className="text-2xl font-bold mb-4">Create New Subject</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Subject Name</label>
+              <input
+                type="text"
+                name="name"
+                value={newSubject.name}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded-md"
+                placeholder="Enter subject name"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">
+                Number of Students
+              </label>
+              <input
+                type="number"
+                name="students"
+                value={newSubject.students}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded-md"
+                placeholder="Enter number of students"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Subject Image</label>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="w-full px-3 py-2 border-none rounded-md"
+              />
+            </div>
+            <div className="flex justify-between mt-6">
+              <button
+                type="button"
+                className="text-red-500 font-medium"
+                onClick={() => setCreateFormVisible(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-[#5243aa] text-white py-2 px-4 rounded-md"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
