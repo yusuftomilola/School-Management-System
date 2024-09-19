@@ -57,6 +57,7 @@ const Teacher = () => {
   );
   console.log(teacherData);
   const [formData, setFormData] = useState(teacherData || {});
+  console.log(formData);
   const [lgas, setLgas] = useState(lgaList[teacherData.stateOfOrigin] || []);
   const [imagePreview, setImagePreview] = useState(teacherData.image);
   const [showForm, setShowForm] = useState(true);
@@ -88,7 +89,8 @@ const Teacher = () => {
     }
 
     // Ideally, here you would send the updated data to a server or update your state
-    console.log("Updated Teacher Data:", formData);
+    setFormData(teacherData);
+    console.log(teacherData);
 
     // Navigate back or show success message after saving the changes
     alert("Profile updated successfully!");
