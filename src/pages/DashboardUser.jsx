@@ -1,13 +1,12 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
-import SearchBoxEditDelete from "../components/SearchBoxEditDelete";
-import studentsTableData from "../data/students";
-import StudentPerformanceChartContainer from "../components/dashboard/StudentPerformanceChartContainer";
-import AddSubject from "../components/AddSubject";
-import StudentScoresheet from "../components/tables/studentScoresheet/StudentScoresheet";
 import CreateNewButton from "../components/CreateNewButton";
 import { userss } from "../data/users";
+import teachersData from "../data/teachers";
+import CancelBtn from "../components/forms/CancelBtn";
+import Button from "../components/forms/Button";
+import { lgaList } from "../components/forms/lgaList";
 
 const DashboardUser = () => {
   const params = useParams();

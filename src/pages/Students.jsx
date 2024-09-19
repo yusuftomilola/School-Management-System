@@ -85,7 +85,11 @@ const Students = () => {
   return (
     <div className="flex flex-col gap-6">
       <section className="flex flex-col sm:flex-row justify-between items-start gap-10">
-        <Breadcrumbs title1={"Dashboard"} title2={"Students"} />
+        <Breadcrumbs
+          title1={"Dashboard"}
+          url1={"/dashboard"}
+          title2={"Students"}
+        />
 
         <div className="flex gap-3">
           <div onClick={openModal}>
