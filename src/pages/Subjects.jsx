@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/forms/filter";
-import { useState } from "react";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 
 const Subjects = () => {
   // for popup
   const [selectedClass, setSelectedClass] = useState("All");
+  const [selectedSubject, setSelectedSubject] = useState(null); // New state to store selected subject
 
   const classes = [
     "All",
@@ -91,30 +91,6 @@ const Subjects = () => {
       startDate: "2020-03-01",
       subjects: ["Primary 1", "Primary 5"],
     },
-    {
-      name: "Ane Itodo Ibrahim",
-      degree: "BSC English",
-      startDate: "2020-03-01",
-      subjects: ["Primary 1", "Primary 5"],
-    },
-    {
-      name: "Ane Itodo Ibrahim",
-      degree: "BSC English",
-      startDate: "2020-03-01",
-      subjects: ["Primary 1", "Primary 5"],
-    },
-    {
-      name: "Ane Itodo Ibrahim",
-      degree: "BSC English",
-      startDate: "2020-03-01",
-      subjects: ["Primary 1", "Primary 5"],
-    },
-    {
-      name: "Ane Itodo Ibrahim",
-      degree: "BSC English",
-      startDate: "2020-03-01",
-      subjects: ["Primary 1", "Primary 5"],
-    },
   ];
 
   const filteredSubjects = subjects.filter((subject) =>
@@ -123,17 +99,18 @@ const Subjects = () => {
 
   const [isModalVisible, setModalVisible] = useState(false);
 
-  // Function to handle image click and show the modal
-  const handleImageClick = () => {
+  // Function to handle subject click and show the modal
+  const handleImageClick = (subject) => {
+    setSelectedSubject(subject); // Set the clicked subject
     setModalVisible(true);
   };
 
   // Function to close the modal
   const closeModal = () => {
     setModalVisible(false);
+    setSelectedSubject(null); // Clear the selected subject when closing the modal
   };
 
-  //
   return (
     <div>
       <Breadcrumbs title1={"Dashboard"} title2={"Subjects"} />
@@ -142,10 +119,10 @@ const Subjects = () => {
           All Subjects (25)
         </h1>
         <div className="flex gap-2 justify-start mt-2 items-center">
-          <button className="whitespace-nowrap text-center text-[#5243aa] text[14px] py-2 px-2 pb-[10px]  rounded-md font-medium bg-[#eae6ff]">
+          <button className="whitespace-nowrap text-center text-[#5243aa] text[14px] py-2 px-2 pb-[10px] rounded-md font-medium bg-[#eae6ff]">
             Import Subject
           </button>
-          <button className="whitespace-nowrap text-[#ffffff] text[14px] py-2  px-2 pb-[10px] rounded-md font-medium bg-[#5243aa]">
+          <button className="whitespace-nowrap text-[#ffffff] text[14px] py-2 px-2 pb-[10px] rounded-md font-medium bg-[#5243aa]">
             Create New subject
           </button>
         </div>
@@ -156,7 +133,7 @@ const Subjects = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search"
-          className=" bg-[url('./Assets/search-svgrepo-com.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat py-5 px-8  h-6 rounded-lg outline-none border border-solid border-[#eae6ff] "
+          className=" bg-[url('./Assets/search-svgrepo-com.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat py-5 px-8  h-6 rounded-lg outline-none border border-solid border-[#eae6ff]"
         />
         <button
           className="py-[8px] px-4 text-white bg-[#403294] rounded-md"
@@ -167,10 +144,10 @@ const Subjects = () => {
         <Filter className="hidden md:flex sm:ml-5" />
       </div>
 
-      <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {filteredSubjects.map((subject, index) => {
           return (
-            <div onClick={handleImageClick} key={index}>
+            <div onClick={() => handleImageClick(subject)} key={index}>
               <SubjectCard
                 image={subject.url}
                 subject={subject.name}
@@ -182,11 +159,11 @@ const Subjects = () => {
       </div>
 
       {/* pop up section */}
-      {isModalVisible && (
+      {isModalVisible && selectedSubject && (
         <div className="fixed top-0 right-0 h-full mt-4 w-[400px] p-5 bg-white shadow-lg z-50">
           <div className="flex justify-between">
             <h1 className="text-[#403294] font-bold text-[20px]">
-              Mathematics
+              {selectedSubject.name} {/* Display the clicked subject name */}
             </h1>
             <div className="flex gap-1">
               <p className="text-[#403294] font-medium text-[14px]">Close</p>
@@ -216,7 +193,7 @@ const Subjects = () => {
             ))}
           </div>
           <div className="flex justify-end mt-4">
-            <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md ">
+            <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md">
               Remove Class
             </button>
             <button className="bg-[#8777d9] text-[14px] text-white px-2 pb-1 rounded-md">
@@ -231,7 +208,7 @@ const Subjects = () => {
             <h1 className="text-[16px] font-bold my-2 px-1">Student</h1>
             <img src="./Assets/Group 33.svg" className="p-1" />
             <div className="flex justify-end mt-4">
-              <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md ">
+              <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md">
                 Add Student
               </button>
               <button className="bg-[#8777d9] text-[14px] text-white px-2 pb-1 rounded-md">
@@ -242,55 +219,59 @@ const Subjects = () => {
               Course Leaderboard
             </h1>
             <div className="flex flex-col gap-2">
-              <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
-                <div className="flex justify-center items-center gap-3">
-                  <img
-                    src="./Assets/Avatar (40px, presence).svg"
-                    alt=""
-                    className="h-[60px] w-[60px]"
-                  />
+              {/* Leaderboard content */}
 
-                  <div>
-                    <h1 className="text-[16px] font-normal">Hanson John</h1>
-                    <h1 className="text-[12px] font-normal">92%</h1>
+              <div className="flex flex-col gap-2">
+                <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
+                  <div className="flex justify-center items-center gap-3">
+                    <img
+                      src="./Assets/Avatar (40px, presence).svg"
+                      alt=""
+                      className="h-[60px] w-[60px]"
+                    />
+
+                    <div>
+                      <h1 className="text-[16px] font-normal">Hanson John</h1>
+                      <h1 className="text-[12px] font-normal">92%</h1>
+                    </div>
+                  </div>
+                  <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
+                    <span className="font-bold">1</span>st
                   </div>
                 </div>
-                <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
-                  <span className="font-bold">1</span>st
-                </div>
-              </div>
-              <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
-                <div className="flex justify-center items-center gap-3">
-                  <img
-                    src="./Assets/Avatar (40px, presence).svg"
-                    alt=""
-                    className="h-[60px] w-[60px]"
-                  />
+                <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
+                  <div className="flex justify-center items-center gap-3">
+                    <img
+                      src="./Assets/Avatar (40px, presence).svg"
+                      alt=""
+                      className="h-[60px] w-[60px]"
+                    />
 
-                  <div>
-                    <h1 className="text-[16px] font-normal">Hanson John</h1>
-                    <h1 className="text-[12px] font-normal">92%</h1>
+                    <div>
+                      <h1 className="text-[16px] font-normal">Hanson John</h1>
+                      <h1 className="text-[12px] font-normal">92%</h1>
+                    </div>
+                  </div>
+                  <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
+                    <span className="font-bold">1</span>st
                   </div>
                 </div>
-                <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
-                  <span className="font-bold">1</span>st
-                </div>
-              </div>
-              <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
-                <div className="flex justify-center items-center gap-3">
-                  <img
-                    src="./Assets/Avatar (40px, presence).svg"
-                    alt=""
-                    className="h-[60px] w-[60px]"
-                  />
+                <div className="card flex justify-between items-center border border-solid p-2  rounded-md border-[#dadada]">
+                  <div className="flex justify-center items-center gap-3">
+                    <img
+                      src="./Assets/Avatar (40px, presence).svg"
+                      alt=""
+                      className="h-[60px] w-[60px]"
+                    />
 
-                  <div>
-                    <h1 className="text-[16px] font-normal">Hanson John</h1>
-                    <h1 className="text-[12px] font-normal">92%</h1>
+                    <div>
+                      <h1 className="text-[16px] font-normal">Hanson John</h1>
+                      <h1 className="text-[12px] font-normal">92%</h1>
+                    </div>
                   </div>
-                </div>
-                <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
-                  <span className="font-bold">1</span>st
+                  <div className="w-12 h-12 bg-[#36b37e] flex justify-center items-center rounded-full text-white">
+                    <span className="font-bold">1</span>st
+                  </div>
                 </div>
               </div>
             </div>
@@ -298,7 +279,7 @@ const Subjects = () => {
         </div>
       )}
 
-      {/* end of popup section*/}
+      {/* end of popup section */}
     </div>
   );
 };

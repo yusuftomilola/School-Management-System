@@ -10,6 +10,7 @@ import ComponentsTesting from "./components/ComponentsTesting";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import { SchoolProvider } from "./contexts/schoolContext";
+import { TeachersProvider } from "./contexts/teachersContext";
 
 import Classrooms from "./pages/Classrooms";
 import Teachers from "./pages/Teachers";
@@ -25,13 +26,18 @@ import CreateAccount from "./pages/CreateAccount";
 import SignIn from "./pages/SignIn";
 import PrimaryOne from "./pages/PrimaryOne";
 
+import Success from "./pages/Success";
 import Student from "./pages/Student";
-
+import CreatingSchool from "./pages/CreatingSchool";
+import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
+import AccountCreated from "./pages/AccountCreated";
+import ScoresheetSuccess from "./pages/ScoresheetSuccess";
 import EditUsers from "./pages/EditUsers";
 import ViewUsers from "./pages/ViewUsers";
 import DashboardUser from "./pages/DashboardUser";
 import { CalenderProvider } from "./contexts/calenderContext";
 import Teacher from "./pages/Teacher";
+import TeachersCopy from "./pages/TeachersCopy";
 
 function App() {
   return (
@@ -65,6 +71,8 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/schools" element={<Schools />} />
                   <Route path="/teachers" element={<Teachers />} />
+                  <Route path="/TeachersCopy" element={<TeachersCopy />} />
+
                   <Route path="/teachers/:userName" element={<Teacher />} />
                   <Route path="/classrooms" element={<Classrooms />} />
                   <Route path="/students" element={<Students />} />
