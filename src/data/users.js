@@ -1,7 +1,7 @@
 export const userss = [
   {
     id: 1,
-    name: "Mary Joe Angela",
+    name: "Oladele Akinyemi",
     qualification: "Bsc Computer Science",
     rank: "Proprietor 1",
     imageUser: "src/assets/icons/userProprietor.svg",
@@ -9,7 +9,7 @@ export const userss = [
   },
   {
     id: 2,
-    name: "Adenike Aderonke",
+    name: "Maryam Bello",
     qualification: "Msc. Mathematics",
     rank: "Proprietor 2",
     imageUser: "src/assets/icons/user7.svg",
@@ -17,7 +17,7 @@ export const userss = [
   },
   {
     id: 3,
-    name: "David Michaels",
+    name: "Chika Okoye",
     qualification: "Bsc Chemistry",
     rank: "Proprietor 2",
     imageUser: "src/assets/icons/user3.svg",
@@ -25,7 +25,7 @@ export const userss = [
   },
   {
     id: 4,
-    name: "Adeojo Kunle",
+    name: "Suleiman Abubakar",
     qualification: "Bsc Computer Science",
     rank: "Principal",
     imageUser: "src/assets/icons/user4.svg",
@@ -33,7 +33,7 @@ export const userss = [
   },
   {
     id: 5,
-    name: "Esther Goodness",
+    name: "Fatima Musa",
     qualification: "Bsc Computer Science",
     rank: "VP Academics",
     imageUser: "src/assets/icons/user8.svg",
@@ -41,7 +41,7 @@ export const userss = [
   },
   {
     id: 6,
-    name: "Divine Kalas",
+    name: "John Afolabi",
     qualification: "Bsc Computer Science",
     rank: "VP Admin",
     imageUser: "src/assets/icons/user5.svg",

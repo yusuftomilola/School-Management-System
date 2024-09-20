@@ -104,7 +104,7 @@ const Teacher = () => {
     navigate("/Teachers");
   };
 
-  if (!showForm) return null; // Return nothing if the form is deleted
+  if (!showForm) return null;
 
   return (
     <div>
@@ -117,9 +117,11 @@ const Teacher = () => {
           title3={`${params.userName}`}
         />
 
-        <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
-          Create New Teacher
-        </CreateNewButton>
+        <div onClick={on}>
+          <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
+            Create New Teacher
+          </CreateNewButton>
+        </div>
       </section>
 
       {teachersData
