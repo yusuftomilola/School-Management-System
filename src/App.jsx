@@ -75,6 +75,7 @@ function App() {
 
                   <Route path="/teachers/:userName" element={<Teacher />} />
                   <Route path="/classrooms" element={<Classrooms />} />
+                  <Route path="/classrooms/primary1" element={<PrimaryOne />} />
                   <Route path="/students" element={<Students />} />
                   <Route
                     path="/students/:id/:studentName"
@@ -86,7 +87,6 @@ function App() {
                   <Route path="/userss" element={<DashboardUsers />} />
                   <Route path="/userss/:userName" element={<DashboardUser />} />
                   <Route path="/forms" element={<Forms />} />
-                  <Route path="/primary1" element={<PrimaryOne />} />
                 </Route>
 
                 {/* ROUTES/PAGES WITHOUT LAYOUT */}
