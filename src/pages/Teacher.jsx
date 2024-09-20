@@ -53,14 +53,15 @@ const Teacher = () => {
   const { fetchTeachers, teachersData } = useContext(TeachersContext);
   const params = useParams();
   console.log(params);
-  const navigate = useNavigate();
   const teacherData = teachersData.find(
     (teacher) => teacher.fullName === params.userName
   );
+
   console.log(teacherData);
   const [formData, setFormData] = useState(teacherData || {});
   console.log(formData);
-  const [lgas, setLgas] = useState(lgaList[teacherData.stateOfOrigin] || []);
+  const [lgas, setLgas] = useState(formData[teacherData.stateOfOrigin] || []);
+  console.log(lgas);
   const [imagePreview, setImagePreview] = useState(teacherData.image);
   const [showForm, setShowForm] = useState(true);
 
@@ -91,8 +92,12 @@ const Teacher = () => {
     }
 
     // Ideally, here you would send the updated data to a server or update your state
-    setFormData(teacherData);
-    console.log(teacherData);
+
+    // Ensure teacherData exists before using it
+    if (teacherData) {
+      setFormData(teacherData);
+      console.log(teacherData);
+    }
 
     // Navigate back or show success message after saving the changes
     alert("Profile updated successfully!");
