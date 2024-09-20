@@ -99,7 +99,7 @@ const Teacher = () => {
     localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
 
     setShowForm(false);
-    /
+
     navigate("/teachers");
   };
 

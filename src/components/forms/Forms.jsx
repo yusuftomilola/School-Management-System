@@ -65,7 +65,7 @@ const schema = yup.object({
   highestQualification: yup
     .string()
     .required("Highest Qualification is required"),
-  state: yup.string().required("State of Origin is required"),
+  stateOfOrigin: yup.string().required("State of Origin is required"),
   lga: yup.string().required("LGA is required"),
 });
 
@@ -188,7 +188,7 @@ function Forms({ onSubmitSuccess }) {
         onClick={toggleFormVisibility}
       ></div>
 
-      <div className="w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] overflow-y-auto px-3  rounded-lg shadow-lg">
+      <div className="hide-scrollbar w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] overflow-y-auto px-3  rounded-lg shadow-lg">
         <form
           className="w-full max-w-[600px] p-[10px] max-h-[90vh] bg-white"
           onSubmit={handleSubmit(onSubmit)} // Attach handleSubmit from react-hook-form
@@ -344,7 +344,7 @@ function Forms({ onSubmitSuccess }) {
                 <select
                   className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
                   value={selectedState}
-                  {...register("state")}
+                  {...register("stateOfOrigin")}
                   onChange={handleStateChange}
                 >
                   {states.map((state) => (

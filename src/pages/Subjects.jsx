@@ -264,10 +264,10 @@ const Subjects = () => {
         title2={"Subjects"}
       />
 
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row  justify-between">
         <h1 className="font-bold">All Subjects ({filteredSubjects.length})</h1>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
           <div onClick={openModal}>
             <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
               Import Subject
@@ -308,7 +308,7 @@ const Subjects = () => {
 
       {/* Popup for subject details */}
       {isModalVisible && selectedSubject && (
-        <div className="fixed top-0 right-0 h-full mt-4 w-[400px] p-5 bg-white shadow-lg z-50">
+        <div className="fixed top-0 right-0 h-full mt-4 md:w-[400px] p-5 bg-white shadow-lg z-50">
           <div className="flex justify-between">
             <h1 className="text-[#403294] font-bold  text-[20px]">
               {selectedSubject.name} {/* Display the clicked subject name */}

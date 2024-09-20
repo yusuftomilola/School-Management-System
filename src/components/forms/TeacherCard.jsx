@@ -25,11 +25,11 @@ const TeacherCard = ({ teacher }) => {
               </span>
             ))}
           </div>
-          <div className="flex justify-end mt-4">
-            <button className=" px-4 rounded pb-1 text-[14px] font-normal">
+          <div className="flex justify-end mt-4 ">
+            <button className=" px-4 rounded pb-1 text-[14px] font-normal whitespace-nowrap">
               View Profile
             </button>
-            <button className="bg-[#8777d7] text-white px-4 pb-1 rounded text-[14px] font-normal">
+            <button className="bg-[#8777d7] text-white px-2 pb-1 rounded text-[14px] font-normal">
               Replace
             </button>
           </div>
