@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Filter from "../components/forms/filter";
+import SearchFilterButton2 from "../components/SearchFilterButton2";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
+import CreateNewButton from "../components/CreateNewButton";
+import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import CloseIcon from "../assets/icons/closeIcon.svg";
+import UploadIcon1 from "../assets/icons/uploadIcon1.svg";
+import { useDropzone } from "react-dropzone";
+import { useNavigate } from "react-router-dom";
 
 const Subjects = () => {
   const [selectedClass, setSelectedClass] = useState("All");
@@ -10,6 +23,52 @@ const Subjects = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
   const [isCreateFormVisible, setCreateFormVisible] = useState(false); // State for the form visibility
+  const [filteredSubjects, setFilteredSubjects] = useState([]);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [sortOrder, setSortOrder] = useState("none");
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
+
+  const openModal = () => setIsModalOpen(true);
+  const closeImportModal = () => setIsModalOpen(false);
+
+  // Function to handle file drop
+  const onDrop = (acceptedFiles) => {
+    if (acceptedFiles.length > 0) {
+      setFile(acceptedFiles[0]);
+    }
+  };
+
+  // File upload handler
+  const handleFileUpload = () => {
+    if (!file) return;
+
+    // Simulate file upload
+    setLoading(true); // Start loader
+
+    // Simulate a file upload API call
+    setTimeout(() => {
+      setLoading(false); // Stop loader
+      closeModal(); // Close modal
+      navigate("/success"); // Redirect to success page
+
+      // After 4 seconds, redirect to /students
+      setTimeout(() => {
+        navigate("/students");
+      }, 2500); // 2.5 second delay
+    }, 2000); // Simulate 2-second delay for upload
+  };
+
+  // Initialize Dropzone for drag and drop functionality
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+    accept:
+      "application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // Accept Excel file types
+  });
 
   const classes = [
     "All",
@@ -111,9 +170,49 @@ const Subjects = () => {
     },
   ];
 
-  const filteredSubjects = subjects.filter((subject) =>
-    subject.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    setFilteredSubjects(subjects);
+  }, [subjects]);
+
+  const handleSearch = () => {
+    let filtered = subjects.filter((subject) =>
+      subject.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    if (sortOrder === "A-Z") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    if (sortOrder === "Z-A") {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
+    }
+
+    setFilteredSubjects(filtered);
+    setIsFiltered(searchTerm !== "" || sortOrder !== "none");
+  };
+
+  const handleReset = () => {
+    setSearchTerm("");
+    setSortOrder("none");
+    setFilteredSubjects(subjects);
+    setIsFiltered(false);
+  };
+
+  const handleSort = (order) => {
+    setSortOrder(order);
+    let sorted = [...filteredSubjects];
+    if (order === "A-Z") {
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (order === "Z-A") {
+      sorted.sort((a, b) => b.name.localeCompare(a.name));
+    } else {
+      sorted = subjects.filter((subject) =>
+        subject.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    setFilteredSubjects(sorted);
+    setIsFiltered(searchTerm !== "" || order !== "none");
+  };
 
   const handleImageClick = (subject) => {
     setSelectedSubject(subject);
@@ -158,33 +257,41 @@ const Subjects = () => {
   };
 
   return (
-    <div>
-      <Breadcrumbs title1={"Dashboard"} title2={"Subjects"} />
-      <div className="flex flex-col md:flex-row justify-between md:items-center mt-6">
-        <h1 className="font-bold text-[20px] text-[#000000]">
-          All Subjects (25)
-        </h1>
-        <div className="flex gap-2 justify-start mt-2 items-center">
-          <button className="whitespace-nowrap text-center text-[#5243aa] text-[10px] py-2 px-2 rounded-md font-medium bg-[#eae6ff]">
-            Import Subject
-          </button>
-          <button
-            className="whitespace-nowrap text-[#ffffff] text-[10px] py-2 px-2  rounded-md font-medium bg-[#5243aa]"
-            onClick={handleCreateNewSubject}
-          >
-            Create New Subject
-          </button>
+    <div className="flex flex-col gap-6 mb-[50px] lg:mb-0">
+      <Breadcrumbs
+        title1={"Dashboard"}
+        url1={"/dashboard"}
+        title2={"Subjects"}
+      />
+
+      <div className="flex justify-between">
+        <h1 className="font-bold">All Subjects ({filteredSubjects.length})</h1>
+
+        <div className="flex gap-3">
+          <div onClick={openModal}>
+            <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
+              Import Subject
+            </CreateNewButton>
+          </div>
+
+          <div onClick={handleCreateNewSubject}>
+            <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
+              Create New Student
+            </CreateNewButton>
+          </div>
         </div>
       </div>
-      <div className="flex gap-2 justify-end mt-10">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search"
-          className="bg-[url('./Assets/search-svgrepo-com.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat py-5 px-8 h-6 rounded-lg outline-none border border-solid border-[#eae6ff]"
+
+      <div className="flex gap-2 justify-end">
+        <SearchFilterButton2
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          handleSearch={handleSearch}
+          handleReset={handleReset}
+          isFiltered={isFiltered}
+          handleSort={handleSort}
+          sortOrder={sortOrder}
         />
-        <Filter className="hidden md:flex sm:ml-5 text-[10px]" />
       </div>
 
       <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -377,6 +484,77 @@ const Subjects = () => {
             </div>
           </form>
         </div>
+      )}
+
+      {/* Modal Component */}
+      {isModalOpen && (
+        <Dialog
+          open={isModalOpen}
+          onClose={closeModal}
+          className="relative z-10"
+        >
+          <DialogBackdrop
+            transition
+            className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          />
+          <div className="fixed inset-0 z-10 flex items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6"
+            >
+              <div>
+                <div
+                  className="mx-auto flex items-center justify-end rounded-full gap-2 text-[15px] font-semibold cursor-pointer"
+                  onClick={closeImportModal}
+                >
+                  Close
+                  <img src={CloseIcon} alt="close icon" />
+                </div>
+
+                <div className="mt-3 text-center sm:mt-5">
+                  <DialogTitle
+                    as="h3"
+                    className="text-base lg:text-[20px] font-bold leading-6 text-[#172B4D]"
+                  >
+                    Import Classroom Information
+                  </DialogTitle>
+
+                  <div
+                    {...getRootProps()}
+                    className={`mt-2 text-[#403294] bg-[#EAE6FF] flex flex-col gap-2 items-center py-4 px-6 rounded cursor-pointer ${
+                      isDragActive
+                        ? "border border-dashed border-[#403294]"
+                        : ""
+                    }`}
+                  >
+                    <input {...getInputProps()} />
+                    <img src={UploadIcon1} alt="icon to upload student info" />
+                    <p className="text-[13px] text-center">
+                      {isDragActive
+                        ? "Drop the file here..."
+                        : "Drag and drop the file or click here to upload"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 sm:mt-6">
+                <button
+                  type="button"
+                  onClick={handleFileUpload}
+                  disabled={!file || loading}
+                  className={`inline-flex w-full justify-center rounded bg-[#5243AA] px-3 py-2 text-sm text-white shadow-sm 
+    hover:bg-[#4a3aa3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 
+    ${!file || loading ? "opacity-90 cursor-not-allowed" : ""}`}
+                >
+                  {!file && !loading && "Create New Classroom"}
+                  {file && !loading && "Upload File"}
+                  {loading && "Uploading..."}
+                </button>
+              </div>
+            </DialogPanel>
+          </div>
+        </Dialog>
       )}
     </div>
   );

@@ -93,7 +93,11 @@ const Scoresheet = () => {
   return (
     <div className="flex flex-col gap-6">
       <section className="flex items-start flex-col sm:flex-row sm:justify-between gap-6 sm:gap-none">
-        <Breadcrumbs title1={"Dashboard"} title2={"Scoresheet"} />
+        <Breadcrumbs
+          title1={"Dashboard"}
+          url1={"/dashboard"}
+          title2={"Scoresheet"}
+        />
 
         <div className="flex gap-3">
           <div onClick={openModal}>

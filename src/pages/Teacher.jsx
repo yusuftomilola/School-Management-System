@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
-// import teachersData from "../data/teachers";
 import CancelBtn from "../components/forms/CancelBtn";
 import Button from "../components/forms/Button";
 import { lgaList } from "../components/forms/lgaList";
@@ -50,19 +49,19 @@ const states = [
 ];
 
 const Teacher = () => {
-  const { fetchTeachers, teachersData } = useContext(TeachersContext);
+  const { fetchTeachers } = useContext(TeachersContext);
   const params = useParams();
-  console.log(params);
-  const teacherData = teachersData.find(
+  const navigate = useNavigate();
+
+  // Get teacher data from localStorage
+  const storedTeachers = JSON.parse(localStorage.getItem("teachersData")) || [];
+  const teacherData = storedTeachers.find(
     (teacher) => teacher.fullName === params.userName
   );
 
-  console.log(teacherData);
   const [formData, setFormData] = useState(teacherData || {});
-  console.log(formData);
-  const [lgas, setLgas] = useState(formData[teacherData.stateOfOrigin] || []);
-  console.log(lgas);
-  const [imagePreview, setImagePreview] = useState(teacherData.image);
+  const [lgas, setLgas] = useState(lgaList[teacherData?.stateOfOrigin] || []);
+  const [imagePreview, setImagePreview] = useState(teacherData?.image || "");
   const [showForm, setShowForm] = useState(true);
 
   const handleInputChange = (event) => {
@@ -84,32 +83,32 @@ const Teacher = () => {
     setLgas(lgaList[selectedState] || []);
   };
 
-  const handleEditProfile = () => {
-    // Validate form fields (e.g., make sure required fields are filled)
+  const handleEditProfile = (event) => {
+    event.preventDefault();
+    // Validate required fields
     if (!formData.fullName || !formData.email || !formData.phoneNr) {
       alert("Please fill in all required fields.");
       return;
     }
 
-    // Ideally, here you would send the updated data to a server or update your state
+    // Update the teacher's data in localStorage
+    const updatedTeachers = storedTeachers.map((teacher) =>
+      teacher.fullName === params.userName ? formData : teacher
+    );
+    console.log(updatedTeachers);
+    localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
 
-    // Ensure teacherData exists before using it
-    if (teacherData) {
-      setFormData(teacherData);
-      console.log(teacherData);
-    }
-
-    // Navigate back or show success message after saving the changes
-    alert("Profile updated successfully!");
-    navigate("/Teachers");
+    setShowForm(false);
+    /
+    navigate("/teachers");
   };
 
   const handleDelete = () => {
     setShowForm(false); // Hide the form on delete
-    navigate("/Teachers");
+    navigate("/teachers");
   };
 
-  if (!showForm) return null; // Return nothing if the form is deleted
+  if (!showForm) return null;
 
   return (
     <div>
@@ -122,226 +121,195 @@ const Teacher = () => {
           title3={`${params.userName}`}
         />
 
-        <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
-          Create New Teacher
-        </CreateNewButton>
+        <div>
+          <CreateNewButton backgroundColor={"#EAE6FF"} textColor={"#403294"}>
+            Create New Teacher
+          </CreateNewButton>
+        </div>
       </section>
 
-      {teachersData
+      {storedTeachers
         .filter((teacher) => teacher.fullName === params.userName)
-        .map((teacher) => {
-          return (
-            <section
-              className="flex flex-col lg:flex-row gap-4  justify-between"
-              key={teacher.id}
+        .map((teacher) => (
+          <section
+            className="flex flex-col lg:flex-row gap-4  justify-between"
+            key={teacher.id}
+          >
+            <form
+              className="w-full max-w-[600px] p-[10px] h-fit md:h-[100%] bg-white"
+              onSubmit={handleEditProfile}
             >
-              <form className="w-full max-w-[600px] p-[10px] h-fit md:h-[100%] bg-white">
-                {/* Form Header */}
-                <div className="flex flex-col mb-3 gap-4 max-[900px]:flex-col min-[900px]:flex-row">
-                  <h1 className="text-[16px] font-bold text-[#3A3B3F]">
-                    Account Detail
-                  </h1>
-                  <p className="text-[#66788A] text-[14px] font-light">
-                    The information can be edited. Click edit to update the
-                    staff profile.
+              {/* Form Header */}
+              <div className="flex flex-col mb-3 gap-4 max-[900px]:flex-col min-[900px]:flex-row">
+                <h1 className="text-[16px] font-bold text-[#3A3B3F]">
+                  Account Detail
+                </h1>
+                <p className="text-[#66788A] text-[14px] font-light">
+                  The information can be edited. Click edit to update the staff
+                  profile.
+                </p>
+              </div>
+              <hr />
+
+              {/* Form Content */}
+              <div className="flex flex-col-reverse sm:flex-row gap-8 mt-3">
+                <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      name="phoneNr"
+                      value={formData.phoneNr}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  onClick={() =>
+                    document.getElementById("image-upload").click()
+                  }
+                  className="border border-solid border-[#dfe1e6] w-fit flex-1  flex flex-col items-center justify-center object-contain rounded-md"
+                >
+                  <img
+                    src={imagePreview} // Display the selected image
+                    alt="Upload preview"
+                    className="w-full h-[150px] object-cover cursor-pointer"
+                  />
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+                  <p className="text-center text-[#1665d8] font-medium text-[12px] mt-[25px]">
+                    UPLOAD PICTURE
                   </p>
                 </div>
-                <hr />
+              </div>
 
-                {/* Form Content */}
-                <div className="flex flex-col-reverse sm:flex-row gap-8 mt-3">
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        name="fullName"
-                        placeholder={teacher.fullName}
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Email
-                      </label>
-                      <input
-                        type="text"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Phone Number
-                      </label>
-                      <input
-                        type="text"
-                        name="phoneNr"
-                        value={formData.phoneNr}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
+              {/* Form Bottom */}
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-4 mb-6">
+                <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Religion
+                    </label>
+                    <select
+                      name="religion"
+                      value={formData.religion}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    >
+                      {religions.map((religion) => (
+                        <option key={religion} value={religion}>
+                          {religion}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-
-                  <div
-                    onClick={() =>
-                      document.getElementById("image-upload").click()
-                    }
-                    className="border border-solid border-[#dfe1e6] w-fit flex-1  flex flex-col items-center justify-center object-contain rounded-md"
-                  >
-                    <img
-                      src={imagePreview} // Display the selected image
-                      alt="Upload preview"
-                      className="w-full h-[150px] object-cover cursor-pointer"
-                    />
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Address
+                    </label>
                     <input
-                      id="image-upload"
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleFileChange}
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
                     />
-                    <p className="text-center text-[#1665d8] font-medium text-[12px] mt-[25px]">
-                      UPLOAD PICTURE
-                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      Highest Qualification
+                    </label>
+                    <input
+                      type="text"
+                      name="highestQualification"
+                      value={formData.highestQualification}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    />
                   </div>
                 </div>
 
-                {/* Form Bottom */}
-                <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-4 mb-6">
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Religion
-                      </label>
-                      <select
-                        name="religion"
-                        value={formData.religion}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      >
-                        {religions.map((religion) => (
-                          <option key={religion} value={religion}>
-                            {religion}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Highest Qualification
-                      </label>
-                      <input
-                        type="text"
-                        name="highestQualification"
-                        value={formData.highestQualification}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        Level
-                      </label>
-                      <input
-                        type="text"
-                        name="level"
-                        value={formData.level}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      />
-                    </div>
+                <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      State of Origin
+                    </label>
+                    <select
+                      name="stateOfOrigin"
+                      value={formData.stateOfOrigin}
+                      onChange={handleStateChange}
+                      className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    >
+                      {states.map((state) => (
+                        <option key={state} value={state}>
+                          {state}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        State of Origin
-                      </label>
-                      <select
-                        name="stateOfOrigin"
-                        value={formData.stateOfOrigin}
-                        onChange={handleStateChange}
-                        className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      >
-                        {states.map((state) => (
-                          <option key={state} value={state}>
-                            {state}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[12px] font-semibold text-[#333333]">
-                        LGA
-                      </label>
-                      <select
-                        name="lga"
-                        value={formData.lga}
-                        onChange={handleInputChange}
-                        className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      >
-                        {lgas.map((lga) => (
-                          <option key={lga} value={lga}>
-                            {lga}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label
-                        htmlFor="Nationality"
-                        className="text-[12px] font-semibold text-[#333333]"
-                      >
-                        Nationality
-                      </label>
-                      <select
-                        value="Nigeria"
-                        className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                      >
-                        <option value="Nigeria">Nigeria</option>
-                      </select>
-                    </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[12px] font-semibold text-[#333333]">
+                      LGA
+                    </label>
+                    <select
+                      name="lga"
+                      value={formData.lga}
+                      onChange={handleInputChange}
+                      className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] w-full"
+                    >
+                      {lgas.map((lga) => (
+                        <option key={lga} value={lga}>
+                          {lga}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
+              </div>
 
-                <hr />
-
-                {/* Form Buttons */}
-                <div className="flex gap-3 sm:gap-5 justify-end mt-5">
-                  <CancelBtn onClick={handleDelete}>Cancel</CancelBtn>
-                  <Button
-                    onClick={handleEditProfile}
-                    type="submit"
-                    className="text-white"
-                  >
-                    Edit Profile
-                  </Button>
-                </div>
-              </form>
-            </section>
-          );
-        })}
+              {/* Form Buttons */}
+              <div className="flex items-center gap-4 mt-[20px] float-end">
+                <CancelBtn onClick={handleDelete}>Cancel</CancelBtn>
+                <Button type="submit" className="text-white px-6">
+                  Edit
+                </Button>
+              </div>
+            </form>
+          </section>
+        ))}
     </div>
   );
 };

@@ -16,7 +16,9 @@ const PrimaryOne = () => {
     <>
       <Breadcrumbs
         title1={"Dashboard"}
+        url1={"/dashboard"}
         title2={"Classrooms"}
+        url2={"/classrooms"}
         title3={"Primary1"}
       />
       <section className="flex flex-col justify-between  mt-6 mb-3 md:flex-row md:items-center">
@@ -31,6 +33,7 @@ const PrimaryOne = () => {
           rank={"Head of class in 2020-03-01"}
           imageUser={"src/assets/icons/userProprietor.svg"}
         />
+
         <ProprietorCard
           name={"Anne Itodo Ibrahim"}
           qualification={"BSC English"}
