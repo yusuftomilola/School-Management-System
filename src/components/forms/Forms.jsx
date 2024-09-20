@@ -170,9 +170,6 @@ function Forms({ onSubmitSuccess }) {
       // Save updated list to localStorage
       localStorage.setItem("teachersData", JSON.stringify(updatedTeachers));
 
-      // Update state immediately so UI reflects the new data
-      // setMyData(updatedTeachers);
-
       // Reset form and close form visibility
       reset();
       onSubmitSuccess();
