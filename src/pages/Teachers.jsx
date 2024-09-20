@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import SearchFilterField from "../components/forms/SearchFilterField";
 import Forms from "../components/forms/Forms";
-import CancelBtn from "../components/forms/CancelBtn";
 import FormContext from "../components/forms/context";
 
 // YUSUF'S CHANGES
-import UserCard from "../components/UserCard";
 import TeachersContext from "../contexts/teachersContext";
 import TeacherCard from "../components/TeacherCard";
-import teacherssData from "../data/teachers";
 import CreateNewButton from "../components/CreateNewButton";
 import SearchFilterButton2 from "../components/SearchFilterButton2";
 
@@ -17,8 +13,17 @@ const Teachers = () => {
   const { toggleFormVisibility, isFormVisible, setIsFormVisible } =
     useContext(FormContext);
 
-  const { teachersData } = useContext(TeachersContext);
+  const { teachersData, fetchTeachers } = useContext(TeachersContext);
   console.log(teachersData);
+
+  useEffect(() => {
+    fetchTeachers(); // Fetch teachers when the component mounts
+  }, []);
+
+  const handleFormSubmit = () => {
+    setIsFormVisible(false);
+    fetchTeachers(); // Refetch teachers after form submission
+  };
 
   return (
     <div>
@@ -48,10 +53,10 @@ const Teachers = () => {
       </div>
 
       {/* Modal to display the form */}
-      {isFormVisible && <Forms />}
+      {isFormVisible && <Forms onSubmitSuccess={handleFormSubmit} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3 mt-6">
-        {teacherssData.map((teacher) => {
+        {teachersData.map((teacher) => {
           if (teacher.staffID === "teacher") {
             return (
               <TeacherCard
@@ -64,6 +69,7 @@ const Teachers = () => {
               />
             );
           }
+          return null;
         })}
       </div>
 

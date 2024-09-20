@@ -1,9 +1,15 @@
+import React, { useContext } from "react";
+import FormContext from "../components/forms/context";
+import Forms from "../components/forms/Forms";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
 import ProprietorCard from "../components/ProprietorCard";
 import { userss } from "../data/users";
 
 const DashboardUsers = () => {
+  const { toggleFormVisibility, isFormVisible, setIsFormVisible } =
+    useContext(FormContext);
+
   return (
     <div>
       <div>
@@ -15,10 +21,16 @@ const DashboardUsers = () => {
       </div>
       <div className="flex justify-between mt-5 mb-4">
         <h1 className="text-xl font-normal">Proprietors</h1>
-        <CreateNewButton backgroundColor={"#403294"} textColor={"#EAE6FF"}>
-          Create New Users
-        </CreateNewButton>
+
+        <div onClick={toggleFormVisibility}>
+          <CreateNewButton backgroundColor={"#403294"} textColor={"#EAE6FF"}>
+            Create New Users
+          </CreateNewButton>
+        </div>
       </div>
+
+      {/* Modal to display the form */}
+      {isFormVisible && <Forms />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3">
         {userss.map((Proprietor) => {

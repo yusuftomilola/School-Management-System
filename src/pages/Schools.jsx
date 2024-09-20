@@ -95,20 +95,22 @@ const Schools = () => {
 
       <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {filteredSchools &&
-          filteredSchools.map((eachSchool) => {
-            const { id, schoolName, schoolLocation, schoolLogo } = eachSchool;
+          filteredSchools
+            .map((eachSchool) => {
+              const { id, schoolName, schoolLocation, schoolLogo } = eachSchool;
 
-            return (
-              <div key={id}>
-                <SubjectCard
-                  id={id}
-                  image={schoolLogo}
-                  subject={schoolName}
-                  noOfStudent={schoolLocation}
-                />
-              </div>
-            );
-          })}
+              return (
+                <div key={id}>
+                  <SubjectCard
+                    id={id}
+                    image={schoolLogo}
+                    subject={schoolName}
+                    noOfStudent={schoolLocation}
+                  />
+                </div>
+              );
+            })
+            .reverse()}
       </div>
     </div>
   );

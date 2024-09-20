@@ -45,6 +45,16 @@ export const TeachersProvider = ({ children }) => {
     loadTeachers();
   }, []);
 
+  //fetch teachers
+  const fetchTeachers = async () => {
+    try {
+      const storedTeachers = await getTeachers();
+      setTeachersData(storedTeachers);
+    } catch (error) {
+      console.log("ERROR GETTING TEACHERS", error);
+    }
+  };
+
   //add a new teacher
   const addNewTeacher = async (newTeacherData) => {
     try {
@@ -91,6 +101,7 @@ export const TeachersProvider = ({ children }) => {
         addNewTeacher,
         removeTeacher,
         updateExistingTeacher,
+        fetchTeachers,
       }}
     >
       {children}

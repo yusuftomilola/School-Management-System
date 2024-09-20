@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
-import teachersData from "../data/teachers";
+// import teachersData from "../data/teachers";
 import CancelBtn from "../components/forms/CancelBtn";
 import Button from "../components/forms/Button";
 import { lgaList } from "../components/forms/lgaList";
+import TeachersContext from "../contexts/teachersContext";
 
 const religions = ["Christian", "Muslim"];
 const states = [
@@ -49,6 +50,7 @@ const states = [
 ];
 
 const Teacher = () => {
+  const { fetchTeachers, teachersData } = useContext(TeachersContext);
   const params = useParams();
   console.log(params);
   const navigate = useNavigate();

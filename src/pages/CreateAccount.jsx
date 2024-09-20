@@ -1,20 +1,18 @@
-
-
 import React from "react";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import createAccountImg from "../assets/images/Create-account-img.svg";
+import { addTeacher } from "../services/teachersapi";
+import TeacherFour from "/src/assets/icons/teachers/teacherIcon_4.svg";
 
 const validationSchema = Yup.object({
   fullName: Yup.string()
     .min(5, "Full Name must be at least 5 characters")
     .required("Full Name is required"),
-
   email: Yup.string()
-    .min(10, "Email must be at least 10 characters")
+    .email("Invalid email address")
     .required("Email is required"),
-
   schoolName: Yup.string()
     .min(5, "School name must be at least 5 characters")
     .required("School name is required"),
@@ -28,17 +26,36 @@ function CreateAccount() {
     schoolName: "",
   };
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // alert("Account Created successfully!");
-    setSubmitting(false);
-    resetForm();
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const newTeacherData = {
+        ...values,
+        phoneNr: "07034567890",
+        stateOfOrigin: "Ogun",
+        religion: "Christianity",
+        lga: "Abeokuta North",
+        address: "7 Olumo Rock Street, Abeokuta, Ogun",
+        nationality: "Nigerian",
+        highestQualification: "B.Sc Architecture",
+        subject: "Intro Tech",
+        classs: "SS1",
+        level: "Teacher",
+        image: TeacherFour,
+        staffID: "teacher",
+      };
 
-    setTimeout(() => {
-      navigate("/_");
-      setTimeout(() => {
-        navigate("/home");
-      }, 3000);
-    }, 500);
+      await addTeacher(newTeacherData);
+
+      resetForm();
+      setSubmitting(false);
+
+      // Navigate to the home page after successful account creation
+      navigate("/home");
+    } catch (error) {
+      console.error("Error creating account:", error);
+      setSubmitting(false);
+      // Handle error (e.g., show error message to user)
+    }
   };
 
   return (
@@ -128,10 +145,9 @@ function CreateAccount() {
                   </div>
 
                   <div className="flex justify-end gap-5">
-                    {/* Updated Cancel Button */}
                     <button
                       type="button"
-                      onClick={() => resetForm()} // Reset form fields when clicking cancel
+                      onClick={() => resetForm()}
                       className="btn bg-white p-2 px-5 text-[12px] ring-1 ring-[#5243AA] rounded-sm font-semibold"
                     >
                       Cancel
