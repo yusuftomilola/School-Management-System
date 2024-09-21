@@ -1,4 +1,5 @@
 import "./App.css";
+import "./fonts.css";
 import HomeLayout from "./components/HomeLayout";
 import GenLayout from "./components/GenLayout";
 import CreateSchool from "./pages/CreateSchool";
