@@ -1,9 +1,9 @@
 import { Avatar } from "flowbite-react";
-import CreateNewButton from "../components/CreateNewButton";
 import CourseLeaderBoardCard from "./CourseLeaderBoardCard";
 import ProprietorCard from "../components/ProprietorCard";
 import avatar from "../assets/icons/avatar.png";
 import close from "../assets/icons/closeIcon.svg";
+import user from "../assets/icons/userProprietor.svg";
 
 const ClassSubject = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -29,7 +29,7 @@ const ClassSubject = ({ isOpen, onClose }) => {
           name={"Anne Itodo Ibrahim"}
           qualification={"BSC English"}
           rank={"Class Subject Teacher in 2020-03-01"}
-          imageUser={"src/assets/icons/userProprietor.svg"}
+          imageUser={user}
         />
 
         <section className="my-6">

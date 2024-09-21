@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import Filter from "../components/forms/filter";
+// import Filter from "../components/forms/filter";
 import SearchFilterButton2 from "../components/SearchFilterButton2";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 import CreateNewButton from "../components/CreateNewButton";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
