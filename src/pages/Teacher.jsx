@@ -87,7 +87,7 @@ const Teacher = () => {
     event.preventDefault();
     // Validate required fields
     if (!formData.fullName || !formData.email || !formData.phoneNr) {
-      alert("Please fill in all required fields.");
+      alert("Please fill in required fields *Fullname, Email, Phone Number*.");
       return;
     }
 

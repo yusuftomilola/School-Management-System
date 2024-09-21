@@ -118,14 +118,10 @@ function Forms({ onSubmitSuccess }) {
   // Handle file change for CV
   const handleCvChange = (e) => {
     const [selectedFile] = e.target.files;
-    const allowedTypes = [
-      "application/pdf",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    ];
+    const allowedTypes = ["application/pdf"];
 
     if (!allowedTypes.includes(selectedFile?.type)) {
-      alert("Please upload a valid PDF or Word document.");
+      alert("Please upload a valid PDF file");
       e.target.value = ""; // Reset file input
     } else {
       setFile(selectedFile); // Set CV file
