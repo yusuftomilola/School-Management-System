@@ -2,6 +2,9 @@ import { useState } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
 import ClassromCard from "../components/ClassromCard";
+import ClassLogoOne from "../assets/icons/switcher.png";
+import ClassLogoTwo from "../assets/icons/add-circle.svg";
+import ClassLogoThree from "../assets/icons/Group.png";
 
 import ClassroomTable from "../components/tables/classroom/ClassroomTable";
 import {
@@ -78,19 +81,19 @@ const Classrooms = () => {
       {/* Card Section */}
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3  my-2">
         <ClassromCard
-          image={"src/assets/icons/switcher.png"}
+          image={ClassLogoOne}
           headerText={20}
           text={"Classrooms"}
           backgroundColor={"#FFFFFF"}
         />
         <ClassromCard
-          image={"src/assets/icons/add-circle.svg"}
+          image={ClassLogoTwo}
           headerText={"Create"}
           text={"new classroom"}
           backgroundColor={"#EAE6FF"}
         />
         <ClassromCard
-          image={"src/assets/icons/Group.png"}
+          image={ClassLogoThree}
           headerText={"Assign"}
           text={"Teacher to a classroom"}
           backgroundColor={"#DEEBFF"}

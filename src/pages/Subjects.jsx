@@ -16,6 +16,8 @@ import CloseIcon from "../assets/icons/closeIcon.svg";
 import UploadIcon1 from "../assets/icons/uploadIcon1.svg";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
+import SubjectLogo from "../assets/icons/subjects/subjectsIcon.svg";
+import CloseIconLogo from "../assets/icons/closeIcon.svg";
 
 const Subjects = () => {
   const [selectedClass, setSelectedClass] = useState("All");
@@ -92,72 +94,52 @@ const Subjects = () => {
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Biology",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Chemistry",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "Mathematics",
-      students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "English",
-      students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "Mathematics",
-      students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "English",
-      students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
   ]);
 
@@ -316,7 +298,7 @@ const Subjects = () => {
             <div className="flex gap-1">
               <p className="text-[#403294] font-medium text-[14px]">Close</p>
               <img
-                src="./Assets/cross-circle.svg"
+                src={CloseIconLogo}
                 className="w-6 h-6"
                 onClick={closeModal}
               ></img>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ArrowDown from "../assets/icons/shortDownArrowIcon2.svg";
 
 function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -45,11 +46,7 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
             className="cursor-pointer p-3 text-[#7A869A] flex items-center gap-1"
           >
             More
-            <img
-              src="src/assets/icons/shortDownArrowIcon2.svg"
-              alt="arrow down"
-              className="mt-[5px]"
-            />
+            <img src={ArrowDown} alt="arrow down" className="mt-[5px]" />
           </p>
 
           {openDropdownId === id && (
