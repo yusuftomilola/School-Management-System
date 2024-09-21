@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ScoresheetTable from "../components/tables/scoresheet/ScoresheetTable";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
@@ -16,16 +16,57 @@ import UploadIcon1 from "../assets/icons/uploadIcon1.svg";
 import { scoresheetData } from "../components/tables/scoresheet/scoresheet";
 
 const Scoresheet = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // For search input
-  const [filteredData, setFilteredData] = useState(scoresheetData); // To store filtered and sorted data
-  const [sortOrder, setSortOrder] = useState("none"); // A-Z, Z-A, or none
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState(scoresheetData);
+  const [sortOrder, setSortOrder] = useState("none");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const [isCreateFormVisible, setCreateFormVisible] = useState(false);
+  const [newScoresheet, setnewScoresheet] = useState({
+    name: "",
+    class: "",
+    url: "",
+  });
+  const [subjects, setSubjects] = useState([]);
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  // Handle form submission to add a new subject
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newScoresheet.name && newScoresheet.class && newScoresheet.url) {
+      setSubjects([...subjects, newScoresheet]);
+      setnewScoresheet({ name: "", class: "", url: "" });
+      setCreateFormVisible(false);
+    } else {
+      alert("Please fill all fields");
+    }
+  };
+
+  // Handle input changes in the form
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setnewScoresheet((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle file change for the subject image
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setnewScoresheet((prev) => ({ ...prev, url: imageUrl }));
+    }
+  };
+
+  // Show the create subject form
+  const handleCreatenewScoresheet = () => {
+    setCreateFormVisible(true);
+  };
 
   // Function to handle file drop
   const onDrop = (acceptedFiles) => {
@@ -106,7 +147,7 @@ const Scoresheet = () => {
             </CreateNewButton>
           </div>
 
-          <div>
+          <div onClick={handleCreatenewScoresheet}>
             <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
               Create New Record
             </CreateNewButton>
@@ -127,6 +168,66 @@ const Scoresheet = () => {
       </div>
 
       <ScoresheetTable data={filteredData} />
+
+      {/* Form to create a new subject */}
+      {isCreateFormVisible && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white p-8 rounded-md shadow-md w-[400px]"
+          >
+            <h2 className="text-2xl font-bold mb-4">Create New Scoresheet</h2>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Student Name</label>
+              <input
+                type="text"
+                name="name"
+                value={newScoresheet.name}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded-md"
+                placeholder="Enter student name"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Student Class</label>
+
+              <input
+                type="text"
+                name="class"
+                value={newScoresheet.class}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded-md"
+                placeholder="Enter student class"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">
+                Scoresheet Image
+              </label>
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="w-full px-3 py-2 border-none rounded-md"
+              />
+            </div>
+            <div className="flex justify-between mt-6">
+              <button
+                type="button"
+                className="text-red-500 font-medium"
+                onClick={() => setCreateFormVisible(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="bg-[#5243aa] text-white py-2 px-4 rounded-md"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {/* Modal Component */}
       {isModalOpen && (

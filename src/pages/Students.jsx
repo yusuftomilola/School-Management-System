@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import StudentsTable from "../components/tables/students/StudentsTable";
 import StudentDashboardCard from "../components/students/StudentDashboardCard";
@@ -8,7 +8,6 @@ import {
   TotalStudentsIcon,
 } from "../assets/icons/students";
 import CreateNewButton from "../components/CreateNewButton";
-import MultiStepStudentForm from "../components/forms/StudentsForm";
 import {
   Dialog,
   DialogBackdrop,
@@ -20,19 +19,20 @@ import UploadIcon1 from "../assets/icons/uploadIcon1.svg";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import studentsTableData from "../data/students";
+import StudentForm from "../components/forms/StudentForm";
 
 const Students = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCreateStudentModalOpen, setIsCreateStudentModalOpen] =
-    useState(false);
+  const [isStudentFormOpen, setIsStudentFormOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const openCreateStudentModal = () => setIsCreateStudentModalOpen(true);
-  const closeCreateStudentModal = () => setIsCreateStudentModalOpen(false);
+
+  const openStudentForm = () => setIsStudentFormOpen(true);
+  const closeStudentForm = () => setIsStudentFormOpen(false);
 
   // Count Male Students
   const NrofMaleStudents = studentsTableData.reduce((acc, val) => {
@@ -98,8 +98,7 @@ const Students = () => {
             </CreateNewButton>
           </div>
 
-          {/* <div onClick={openCreateStudentModal}> */}
-          <div>
+          <div onClick={openStudentForm}>
             <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
               Create New Student
             </CreateNewButton>
@@ -198,11 +197,10 @@ const Students = () => {
         </Dialog>
       )}
 
-      {/* Create Student Modal */}
-      <MultiStepStudentForm
-        isOpen={isCreateStudentModalOpen}
-        onClose={closeCreateStudentModal}
-      />
+      {/* StudentForm Modal */}
+      {isStudentFormOpen && (
+        <StudentForm isOpen={isStudentFormOpen} onClose={closeStudentForm} />
+      )}
     </div>
   );
 };

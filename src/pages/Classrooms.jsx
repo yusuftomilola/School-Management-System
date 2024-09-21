@@ -42,11 +42,11 @@ const Classrooms = () => {
     setTimeout(() => {
       setLoading(false); // Stop loader
       closeModal(); // Close modal
-      navigate("/success"); // Redirect to success page
+      navigate("/classroom-created"); // Redirect to success page
 
       // After 4 seconds, redirect to /students
       setTimeout(() => {
-        navigate("/students");
+        navigate("/classrooms");
       }, 2500); // 2.5 second delay
     }, 2000); // Simulate 2-second delay for upload
   };

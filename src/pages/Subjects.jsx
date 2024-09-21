@@ -53,11 +53,11 @@ const Subjects = () => {
     setTimeout(() => {
       setLoading(false); // Stop loader
       closeModal(); // Close modal
-      navigate("/success"); // Redirect to success page
+      navigate("/subject-created"); // Redirect to success page
 
       // After 4 seconds, redirect to /students
       setTimeout(() => {
-        navigate("/students");
+        navigate("/subjects");
       }, 2500); // 2.5 second delay
     }, 2000); // Simulate 2-second delay for upload
   };
@@ -276,7 +276,7 @@ const Subjects = () => {
 
           <div onClick={handleCreateNewSubject}>
             <CreateNewButton backgroundColor={"#5243AA"} textColor={"#EAE6FF"}>
-              Create New Student
+              Create New Subject
             </CreateNewButton>
           </div>
         </div>

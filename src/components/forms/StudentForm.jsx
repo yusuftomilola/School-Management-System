@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { lgaList } from "./lgaList";
+import FormContext from "./context";
+import Button from "./Button";
+import CancelBtn from "./CancelBtn";
 
 const states = [
   "Abia",
@@ -44,7 +47,9 @@ const states = [
   "FCT",
 ];
 
-function StudentForm() {
+const religions = ["Christian", "Muslim"];
+
+function StudentForm({ isOpen, onClose }) {
   const [selectedState, setSelectedState] = useState("");
   const [lgas, setLgas] = useState([]);
   const [file, setFile] = useState(null);
@@ -66,6 +71,7 @@ function StudentForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -73,6 +79,8 @@ function StudentForm() {
   // Handle form submission
   const onSubmit = (data) => {
     console.log(data);
+    reset();
+    onClose();
   };
 
   // Handle state change
@@ -89,222 +97,242 @@ function StudentForm() {
 
     if (selectedFile && allowedImageTypes.includes(selectedFile.type)) {
       setFile(selectedFile);
-      // Create an image preview URL and set it
       setImagePreview(URL.createObjectURL(selectedFile));
     } else {
       alert("Please upload a valid image file (JPEG, JPG, PNG)");
-      e.target.value = ""; // Reset file input
+      e.target.value = "";
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div>
-      <form
-        className="w-full max-w-[600px] p-[10px] max-h-[100vh] md:h-[100%] overflow-y-auto bg-white"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        {/* <!-- Top div section (title) --> */}
-        <div className="flex flex-col mb-3 gap-2 md:flex-row md:items-center">
-          <h1 className="text-[16px] font-bold text-[#3A3B3F]">
-            Create Student
-          </h1>
-          <p className="text-[#66788A] text-[14px] font-light">
-            Student Information
-          </p>
-        </div>
-        <hr />
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 z-[3320]"
+        onClick={onClose}
+      ></div>
 
-        {/* <!-- Second div section --> */}
-        <div className="flex flex-col-reverse sm:flex-row gap-8 mt-3">
-          <div className="flex flex-col gap-4 flex-1">
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="fullname"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="Moses Itodo Ane"
-                {...register("fullName")}
-              />
-              <p className="text-red-500">{errors.fullName?.message}</p>
+      <div className="hide-scrollbar w-full md:w-auto h-full border border-solid border-amber-50 bg-white md:h-auto fixed inset-0 md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 flex flex-col justify-center items-center z-[3330] overflow-y-auto px-3  rounded-lg shadow-lg">
+        <form
+          className="w-full max-w-[600px] p-[10px] max-h-[90vh] bg-white"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="flex flex-col mb-3 gap-4 max-[900px]:flex-col min-[900px]:flex-row">
+            <h1 className="text-[16px] font-bold text-[#3A3B3F]">
+              Create Student
+            </h1>
+            <p className="text-[#66788A] text-[14px] font-light whitespace-nowrap">
+              The information can be edited from the profile page
+            </p>
+          </div>
+          <hr />
+
+          {/* TOP INPUTS */}
+          <div className="flex flex-col-reverse sm:flex-row gap-8 mt-2">
+            {/* LEFT */}
+            <div className="flex flex-col gap-[6px] flex-1">
+              {/* Full Name */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  placeholder="Moses Itodo Ane"
+                  {...register("fullName")}
+                />
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.fullName?.message}
+                </p>
+              </div>
+
+              {/* Religion */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Religion
+                </label>
+                <select
+                  className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  {...register("religion")}
+                >
+                  {religions.map((religion) => (
+                    <option key={religion} value={religion}>
+                      {religion}
+                    </option>
+                  ))}
+                </select>
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.religion?.message}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Email"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Religion
+
+            {/* RIGHT */}
+            {/* IMAGE UPLOAD */}
+            <div className="w-fit flex-1 flex items-center justify-center object-contain rounded-md">
+              <label htmlFor="image-upload">
+                <img
+                  src={imagePreview}
+                  alt="Upload preview"
+                  className="h-[120px] object-cover cursor-pointer"
+                  style={{ padding: "0px" }}
+                />
               </label>
               <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="e.g Muslim"
-                {...register("religion")}
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
               />
-              <p className="text-red-500">{errors.religion?.message}</p>
             </div>
           </div>
 
-          {/* IMAGE UPLOAD */}
-          <div className="w-fit flex-1 flex items-center justify-center object-contain  rounded-md">
-            <label htmlFor="image-upload">
-              <img
-                src={imagePreview} // Display the selected image or fallback to the initial image
-                alt="Upload preview"
-                className="h-[120px] object-cover cursor-pointer"
-                style={{ padding: "0px" }}
-              />
-            </label>
-            <input
-              id="image-upload"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileChange} // Trigger file change
-            />
-          </div>
-        </div>
+          {/*  BOTTOM INPUTS */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6 ">
+            {/* LEFT */}
+            <div className="flex flex-col gap-2 flex-1">
+              {/* Address */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  placeholder="My house address example"
+                  {...register("address")}
+                />
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.address?.message}
+                </p>
+              </div>
 
-        {/* <!-- Rest of form --> */}
-        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-1 mb-6">
-          <div className="flex flex-col gap-4 flex-1">
-            <div className="flex flex-col gap-1 mt-3 sm:mt-0">
-              <label
-                htmlFor="Address"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Address
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] bg-[url('./Assets/flag.svg')] bg-[length:20px_20px] bg-[position:10px_center] bg-no-repeat pl-10 w-full"
-                placeholder="+234"
-                {...register("address")}
-              />
-              <p className="text-red-500">{errors.address?.message}</p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Date of Birth"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Date of Birth
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="e.g Date of Birth"
-                {...register("dob")}
-              />
-              <p className="text-red-500">{errors.dob?.message}</p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Previous School"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Previous School
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder="Enter your Previous School"
-                {...register("previousSchool")}
-              />
-              <p className="text-red-500">{errors.previousSchool?.message}</p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Previous Class"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Previous Class
-              </label>
-              <input
-                type="text"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                placeholder=" Enter your Previous Class"
-                {...register("previousClass")}
-              />
-              <p className="text-red-500">{errors.previousClass?.message}</p>
-            </div>
-          </div>
+              {/* Date of Birth */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  {...register("dob")}
+                />
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.dob?.message}
+                </p>
+              </div>
 
-          {/* <!-- Side flex --> */}
-          <div className="flex flex-1 flex-col gap-[10px]">
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="State of Origin"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                State of Origin
-              </label>
-              <select
-                onChange={handleStateChange}
-                {...register("state")}
-                className="text-[#656565] text-[14px] p-[8.5px] outline-none border border-solid border-[#dfe1e6] w-full"
-              >
-                {states.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
-                  </option>
-                ))}
-              </select>
+              {/* Previous School */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Previous School
+                </label>
+                <input
+                  type="text"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  placeholder="Enter your Previous School"
+                  {...register("previousSchool")}
+                />
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.previousSchool?.message}
+                </p>
+              </div>
+
+              {/* Previous Class */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  Previous Class
+                </label>
+                <input
+                  type="text"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  placeholder="Enter your Previous Class"
+                  {...register("previousClass")}
+                />
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.previousClass?.message}
+                </p>
+              </div>
             </div>
-            <p className="text-red-500">{errors.state?.message}</p>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Lga"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Local Government Area (LGA)
-              </label>
-              <select
-                {...register("state")}
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-                disabled={!selectedState}
-              >
-                {lgas.map((lga) => (
-                  <option key={lga} value={lga}>
-                    {lga}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <p className="text-red-500">{errors.lga?.message}</p>
-            <div className="flex flex-col gap-1">
-              <label
-                htmlFor="Nationality"
-                className="text-[12px] font-semibold text-[#333333]"
-              >
-                Nationality
-              </label>
-              <select
-                value="Nigeria"
-                className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] w-full"
-              >
-                <option value="Nigeria">Nigeria</option>
-              </select>
+
+            {/* RIGHT */}
+            <div className="flex flex-1 flex-col gap-2">
+              {/* State of Origin */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  State of Origin
+                </label>
+                <select
+                  className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  value={selectedState}
+                  {...register("state")}
+                  onChange={handleStateChange}
+                >
+                  {states.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.state?.message}
+                </p>
+              </div>
+
+              {/* LGA */}
+              <div className="flex flex-col gap-1">
+                <label className="text-[12px] font-semibold text-[#333333]">
+                  LGA
+                </label>
+                <select
+                  className="text-[#656565] text-[14px] bg-white p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                  {...register("lga")}
+                >
+                  {lgas.map((lga) => (
+                    <option key={lga} value={lga}>
+                      {lga}
+                    </option>
+                  ))}
+                </select>
+                <p className="form-error text-[12px] font-semibold text-red-600">
+                  {errors.lga?.message}
+                </p>
+              </div>
+
+              {/* Nationality */}
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="Nationality"
+                  className="text-[12px] font-semibold text-[#333333]"
+                >
+                  Nationality
+                </label>
+                <select
+                  value="Nigeria"
+                  className="text-[#656565] text-[14px] p-2 outline-none border border-solid border-[#dfe1e6] hover:border hover:border-solid hover:border-[#5243aa] rounded-md w-full"
+                >
+                  <option value="Nigeria">Nigeria</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* <!-- Buttons --> */}
-        <hr />
-        <div className="flex mt-5 justify-end gap-3">
-          <button className="text-[14px] font-normal border border-solid border-[#dfe1e6] p-2 rounded-lg">
-            Cancel
-          </button>
-          <button className="text-[14px] text-white bg-[#5243aa] font-normal border border-solid border-[#dfe1e6] px-4 rounded-lg">
-            Next
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="flex justify-end sm:flex-row gap-3 md:gap-3">
+            <CancelBtn onClick={onClose} className="p-1">
+              Cancel
+            </CancelBtn>
+
+            <Button className="text-white p-1" type="submit">
+              Next
+            </Button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 

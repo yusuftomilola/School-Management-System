@@ -32,8 +32,8 @@ import CreatingSchool from "./pages/CreatingSchool";
 import CreatedSchoolSuccessfully from "./pages/CreatedSchoolSuccessfully";
 import AccountCreated from "./pages/AccountCreated";
 import ScoresheetSuccess from "./pages/ScoresheetSuccess";
-import EditUsers from "./pages/EditUsers";
-import ViewUsers from "./pages/ViewUsers";
+import ClassroomSuccess from "./pages/ClassroomSuccess";
+import SubjectSuccess from "./pages/SubjectSuccess";
 import DashboardUser from "./pages/DashboardUser";
 import { CalenderProvider } from "./contexts/calenderContext";
 import Teacher from "./pages/Teacher";
@@ -47,19 +47,6 @@ function App() {
           <CalenderProvider>
             <Router>
               <Routes>
-                {/* SUCCESS PAGES */}
-                <Route path="/success" element={<Success />} />
-                <Route path="/creating-school" element={<CreatingSchool />} />
-                <Route
-                  path="/school-created"
-                  element={<CreatedSchoolSuccessfully />}
-                />
-                <Route path="/_" element={<AccountCreated />} />
-                <Route
-                  path="/scoresheet-created"
-                  element={<ScoresheetSuccess />}
-                />
-
                 {/* ROUTES WITH HOME LAYOUT */}
                 <Route element={<HomeLayout />}>
                   <Route path="/home" element={<Home />} />
@@ -104,8 +91,24 @@ function App() {
                   path="/components-testing"
                   element={<ComponentsTesting />}
                 />
-                <Route path="/edit" element={<EditUsers />} />
-                <Route path="/view" element={<ViewUsers />} />
+
+                {/* SUCCESS PAGES */}
+                <Route path="/success" element={<Success />} />
+                <Route path="/creating-school" element={<CreatingSchool />} />
+                <Route
+                  path="/school-created"
+                  element={<CreatedSchoolSuccessfully />}
+                />
+                <Route path="/_" element={<AccountCreated />} />
+                <Route
+                  path="/scoresheet-created"
+                  element={<ScoresheetSuccess />}
+                />
+                <Route
+                  path="/classroom-created"
+                  element={<ClassroomSuccess />}
+                />
+                <Route path="/subject-created" element={<SubjectSuccess />} />
 
                 {/* NOT FOUND ROUTE */}
                 <Route path="/*" element={<NotFound />} />
