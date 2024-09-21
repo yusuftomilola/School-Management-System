@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-// import Filter from "../components/forms/filter";
 import SearchFilterButton2 from "../components/SearchFilterButton2";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 import CreateNewButton from "../components/CreateNewButton";
-// import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogBackdrop,
@@ -16,6 +14,8 @@ import CloseIcon from "../assets/icons/closeIcon.svg";
 import UploadIcon1 from "../assets/icons/uploadIcon1.svg";
 import { useDropzone } from "react-dropzone";
 import { useNavigate } from "react-router-dom";
+import SubjectLogo from "../assets/icons/subjects/subjectsIcon.svg";
+import CloseIconLogo from "../assets/icons/closeIcon.svg";
 
 const Subjects = () => {
   const [selectedClass, setSelectedClass] = useState("All");
@@ -92,72 +92,52 @@ const Subjects = () => {
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Biology",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Chemistry",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "Mathematics",
       students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
     {
       name: "English",
       students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "Mathematics",
-      students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "English",
-      students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "Mathematics",
-      students: 12,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
-    },
-    {
-      name: "English",
-      students: 11,
-      url: "/src/assets/icons/subjects/subjectsIcon.svg",
+      url: SubjectLogo,
     },
   ]);
 
@@ -316,7 +296,7 @@ const Subjects = () => {
             <div className="flex gap-1">
               <p className="text-[#403294] font-medium text-[14px]">Close</p>
               <img
-                src="./Assets/cross-circle.svg"
+                src={CloseIconLogo}
                 className="w-6 h-6"
                 onClick={closeModal}
               ></img>
@@ -354,7 +334,7 @@ const Subjects = () => {
               <TeacherCard key={index} teacher={teacher} />
             ))}
             <h1 className="text-[16px] font-bold my-2 px-1">Student</h1>
-            <img src="./Assets/Group 33.svg" className="p-1" />
+            <img src="./Assets/Group 33.svg" alt="omoo" className="p-1" />
             <div className="flex justify-end mt-4">
               <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md">
                 Add Student

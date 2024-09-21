@@ -1,10 +1,17 @@
+import UserOne from "../assets/icons/userProprietor.svg";
+import UserTwo from "../assets/icons/user7.svg";
+import UserThree from "../assets/icons/user3.svg";
+import UserFour from "../assets/icons/user4.svg";
+import UserFive from "../assets/icons/user8.svg";
+import UserSix from "../assets/icons/user5.svg";
+
 export const userss = [
   {
     id: 1,
     name: "Oladele Akinyemi",
     qualification: "Bsc Computer Science",
     rank: "Proprietor 1",
-    imageUser: "src/assets/icons/userProprietor.svg",
+    imageUser: UserOne,
     staffID: "Proprietor",
   },
   {
@@ -12,7 +19,7 @@ export const userss = [
     name: "Maryam Bello",
     qualification: "Msc. Mathematics",
     rank: "Proprietor 2",
-    imageUser: "src/assets/icons/user7.svg",
+    imageUser: UserTwo,
     staffID: "Proprietor",
   },
   {
@@ -20,7 +27,7 @@ export const userss = [
     name: "Chika Okoye",
     qualification: "Bsc Chemistry",
     rank: "Proprietor 2",
-    imageUser: "src/assets/icons/user3.svg",
+    imageUser: UserThree,
     staffID: "Proprietor",
   },
   {
@@ -28,7 +35,7 @@ export const userss = [
     name: "Suleiman Abubakar",
     qualification: "Bsc Computer Science",
     rank: "Principal",
-    imageUser: "src/assets/icons/user4.svg",
+    imageUser: UserFour,
     staffID: "staff",
   },
   {
@@ -36,7 +43,7 @@ export const userss = [
     name: "Fatima Musa",
     qualification: "Bsc Computer Science",
     rank: "VP Academics",
-    imageUser: "src/assets/icons/user8.svg",
+    imageUser: UserFive,
     staffID: "staff",
   },
   {
@@ -44,7 +51,7 @@ export const userss = [
     name: "John Afolabi",
     qualification: "Bsc Computer Science",
     rank: "VP Admin",
-    imageUser: "src/assets/icons/user5.svg",
+    imageUser: UserSix,
     staffID: "staff",
   },
 ];

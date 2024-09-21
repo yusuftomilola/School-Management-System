@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "SFPRODISPLAYBOLD";
+  src: url("./fonts/sfprodisplay/SFPRODISPLAYBOLD.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.sfprodisplay {
+  font-family: "SFPRODISPLAYBOLD", sans-serif;
+}

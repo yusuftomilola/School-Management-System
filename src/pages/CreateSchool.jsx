@@ -5,6 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import arrowBack from "../assets/images/arrowBack-img.svg";
 import createSchoolImg from "../assets/images/createSchool-img.svg";
 import SchoolContext from "../contexts/schoolContext";
+import SchoolLogo from "../assets/icons/school/schoolIcon.svg";
 
 // Formik validation schema
 const validationSchema = Yup.object({
@@ -39,7 +40,7 @@ function CreateSchool() {
         schoolName: values.schoolName,
         schoolType: values.schoolType,
         schoolLocation: values.schoolAddress,
-        schoolLogo: "/src/assets/icons/school/schoolIcon.svg", // Default logo
+        schoolLogo: SchoolLogo, // Default logo
       });
 
       navigate("/creating-school");
