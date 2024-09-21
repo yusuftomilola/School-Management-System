@@ -4,6 +4,7 @@ import SearchFilterButton2 from "../components/SearchFilterButton2";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 import CreateNewButton from "../components/CreateNewButton";
+
 import {
   Dialog,
   DialogBackdrop,
@@ -334,7 +335,7 @@ const Subjects = () => {
               <TeacherCard key={index} teacher={teacher} />
             ))}
             <h1 className="text-[16px] font-bold my-2 px-1">Student</h1>
-            <img src="./Assets/Group 33.svg" className="p-1" />
+            <img src="./Assets/Group 33.svg" alt="omoo" className="p-1" />
             <div className="flex justify-end mt-4">
               <button className="text-[14px] font-normal text-[#000000] px-2 rounded-md">
                 Add Student

@@ -2,6 +2,8 @@ import React from "react";
 import Calender from "../components/forms/Calender";
 import DateContext from "../contexts/calenderContext";
 import { useContext } from "react";
+import calenderLogo from "../assets/icons/calendar.svg";
+
 const SchoolCalender = () => {
   const { toggleCalenderVisibility, calender, setCalender } =
     useContext(DateContext);
@@ -11,11 +13,7 @@ const SchoolCalender = () => {
       <h1 className="text-xl font-bold">School Calendar</h1>
       <div className="w-full h-full flex items-center justify-center">
         <div className="flex  flex-col items-center">
-          <img
-            src="../src/assets/icons/calendar.svg"
-            alt=""
-            className="h-[228px] w-[349px] mb-7"
-          />
+          <img src={calenderLogo} alt="" className="h-[228px] w-[349px] mb-7" />
           <h2 className="text-xl font-bold">
             You currently don't have an active calendar
           </h2>

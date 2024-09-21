@@ -1,11 +1,12 @@
 import React from "react";
+import SubjectLogo from "../../assets/icons/subjects/subjectsIcon.svg";
 
 const TeacherCard = ({ teacher }) => {
   return (
     <div className="teacher-card border p-4 rounded-lg shadow-sm mb-4 ">
       <div className="flex justify-between">
         <img
-          src="/src/assets/icons/subjects/subjectsIcon.svg"
+          src={SubjectLogo}
           alt="Teacher"
           className="rounded-full h-20 w-20 mr-4"
         />
