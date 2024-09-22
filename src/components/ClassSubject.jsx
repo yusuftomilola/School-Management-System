@@ -4,6 +4,8 @@ import CourseLeaderBoardCard from "./CourseLeaderBoardCard";
 import ProprietorCard from "../components/ProprietorCard";
 import avatar from "../assets/icons/avatar.png";
 import close from "../assets/icons/closeIcon.svg";
+import TeacherOne from "../assets/icons/userProprietor.svg";
+import LeadershipLogo from "../assets/icons/courseLeadershipAvatar.svg";
 
 const ClassSubject = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -29,7 +31,7 @@ const ClassSubject = ({ isOpen, onClose }) => {
           name={"Anne Itodo Ibrahim"}
           qualification={"BSC English"}
           rank={"Class Subject Teacher in 2020-03-01"}
-          imageUser={"src/assets/icons/userProprietor.svg"}
+          imageUser={TeacherOne}
         />
 
         <section className="my-6">
@@ -69,21 +71,21 @@ const ClassSubject = ({ isOpen, onClose }) => {
               score={"92%"}
               position={1}
               suffix={"st"}
-              avatar={"src/assets/icons/courseLeadershipAvatar.svg"}
+              avatar={LeadershipLogo}
             />
             <CourseLeaderBoardCard
               name={"Hanson John"}
               score={"90%"}
               position={2}
               suffix={"nd"}
-              avatar={"src/assets/icons/courseLeadershipAvatar.svg"}
+              avatar={LeadershipLogo}
             />
             <CourseLeaderBoardCard
               name={"Hanson John"}
               score={"89%"}
               position={3}
               suffix={"rd"}
-              avatar={"src/assets/icons/courseLeadershipAvatar.svg"}
+              avatar={LeadershipLogo}
             />
           </div>
         </section>
