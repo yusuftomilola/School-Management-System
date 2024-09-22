@@ -34,7 +34,7 @@ const BtnWithDownArrow = ({ text, handleSectionFilter }) => {
       {isOpen && (
         <div className="absolute mt-2 w-[160px] bg-white text-[#202020] shadow-lg rounded-md py-2 z-10">
           <div
-            className="px-4 py-1 hover:bg-gray-100 cursor-pointer text-[13px]"
+            className="px-5 py-1 hover:bg-gray-100 cursor-pointer text-[13px]"
             onClick={() => handleSectionClick("All Students")}
           >
             All Students
