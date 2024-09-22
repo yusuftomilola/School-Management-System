@@ -5,12 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import arrowLeft from "../assets/icons/arrowLeft.png";
 import arrowRight from "../assets/icons/arrowRight.png";
-import math from "../assets/icons/Math-icon.svg";
-import english from "../assets/icons/english.png";
-import literature from "../assets/icons/literature.png";
-import chemistry from "../assets/icons/chemistry.png";
-import physics from "../assets/icons/physics.png";
-import history from "../assets/icons/history.png";
+import Math from "../assets/icons/Math-icon.svg";
+import English from "../assets/icons/english.png";
+import Literature from "../assets/icons/literature.png";
+import Chemistry from "../assets/icons/chemistry.png";
+import Physics from "../assets/icons/physics.png";
+import History from "../assets/icons/history.png";
 
 const SubjectCardSlider = ({ onClick }) => {
   const sliderRef = useRef();
@@ -62,33 +62,34 @@ const SubjectCardSlider = ({ onClick }) => {
       <Slider ref={sliderRef} {...settings}>
         <div className="cursor-pointer" onClick={onClick}>
           <SubjectCard
-            image={math}
+            image={Math}
             subject={"Mathematics"}
             noOfStudent={"12 Students"}
           />
         </div>
+
         <SubjectCard
-          image={english}
+          image={English}
           subject={"English"}
           noOfStudent={"11 Students"}
         />
         <SubjectCard
-          image={literature}
+          image={Literature}
           subject={"Literature"}
           noOfStudent={"15 Students"}
         />
         <SubjectCard
-          image={chemistry}
+          image={Chemistry}
           subject={"Chemistry"}
           noOfStudent={"12 Students"}
         />
         <SubjectCard
-          image={physics}
+          image={Physics}
           subject={"Physics"}
           noOfStudent={"12 Students"}
         />
         <SubjectCard
-          image={history}
+          image={History}
           subject={"History"}
           noOfStudent={"12 Students"}
         />

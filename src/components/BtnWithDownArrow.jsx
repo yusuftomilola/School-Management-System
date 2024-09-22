@@ -18,10 +18,9 @@ const BtnWithDownArrow = ({ text, handleSectionFilter }) => {
     <div className="relative inline-block">
       <button
         onClick={toggleDropdown}
-        className={`px-[12px] py-[6px] bg-[#5243AA] text-[#EAE6FF] rounded text-[13px] flex gap-1 justify-between h-[28px] w-[120px] items-center`}
+        className={`px-[12px] py-[6px] bg-[#5243AA] text-[#EAE6FF] rounded text-[13px] flex gap-1 justify-between h-[28px] w-[130px] items-center`}
       >
         {text}
-
         <img
           src={shortDownArrowIcon}
           alt="down arrow"
