@@ -24,7 +24,7 @@ function ProprietorCard({ id, name, qualification, rank, imageUser, staffID }) {
       <Link to={`/userss/${name}`}>
         <div className="flex">
           <div className="">
-            <img src={imageUser} alt="user" />
+            <img src={imageUser} alt="user" className="h-[120px] w-[120px]" />
           </div>
           <div className="ml-4 mt-5">
             <h4 className="text-[#172B4D] text-[14px] font-bold mb-2">

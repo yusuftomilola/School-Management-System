@@ -5,10 +5,23 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import CreateNewButton from "../components/CreateNewButton";
 import ProprietorCard from "../components/ProprietorCard";
 import { userss } from "../data/users";
+import { useState, useEffect } from "react";
 
 const DashboardUsers = () => {
   const { toggleFormVisibility, isFormVisible, setIsFormVisible } =
     useContext(FormContext);
+  const [myData, setMyData] = useState([]);
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("userss"));
+    console.log(storedUsers, "Lola");
+    if (storedUsers) {
+      setMyData(storedUsers);
+    } else {
+      localStorage.setItem("userss", JSON.stringify(userss));
+      setMyData(userss);
+      console.log(userss);
+    }
+  }, []);
 
   return (
     <div>
@@ -33,7 +46,7 @@ const DashboardUsers = () => {
       {isFormVisible && <Forms />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 mb-4 gap-4 xl:grid-cols-3">
-        {userss.map((Proprietor) => {
+        {myData.map((Proprietor) => {
           if (Proprietor.staffID === "Proprietor") {
             return (
               <ProprietorCard

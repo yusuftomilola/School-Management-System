@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ViewUsers = () => {
-  return (
-    <div>
-      View users
-    </div>
-  )
-}
+  return <div>View users</div>;
+};
 
-export default ViewUsers
+export default ViewUsers;
