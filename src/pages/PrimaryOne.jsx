@@ -7,6 +7,8 @@ import EarningsChartContainer from "../components/dashboard/EarningsChartContain
 import ProgressBar from "../components/ProgressBar";
 import ClassSubject from "../components/ClassSubject";
 import { useState } from "react";
+import TeacherOne from "../assets/icons/userProprietor.svg";
+import TeacherTwo from "../assets/icons/profile-photo.png";
 
 const PrimaryOne = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,14 +33,14 @@ const PrimaryOne = () => {
           name={"Anne Itodo Ibrahim"}
           qualification={"BSC English"}
           rank={"Head of class in 2020-03-01"}
-          imageUser={"src/assets/icons/userProprietor.svg"}
+          imageUser={TeacherOne}
         />
 
         <ProprietorCard
           name={"Anne Itodo Ibrahim"}
           qualification={"BSC English"}
           rank={"Head of class in 2020-03-01"}
-          imageUser={"src/assets/icons/profile-photo.png"}
+          imageUser={TeacherTwo}
         />
       </section>
 

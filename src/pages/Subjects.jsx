@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import SearchFilterButton2 from "../components/SearchFilterButton2";
 import TeacherCard from "../components/forms/TeacherCard";
 import SubjectCard from "../components/SubjectCard";
 import CreateNewButton from "../components/CreateNewButton";
-
 import {
   Dialog,
   DialogBackdrop,

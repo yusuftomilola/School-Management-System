@@ -5,6 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import arrowLeft from "../assets/icons/arrowLeft.png";
 import arrowRight from "../assets/icons/arrowRight.png";
+import Math from "../assets/icons/Math-icon.svg";
+import English from "../assets/icons/english.png";
+import Literature from "../assets/icons/literature.png";
+import Chemistry from "../assets/icons/chemistry.png";
+import Physics from "../assets/icons/physics.png";
+import History from "../assets/icons/history.png";
 
 const SubjectCardSlider = ({ onClick }) => {
   const sliderRef = useRef();
@@ -56,33 +62,34 @@ const SubjectCardSlider = ({ onClick }) => {
       <Slider ref={sliderRef} {...settings}>
         <div className="cursor-pointer" onClick={onClick}>
           <SubjectCard
-            image={"src/assets/icons/Math-icon.svg"}
+            image={Math}
             subject={"Mathematics"}
             noOfStudent={"12 Students"}
           />
         </div>
+
         <SubjectCard
-          image={"src/assets/icons/english.png"}
+          image={English}
           subject={"English"}
           noOfStudent={"11 Students"}
         />
         <SubjectCard
-          image={"src/assets/icons/literature.png"}
+          image={Literature}
           subject={"Literature"}
           noOfStudent={"15 Students"}
         />
         <SubjectCard
-          image={"src/assets/icons/chemistry.png"}
+          image={Chemistry}
           subject={"Chemistry"}
           noOfStudent={"12 Students"}
         />
         <SubjectCard
-          image={"src/assets/icons/physics.png"}
+          image={Physics}
           subject={"Physics"}
           noOfStudent={"12 Students"}
         />
         <SubjectCard
-          image={"src/assets/icons/history.png"}
+          image={History}
           subject={"History"}
           noOfStudent={"12 Students"}
         />
