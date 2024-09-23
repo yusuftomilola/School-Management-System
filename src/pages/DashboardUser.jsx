@@ -58,7 +58,7 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
   phoneNr: yup.string().required("Phone number is required"),
   religion: yup.string().required("Religion is required"),
-  address: yup.string().required("Address is required"),
+
   stateOfOrigin: yup.string().required("State of Origin is required"),
   lga: yup.string().required("LGA is required"),
   address: yup.string().required("address is required"),
